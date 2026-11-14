@@ -1,0 +1,218 @@
+pdb_id,provenance,construct,inhibitor,clinical_position,residue,residue_atom,ligand_atom,min_distance_A,status
+1M17,experimental X-ray,WT,erlotinib,718,LEU,O,O2,3.269,within_4A
+1M17,experimental X-ray,WT,erlotinib,743,ALA,CB,C19,3.307,within_4A
+1M17,experimental X-ray,WT,erlotinib,745,LYS,NZ,C22,3.7,within_4A
+1M17,experimental X-ray,WT,erlotinib,746,GLU,N,C1,6.972,outside_4A
+1M17,experimental X-ray,WT,erlotinib,747,LEU,N,C1,10.128,outside_4A
+1M17,experimental X-ray,WT,erlotinib,748,ARG,N,C1,13.519,outside_4A
+1M17,experimental X-ray,WT,erlotinib,749,GLU,N,C1,16.211,outside_4A
+1M17,experimental X-ray,WT,erlotinib,750,ALA,O,C1,17.009,outside_4A
+1M17,experimental X-ray,WT,erlotinib,762,GLU,OE2,C22,3.806,within_4A
+1M17,experimental X-ray,WT,erlotinib,788,LEU,CB,C1,3.431,within_4A
+1M17,experimental X-ray,WT,erlotinib,790,THR,OG1,C1,3.406,within_4A
+1M17,experimental X-ray,WT,erlotinib,791,GLN,O,C19,3.146,within_4A
+1M17,experimental X-ray,WT,erlotinib,792,LEU,CD1,N2,3.496,within_4A
+1M17,experimental X-ray,WT,erlotinib,793,MET,N,N2,2.699,within_4A
+1M17,experimental X-ray,WT,erlotinib,794,PRO,O,C16,3.107,within_4A
+1M17,experimental X-ray,WT,erlotinib,795,PHE,C,O4,3.446,within_4A
+1M17,experimental X-ray,WT,erlotinib,796,GLY,N,O4,3.238,within_4A
+1M17,experimental X-ray,WT,erlotinib,797,CYS,N,C14,4.727,outside_4A
+1M17,experimental X-ray,WT,erlotinib,844,LEU,CD1,N3,3.453,within_4A
+1M17,experimental X-ray,WT,erlotinib,854,THR,OG1,C21,3.652,within_4A
+1M17,experimental X-ray,WT,erlotinib,855,ASP,OD2,C21,3.105,within_4A
+1M17,experimental X-ray,WT,erlotinib,858,LEU,N,C21,10.116,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,718,LEU,O,CAO,3.398,within_4A
+2ITY,experimental X-ray,WT,gefitinib,719,GLY,CA,CAP,3.607,within_4A
+2ITY,experimental X-ray,WT,gefitinib,720,SER,O,CAM,3.911,within_4A
+2ITY,experimental X-ray,WT,gefitinib,726,VAL,CG1,NAS,3.945,within_4A
+2ITY,experimental X-ray,WT,gefitinib,743,ALA,CB,C2,3.595,within_4A
+2ITY,experimental X-ray,WT,gefitinib,745,LYS,CB,CL,3.657,within_4A
+2ITY,experimental X-ray,WT,gefitinib,746,GLU,N,CL,6.899,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,747,LEU,CD2,FAB,7.827,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,748,ARG,N,CL,11.835,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,749,GLU,N,CL,14.436,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,750,ALA,O,FAB,15.786,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,762,GLU,OE2,FAB,3.411,within_4A
+2ITY,experimental X-ray,WT,gefitinib,766,MET,CE,FAB,2.938,within_4A
+2ITY,experimental X-ray,WT,gefitinib,788,LEU,CD2,FAB,3.095,within_4A
+2ITY,experimental X-ray,WT,gefitinib,790,THR,CG2,CL,2.888,within_4A
+2ITY,experimental X-ray,WT,gefitinib,791,GLN,O,C2,3.421,within_4A
+2ITY,experimental X-ray,WT,gefitinib,792,LEU,C,N3,3.691,within_4A
+2ITY,experimental X-ray,WT,gefitinib,793,MET,N,N3,2.67,within_4A
+2ITY,experimental X-ray,WT,gefitinib,794,PRO,O,CAA,3.372,within_4A
+2ITY,experimental X-ray,WT,gefitinib,796,GLY,CA,OAT,3.421,within_4A
+2ITY,experimental X-ray,WT,gefitinib,797,CYS,SG,CAJ,4.859,outside_4A
+2ITY,experimental X-ray,WT,gefitinib,844,LEU,CD1,N1,3.526,within_4A
+2ITY,experimental X-ray,WT,gefitinib,855,ASP,OD2,CAD,3.929,within_4A
+2ITY,experimental X-ray,WT,gefitinib,858,LEU,N,FAB,9.853,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,718,LEU,CD1,CAZ,3.71,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,726,VAL,CG1,NAS,3.978,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,743,ALA,CB,C2,3.351,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,745,LYS,CE,FAB,3.338,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,746,GLU,N,CL,6.864,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,747,LEU,CD1,FAB,7.891,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,748,ARG,N,FAB,11.6,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,749,GLU,N,CL,14.734,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,750,ALA,O,FAB,16.202,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,762,GLU,OE2,FAB,3.345,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,766,MET,SD,FAB,3.499,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,788,LEU,O,CL,3.767,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,790,THR,CG2,CL,3.201,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,791,GLN,O,C2,3.102,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,792,LEU,C,N3,3.58,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,793,MET,N,N3,2.667,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,794,PRO,O,CAA,3.44,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,796,GLY,CA,OAT,3.576,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,797,CYS,CB,CAJ,4.432,outside_4A
+2ITZ,experimental X-ray,L858R,gefitinib,800,ASP,OD1,CAM,3.225,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,844,LEU,CD1,N1,3.562,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,854,THR,OG1,CAD,3.74,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,855,ASP,OD2,CAD,3.487,within_4A
+2ITZ,experimental X-ray,L858R,gefitinib,858,ARG,N,FAB,10.027,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,718,LEU,CD2,C4,3.562,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,719,GLY,CA,C23,3.631,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,726,VAL,CG2,C21,3.668,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,743,ALA,CB,C16,3.596,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,745,LYS,NZ,C27,3.125,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,746,GLU,N,C27,8.891,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,747,LEU,CD2,C27,9.012,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,748,ARG,NH1,C22,11.499,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,749,GLU,N,C27,15.703,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,750,,,,,no_resolved_atoms
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,790,THR,OG1,C16,4.355,outside_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,791,GLN,O,C16,3.69,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,792,LEU,CD1,O1,3.73,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,793,MET,O,N3,3.185,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,794,PRO,O,C14,3.215,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,796,GLY,CA,C6,3.373,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,797,CYS,SG,C9,1.801,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,800,ASP,OD2,C12,3.154,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,841,ARG,O,C9,3.735,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,844,LEU,CD1,C17,3.529,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,855,ASP,OD2,C27,3.498,within_4A
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,858,LEU,CD2,C27,5.709,outside_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,718,LEU,CD2,C3,3.597,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,723,PHE,CZ,C22,3.578,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,726,VAL,CG2,N6,3.409,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,743,ALA,CB,C16,3.552,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,745,LYS,CE,C27,4.112,outside_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,746,GLU,N,C27,8.308,outside_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,747,LEU,CD1,C27,9.772,outside_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,748,,,,,no_resolved_atoms
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,749,,,,,no_resolved_atoms
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,750,,,,,no_resolved_atoms
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,790,MET,CE,C17,3.981,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,791,GLN,O,C16,3.429,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,792,LEU,CD1,O1,3.56,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,793,MET,N,N4,2.932,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,794,PRO,O,C14,3.232,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,796,GLY,CA,O,3.414,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,797,SER,N,O,3.127,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,800,ASP,OD2,C12,3.052,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,804,GLU,OE2,C13,3.316,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,844,LEU,CD1,C17,3.556,within_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,858,ARG,N,C27,11.436,outside_4A
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,1001,LEU,CD1,C14,3.802,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,718,LEU,CD2,F47,3.216,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,726,VAL,CG2,C33,3.976,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,728,LYS,CE,F47,3.554,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,743,ALA,CB,N24,3.419,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,745,LYS,NZ,N9,3.177,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,746,GLU,N,N9,8.894,outside_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,747,,,,,no_resolved_atoms
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,748,,,,,no_resolved_atoms
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,749,,,,,no_resolved_atoms
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,750,,,,,no_resolved_atoms
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,775,CYS,SG,C5,3.543,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,790,MET,SD,N4,3.361,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,791,GLN,O,C6,2.981,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,792,LEU,CD1,C18,3.431,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,793,MET,N,N23,2.789,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,794,PRO,O,F45,2.901,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,796,GLY,CA,C27,3.848,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,797,SER,N,C34,4.141,outside_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,841,ARG,O,C16,3.161,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,842,ASN,OD1,C13,3.447,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,844,LEU,CD1,N2,3.203,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,854,THR,OG1,N4,2.77,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,855,ASP,OD2,O14,2.952,within_4A
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,858,ARG,N,O14,9.035,outside_4A
+2J6M,experimental X-ray,WT,AEE788,743,ALA,CB,CAD,3.459,within_4A
+2J6M,experimental X-ray,WT,AEE788,745,LYS,CB,CAC,4.092,outside_4A
+2J6M,experimental X-ray,WT,AEE788,746,GLU,N,CAC,7.278,outside_4A
+2J6M,experimental X-ray,WT,AEE788,747,LEU,N,CAC,9.833,outside_4A
+2J6M,experimental X-ray,WT,AEE788,748,ARG,N,CAE,11.618,outside_4A
+2J6M,experimental X-ray,WT,AEE788,749,GLU,N,CAC,14.454,outside_4A
+2J6M,experimental X-ray,WT,AEE788,750,ALA,O,CAE,16.229,outside_4A
+2J6M,experimental X-ray,WT,AEE788,762,GLU,OE2,CAH,3.905,within_4A
+2J6M,experimental X-ray,WT,AEE788,790,THR,CG2,CAD,3.022,within_4A
+2J6M,experimental X-ray,WT,AEE788,791,GLN,O,C2,3.47,within_4A
+2J6M,experimental X-ray,WT,AEE788,793,MET,O,NAW,3.169,within_4A
+2J6M,experimental X-ray,WT,AEE788,794,PRO,O,CAI,3.379,within_4A
+2J6M,experimental X-ray,WT,AEE788,796,GLY,CA,CAK,3.481,within_4A
+2J6M,experimental X-ray,WT,AEE788,797,CYS,N,CAL,4.857,outside_4A
+2J6M,experimental X-ray,WT,AEE788,804,GLU,OE1,CAA,2.019,within_4A
+2J6M,experimental X-ray,WT,AEE788,844,LEU,CD1,N1,3.404,within_4A
+2J6M,experimental X-ray,WT,AEE788,855,ASP,OD2,CAB,3.804,within_4A
+2J6M,experimental X-ray,WT,AEE788,858,LEU,N,CAB,10.793,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,718,LEU,CD1,CAY,3.503,within_4A
+2JIU,experimental X-ray,T790M,AEE788,726,VAL,CG2,CAH,3.797,within_4A
+2JIU,experimental X-ray,T790M,AEE788,743,ALA,CB,C2,3.429,within_4A
+2JIU,experimental X-ray,T790M,AEE788,744,ILE,C,CAE,3.896,within_4A
+2JIU,experimental X-ray,T790M,AEE788,745,LYS,CB,CAE,3.334,within_4A
+2JIU,experimental X-ray,T790M,AEE788,746,GLU,N,CAE,6.394,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,747,LEU,N,CAE,8.382,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,748,ARG,N,CAE,11.611,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,749,GLU,N,CAE,14.735,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,750,ALA,N,CAC,16.0,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,788,LEU,O,CAC,3.672,within_4A
+2JIU,experimental X-ray,T790M,AEE788,790,MET,SD,CAD,3.828,within_4A
+2JIU,experimental X-ray,T790M,AEE788,791,GLN,O,C2,3.558,within_4A
+2JIU,experimental X-ray,T790M,AEE788,792,LEU,CD1,NAW,3.361,within_4A
+2JIU,experimental X-ray,T790M,AEE788,793,MET,O,NAW,2.733,within_4A
+2JIU,experimental X-ray,T790M,AEE788,794,PRO,O,CAI,3.415,within_4A
+2JIU,experimental X-ray,T790M,AEE788,796,GLY,CA,CAK,3.313,within_4A
+2JIU,experimental X-ray,T790M,AEE788,797,CYS,N,CAL,4.525,outside_4A
+2JIU,experimental X-ray,T790M,AEE788,800,ASP,OD1,CAR,3.48,within_4A
+2JIU,experimental X-ray,T790M,AEE788,804,GLU,OE1,CAA,3.439,within_4A
+2JIU,experimental X-ray,T790M,AEE788,844,LEU,CD1,N1,3.53,within_4A
+2JIU,experimental X-ray,T790M,AEE788,854,THR,OG1,CAG,3.641,within_4A
+2JIU,experimental X-ray,T790M,AEE788,855,ASP,OD2,CAB,3.553,within_4A
+2JIU,experimental X-ray,T790M,AEE788,858,LEU,N,CAG,10.986,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,718,LEU,CD2,C12,3.611,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,719,GLY,N,C34,3.877,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,723,PHE,CG,C37,3.584,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,726,VAL,CG1,C35,3.546,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,743,ALA,CB,C6,3.405,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,745,LYS,NZ,O41,4.476,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,746,GLU,O,C37,8.625,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,747,LEU,CD2,C37,8.013,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,748,,,,,no_resolved_atoms
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,749,,,,,no_resolved_atoms
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,750,,,,,no_resolved_atoms
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,790,MET,CE,CL,3.427,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,791,GLN,O,C6,3.258,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,792,LEU,CD1,O14,3.583,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,793,MET,O,N7,2.795,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,794,PRO,O,C15,3.258,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,796,GLY,CA,C9,3.56,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,797,SER,N,C9,4.589,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,800,ASP,OD2,C23,3.946,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,804,GLU,OE1,C26,3.333,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,841,ARG,O,C3,3.804,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,842,ASN,OD1,C3,3.663,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,844,LEU,CD1,C1,3.357,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,854,THR,OG1,C3,3.665,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,855,ASP,OD2,C37,3.849,within_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,858,LEU,N,C37,10.091,outside_4A
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,1001,LEU,CD1,C15,3.787,within_4A
+7TVD,experimental X-ray,L747_E749del,apo,745,LYS,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,746,GLU,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,747,,,,,no_resolved_atoms
+7TVD,experimental X-ray,L747_E749del,apo,748,,,,,no_resolved_atoms
+7TVD,experimental X-ray,L747_E749del,apo,749,,,,,no_resolved_atoms
+7TVD,experimental X-ray,L747_E749del,apo,750,ALA,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,790,THR,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,793,MET,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,797,CYS,,,,no_ligand
+7TVD,experimental X-ray,L747_E749del,apo,858,LEU,,,,no_ligand

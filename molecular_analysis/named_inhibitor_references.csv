@@ -1,0 +1,63 @@
+curated_compound_id,compound_name,inhibitor_class,covalent_status,mutation_id,mutation_name,cohort_status,complex_ids,dataset_compound_ids,splits,cohort_labels_json,measurement_count
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_C797S,C797S,present_in_boltz,COMPLEX_000005,BDB_5447,train,"{""COMPLEX_000005"":""-2.6021""}",1
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_G719C,G719C,present_in_boltz,COMPLEX_000315,BDB_5447,train,"{""COMPLEX_000315"":""-2.3979""}",2
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_G719S,G719S,present_in_boltz,COMPLEX_000317,BDB_5447,train,"{""COMPLEX_000317"":""-2.1739""}",2
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R,L858R,present_in_boltz,COMPLEX_000501,BDB_5447,train,"{""COMPLEX_000501"":""-2.7905""}",6
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_C797S,L858R/C797S,present_in_boltz,COMPLEX_000899,BDB_5447,train,"{""COMPLEX_000899"":""-1.9208""}",1
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_T790M,L858R/T790M,present_in_boltz,COMPLEX_001790,BDB_5447,train,"{""COMPLEX_001790"":""0.2126""}",4
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,experimental_reference_only,,,,{},1
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_L861Q,L861Q,present_in_boltz,COMPLEX_003139,BDB_5447,train,"{""COMPLEX_003139"":""-2.6576""}",1
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_T790M,T790M,present_in_boltz,COMPLEX_003257,BDB_5447,train,"{""COMPLEX_003257"":""-0.7566""}",4
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_T790M_C797S,T790M/C797S,present_in_boltz,COMPLEX_003337,BDB_5447,train,"{""COMPLEX_003337"":""0.3204""}",1
+CMP_GEFITINIB,gefitinib,quinazoline EGFR-TKI,non-covalent,EGFR_WT,WT,present_in_boltz,COMPLEX_004637,BDB_50338602,test,"{""COMPLEX_004637"":""-1.9265""}",265
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_C797S,C797S,present_in_boltz,COMPLEX_000004,BDB_5446,train,"{""COMPLEX_000004"":""-2.5229""}",1
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R,L858R,present_in_boltz,COMPLEX_000500,BDB_5446,train,"{""COMPLEX_000500"":""-2.3372""}",2
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_C797S,L858R/C797S,present_in_boltz,COMPLEX_000898,BDB_5446,train,"{""COMPLEX_000898"":""-1.9586""}",1
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_T790M,L858R/T790M,experimental_reference_only,,,,{},1
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,experimental_reference_only,,,,{},1
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_T790M,T790M,present_in_boltz,COMPLEX_003256,BDB_5446,train,"{""COMPLEX_003256"":""-0.284""}",2
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_T790M_C797S,T790M/C797S,present_in_boltz,COMPLEX_003336,BDB_5446,train,"{""COMPLEX_003336"":""0.5518""}",1
+CMP_ERLOTINIB,erlotinib,quinazoline EGFR-TKI,non-covalent,EGFR_WT,WT,present_in_boltz,COMPLEX_004603,BDB_50311470,train,"{""COMPLEX_004603"":""-1.7123""}",235
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_L858R,L858R,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_L858R_C797S,L858R/C797S,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_L858R_T790M,L858R/T790M,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_WT,WT,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_ex19del,ex19del,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_ex19del_C797S,ex19del/C797S,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_ex19del_T790M,ex19del/T790M,experimental_reference_only,,,,{},2
+CMP_OSIMERTINIB,osimertinib,pyrimidine mutant-selective TKI,covalent,EGFR_ex19del_T790M_C797S,ex19del/T790M/C797S,experimental_reference_only,,,,{},2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_L858R,L858R,present_in_boltz,COMPLEX_000889,CMP_BLU945,train,"{""COMPLEX_000889"":""-1.2534""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_L858R_C797S,L858R/C797S,present_in_boltz,COMPLEX_001557,CMP_BLU945,train,"{""COMPLEX_001557"":""-1.3568""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_L858R_T790M,L858R/T790M,present_in_boltz,COMPLEX_002230,CMP_BLU945,train,"{""COMPLEX_002230"":""-1.3816""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,present_in_boltz,COMPLEX_003136,CMP_BLU945,train,"{""COMPLEX_003136"":""-0.6635""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_WT,WT,experimental_reference_only,,,,{},2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_ex19del,ex19del,present_in_boltz,COMPLEX_005937,CMP_BLU945,train,"{""COMPLEX_005937"":""-0.8467""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_ex19del_C797S,ex19del/C797S,present_in_boltz,COMPLEX_006596,CMP_BLU945,train,"{""COMPLEX_006596"":""-0.8371""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_ex19del_T790M,ex19del/T790M,present_in_boltz,COMPLEX_006685,CMP_BLU945,train,"{""COMPLEX_006685"":""-1.8092""}",2
+CMP_BLU945,BLU-945,reversible mutant-selective TKI,non-covalent,EGFR_ex19del_T790M_C797S,ex19del/T790M/C797S,present_in_boltz,COMPLEX_006843,CMP_BLU945,train,"{""COMPLEX_006843"":""-1.619""}",2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_L858R,L858R,present_in_boltz,COMPLEX_000890,CMP_JBJ09063,train,"{""COMPLEX_000890"":""-1.5726""}",2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_L858R_C797S,L858R/C797S,present_in_boltz,COMPLEX_001558,CMP_JBJ09063,train,"{""COMPLEX_001558"":""-1.3825""}",2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_L858R_T790M,L858R/T790M,present_in_boltz,COMPLEX_002231,CMP_JBJ09063,train,"{""COMPLEX_002231"":""-1.3067""}",2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,present_in_boltz,COMPLEX_003137,CMP_JBJ09063,train,"{""COMPLEX_003137"":""-1.2604""}",2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_WT,WT,experimental_reference_only,,,,{},2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_ex19del,ex19del,experimental_reference_only,,,,{},2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_ex19del_C797S,ex19del/C797S,experimental_reference_only,,,,{},2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_ex19del_T790M,ex19del/T790M,experimental_reference_only,,,,{},2
+CMP_JBJ09063,JBJ-09-063,allosteric EGFR inhibitor,non-covalent,EGFR_ex19del_T790M_C797S,ex19del/T790M/C797S,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_L858R,L858R,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_L858R_C797S,L858R/C797S,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_L858R_T790M,L858R/T790M,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_WT,WT,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_ex19del,ex19del,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_ex19del_C797S,ex19del/C797S,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_ex19del_T790M,ex19del/T790M,experimental_reference_only,,,,{},2
+CMP_SILEVERTINIB,silevertinib,mutant-selective TKI,covalent,EGFR_ex19del_T790M_C797S,ex19del/T790M/C797S,experimental_reference_only,,,,{},2
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_C797S,C797S,present_in_boltz,COMPLEX_000001,BDB_50185140,train,"{""COMPLEX_000001"":""-0.7496""}",1
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_L858R_C797S,L858R/C797S,present_in_boltz,COMPLEX_000897,BDB_50185140,train,"{""COMPLEX_000897"":""-0.2612""}",1
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_L858R_T790M,L858R/T790M,present_in_boltz,COMPLEX_001779,BDB_50185140,train,"{""COMPLEX_001779"":""-0.8297""}",1
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_L858R_T790M_C797S,L858R/T790M/C797S,present_in_boltz,COMPLEX_002343,BDB_50185140,train,"{""COMPLEX_002343"":""-0.1238""}",2
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_T790M,T790M,present_in_boltz,COMPLEX_003225,BDB_50185140,train,"{""COMPLEX_003225"":""-0.7852""}",1
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_T790M_C797S,T790M/C797S,present_in_boltz,COMPLEX_003293,BDB_50185140,train,"{""COMPLEX_003293"":""-1.7056""}",3
+CMP_BRIGATINIB,brigatinib,dimethylphosphine-oxide TKI,non-covalent,EGFR_WT,WT,experimental_reference_only,,,,{},88
