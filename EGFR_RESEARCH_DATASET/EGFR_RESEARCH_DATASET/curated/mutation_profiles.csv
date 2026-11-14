@@ -1,0 +1,20 @@
+profile_id,gene,mutation_profile,individual_mutation_ids,reference_isoform,sequence_id,cancer_type,biological_context,classification,evidence_ids,source_ids,annotation_confidence
+PROF_WT,EGFR,WT,none(WT),P00533-1,EGFR_WT,NSCLC,Wild-type reference kinase.,reference,,UNIPROT_P00533,sequence:high
+PROF_L858R,EGFR,L858R,EGFR_L858R,P00533-1,EGFR_L858R,NSCLC,Activation-loop activating mutation; TKI-sensitising.,activating,,UNIPROT_P00533,sequence:high
+PROF_ex19del,EGFR,ex19del,EGFR_ex19del,P00533-1,EGFR_ex19del,NSCLC,"Exon-19 in-frame deletion (representative delE746_A750/ELREA); activating, TKI-sensitising.",activating,,UNIPROT_P00533,sequence:high
+PROF_G719A,EGFR,G719A,EGFR_G719A,P00533-1,EGFR_G719A,NSCLC,Exon-18 G719X P-loop activating mutation.,activating,,UNIPROT_P00533,sequence:high
+PROF_G719S,EGFR,G719S,EGFR_G719S,P00533-1,EGFR_G719S,NSCLC,Exon-18 G719X P-loop activating mutation.,activating,,UNIPROT_P00533,sequence:high
+PROF_G719C,EGFR,G719C,EGFR_G719C,P00533-1,EGFR_G719C,NSCLC,Exon-18 G719X P-loop activating mutation.,activating,,UNIPROT_P00533,sequence:high
+PROF_L861Q,EGFR,L861Q,EGFR_L861Q,P00533-1,EGFR_L861Q,NSCLC,Exon-21 atypical activating mutation.,activating,,UNIPROT_P00533,sequence:high
+PROF_S768I,EGFR,S768I,EGFR_S768I,P00533-1,EGFR_S768I,NSCLC,Exon-20 atypical activating mutation.,activating,,UNIPROT_P00533,sequence:high
+PROF_T790M,EGFR,T790M,EGFR_T790M,P00533-1,EGFR_T790M,NSCLC,Gatekeeper; steric+raised ATP affinity; 1st/2nd-gen resistance.,resistance,,UNIPROT_P00533,sequence:high
+PROF_C797S,EGFR,C797S,EGFR_C797S,P00533-1,EGFR_C797S,NSCLC,Loss of Cys797 covalent anchor; 3rd-gen covalent-TKI resistance.,resistance,,UNIPROT_P00533,sequence:high
+PROF_L858R_T790M,EGFR,L858R/T790M,EGFR_L858R;EGFR_T790M,P00533-1,EGFR_L858R_T790M,NSCLC,Activating + gatekeeper.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_ex19del_T790M,EGFR,ex19del/T790M,EGFR_ex19del;EGFR_T790M,P00533-1,EGFR_ex19del_T790M,NSCLC,ex19del + gatekeeper T790M.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_L858R_C797S,EGFR,L858R/C797S,EGFR_L858R;EGFR_C797S,P00533-1,EGFR_L858R_C797S,NSCLC,Activating + covalent-anchor loss.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_ex19del_C797S,EGFR,ex19del/C797S,EGFR_ex19del;EGFR_C797S,P00533-1,EGFR_ex19del_C797S,NSCLC,ex19del + C797S.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_T790M_C797S,EGFR,T790M/C797S,EGFR_T790M;EGFR_C797S,P00533-1,EGFR_T790M_C797S,NSCLC,Gatekeeper + covalent-anchor loss (cis critical).,resistance,,UNIPROT_P00533,sequence:high
+PROF_L858R_T790M_C797S,EGFR,L858R/T790M/C797S,EGFR_L858R;EGFR_T790M;EGFR_C797S,P00533-1,EGFR_L858R_T790M_C797S,NSCLC,Triple mutant; broad TKI resistance.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_ex19del_T790M_C797S,EGFR,ex19del/T790M/C797S,EGFR_ex19del;EGFR_T790M;EGFR_C797S,P00533-1,EGFR_ex19del_T790M_C797S,NSCLC,ex19del triple; broad TKI resistance.,activating+resistance,,UNIPROT_P00533,sequence:high
+PROF_UNSPECIFIED,EGFR,unspecified,none,P00533-1,EGFR_UNSPECIFIED,NSCLC,BindingDB bulk; mutation construct not provided,unspecified,,BindingDB,low
+PROF_OTHER,EGFR,other,various,P00533-1,EGFR_OTHER,NSCLC,out-of-panel BindingDB variants,other,,,low

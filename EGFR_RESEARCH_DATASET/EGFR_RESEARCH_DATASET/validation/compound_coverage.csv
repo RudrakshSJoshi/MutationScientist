@@ -1,0 +1,14 @@
+compound_id,compound_name,covalent_status,generation,affinity_measurements,boltz_eligible
+CMP_GEFITINIB,gefitinib,non-covalent,1st-gen,0,0
+CMP_ERLOTINIB,erlotinib,non-covalent,1st-gen,0,0
+CMP_AFATINIB,afatinib,covalent,2nd-gen,0,0
+CMP_DACOMITINIB,dacomitinib,covalent,2nd-gen,0,0
+CMP_OSIMERTINIB,osimertinib,covalent,3rd-gen,18,0
+CMP_LAZERTINIB,lazertinib,covalent,3rd-gen,0,0
+CMP_ROCILETINIB,rociletinib,covalent,3rd-gen,0,0
+CMP_NAZARTINIB,nazartinib,covalent,3rd-gen,0,0
+CMP_MOBOCERTINIB,mobocertinib,covalent,3rd-gen,0,0
+CMP_BLU945,BLU-945,non-covalent,4th-gen,18,17
+CMP_JBJ09063,JBJ-09-063,non-covalent,allosteric,18,9
+CMP_SILEVERTINIB,silevertinib,covalent,4th-gen,18,0
+CMP_BRIGATINIB,brigatinib,non-covalent,other,0,0

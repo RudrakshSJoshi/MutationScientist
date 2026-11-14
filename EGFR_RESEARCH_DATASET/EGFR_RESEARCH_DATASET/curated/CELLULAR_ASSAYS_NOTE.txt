@@ -1,0 +1,5 @@
+cellular_assays.csv is intentionally header-only. Melis 2026 reports cell-viability data for an
+engineered NCI-H1975 (L858R/T790M/C797S) model and a 113-cell-line panel, but the numeric values
+are in Supplementary Tables 3/4 (not in the acquired main-text/data). Per the no-fabrication rule,
+no cellular IC50/GI50 numbers are entered. Populate from Melis Suppl. Tables or ChEMBL cellular
+assays (assay_type function) when available; keep cellular data OUT of the Boltz biochemical target.

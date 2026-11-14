@@ -1,0 +1,1 @@
+Ligand structures are provided as validated SMILES in curated/compounds.csv (isomeric_smiles) and curated/bindingdb_ligands.csv. No separate per-ligand structure files (SDF/MOL) were generated; Boltz derives 3D ligand geometry from SMILES at inference.

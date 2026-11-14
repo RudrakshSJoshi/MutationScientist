@@ -1,0 +1,7 @@
+measurement_type,boltz_eligibility,count
+EC50,ineligible_assay_type,276
+IC50,eligible,18189
+IC50,insufficient_provenance,4
+IC50,requires_review,11109
+KD,incompatible_target_scale,1707
+Ki,incompatible_target_scale,370

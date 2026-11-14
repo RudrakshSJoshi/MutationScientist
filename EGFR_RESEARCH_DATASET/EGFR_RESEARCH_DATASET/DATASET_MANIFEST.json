@@ -1,0 +1,67 @@
+{
+  "dataset_name": "EGFR acquired-resistance research dataset (NSCLC)",
+  "dataset_version": "1.1.0-llm-expanded",
+  "created": "2026-11-14",
+  "scope": "Data-and-documentation only (no scripts/models/inference in deliverable).",
+  "reference_protein": {
+    "gene": "EGFR", "uniprot_accession": "P00533",
+    "isoform": "P00533-1 canonical (1210 aa precursor, Met=1)",
+    "numbering_convention": "precursor/clinical (L858R, T790M, C797S on this numbering)",
+    "canonical_sha256_16": "dbb4583267ad40a7"
+  },
+  "boltz_affinity_target_convention": {
+    "field": "affinity_pred_value",
+    "definition": "log10(IC50), IC50 in micromolar (uM); lower = stronger",
+    "conversion": "boltz_target_value = log10(IC50_nM) - 3",
+    "NOT": "pIC50 (would invert sign/offset)",
+    "verified_against": "molecularinformatics/Boltz2_affinity docs/prediction.md:244-249 @ bc06a0b; loss/affinity.py Huber, no in-code transform"
+  },
+  "counts": {
+    "mutations": 19,
+    "mutation_profiles": 19,
+    "protein_sequences_fasta": 17,
+    "compounds_curated_panel": 13,
+    "bindingdb_ligands": 16393,
+    "affinity_measurements_total": 31655,
+    "affinity_by_source": {"Melis2026_literature": 72, "BindingDB_bulk_mutation_resolved": 31583},
+    "affinity_by_measurement_type": {"IC50": 29302, "KD": 1707, "Ki": 370, "EC50": 276},
+    "boltz_eligible": 18189,
+    "boltz_eligible_by_source": {"BindingDB": 18163, "Melis_literature": 26},
+    "boltz_eligible_distinct_compounds": 10509,
+    "eligibility_breakdown": {"eligible": 18189, "requires_review": 11109, "incompatible_target_scale": 2077, "ineligible_assay_type": 276, "insufficient_provenance": 4},
+    "boltz_eligible_by_variant": {"EGFR_WT": 13215, "EGFR_L858R_T790M_C797S": 942, "EGFR_L858R_T790M": 698, "EGFR_L858R_C797S": 670, "EGFR_ex19del_C797S": 661, "EGFR_L858R": 589, "EGFR_T790M_C797S": 435, "EGFR_C797S": 322, "EGFR_ex19del": 235, "EGFR_ex19del_T790M_C797S": 159, "EGFR_T790M": 114, "EGFR_ex19del_T790M": 90, "EGFR_S768I": 53, "EGFR_G719C": 2, "EGFR_G719S": 2, "EGFR_L861Q": 2}
+  },
+  "integrity": {
+    "referential_integrity": "PASS (0 unresolved mutation_id/compound_id/profile_id refs)",
+    "melis_values_verified_against_source_pdf": true,
+    "censoring_fixed": "Melis '>10,000 nM' cells carry measurement_relation='>' and blank boltz_target_value; BindingDB censored values preserved with relation",
+    "covalency": "BindingDB covalency flagged via acrylamide-SMILES heuristic (quality_flag=acrylamide_covalent_heuristic) -> requires_review; documented as heuristic, not curated"
+  },
+  "bindingdb_bulk_source": "BindingDB_All_202611_tsv.zip (full DB); filtered to UniProt P00533 (31,586 rows); mutation construct parsed from Target Name column; supersedes earlier construct-less REST pull",
+  "key_scientific_note": "Osimertinib & silevertinib are covalent (acrylamide/Cys797) -> time-dependent IC50 -> requires_review, NOT in the Boltz regression target. The osimertinib x C797S resistance signal (e.g. L858R 2.82 nM -> L858R/C797S 574 nM) is real and belongs to the LLM/interpretation side. All 26 Boltz-eligible rows are the non-covalent BLU-945 / JBJ-09-063.",
+  "component_status": {
+    "curated/mutations.csv": "COMPLETED_AND_TESTED",
+    "curated/mutation_profiles.csv": "COMPLETED_AND_TESTED",
+    "curated/protein_sequences.fasta": "COMPLETED_AND_TESTED",
+    "curated/protein_sequence_metadata.csv": "COMPLETED_AND_TESTED",
+    "curated/compounds.csv": "COMPLETED_AND_TESTED (chembl_id blank pending ChEMBL)",
+    "curated/affinity_measurements.csv": "COMPLETED_AND_TESTED (31,655 rows; mutation-resolved via BindingDB bulk)",
+    "curated/bindingdb_ligands.csv": "COMPLETED_AND_TESTED (16,393 ligands)",
+    "boltz2/boltz_compatible_dataset.csv": "COMPLETED_AND_TESTED (18,189 eligible; training-scale)",
+    "curated/biological_evidence.csv": "COMPLETED (40 claims, real DOIs via EuropePMC)",
+    "curated/cellular_assays.csv": "HEADER_ONLY (numeric data in Melis Suppl. Tables 3/4; not fabricated; see note)",
+    "REFERENCES.csv": "COMPLETED (29 sources)",
+    "curated/protein_structures/structures_index.csv": "COMPLETED (60 RCSB EGFR entries)",
+    "boltz2/complexes/*.yaml + complex_metadata.csv + msa/ + val_names.txt": "COMPLETED (6,843 YAMLs; 17 ColabFold MSAs; ligand-disjoint splits)",
+    "mutation_scientist/*.jsonl + sft_*.csv + eval + preference + README": "COMPLETED (1,341 examples = 101 hand-grounded + 1,240 teacher-generated [number-grounding verified, 8 rejected]; split 912/214/215; clears 1,000-row floor; human review recommended)",
+    "validation/*": "COMPLETED (8 computed reports; 0 ligand leakage)",
+    "README.md + boltz2/README.md + mutation_scientist/README.md": "COMPLETED",
+    "EGFR_RESEARCH_DATASET.zip": "BUILT"
+  },
+  "blockers": [
+    "RESOLVED: Boltz affinity volume now 18,189 eligible mutation-resolved rows via BindingDB bulk TSV (ChEMBL no longer required for trainability; ChEMBL would still add more if it recovers).",
+    "ChEMBL REST still HTTP 500 (EBI outage) -> compound chembl_id column blank; optional extra volume pending recovery.",
+    "BindingDB IC50 are multi-lab/heterogeneous (no uniform assay_id/ATP condition) -> noisier than single-lab; documented limitation for the Boltz regression target.",
+    "ADAPTION_API_KEY not set -> required before any LLM SFT upload."
+  ]
+}
