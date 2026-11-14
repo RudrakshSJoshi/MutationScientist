@@ -1,0 +1,6 @@
+reference_pdb_id,mobile_pdb_id,fit_CA_atom_count,fit_CA_RMSD_A,matched_ligand_atom_count,ligand_RMSD_A
+2ITY,2ITZ,33,0.41,31,1.479
+6JXT,6LUD,33,1.299,37,1.454
+2J6M,2JIU,33,0.846,33,1.005
+6LUD,6LUB,32,0.457,0,
+2ITY,7TVD,33,1.295,0,
