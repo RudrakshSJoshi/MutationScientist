@@ -1,0 +1,12 @@
+# The pages/ folder here holds importable render() modules (per the Person 4
+# deliverable structure), NOT Streamlit auto-pages. Disable the auto sidebar nav
+# so the app's own sidebar radio is the single navigation.
+[client]
+showSidebarNavigation = false
+
+[theme]
+base = "dark"
+primaryColor = "#4da3ff"
+
+[server]
+headless = true

@@ -1,0 +1,24 @@
+[
+  {
+    "complex_id": "COMPLEX_000001",
+    "mutation_id": "EGFR_C797S",
+    "compound_id": "BDB_50185140",
+    "model_version": "boltz-2.2.1",
+    "model_checkpoint": "pretrained",
+    "affinity_pred_value": null,
+    "affinity_probability_binary": null,
+    "score_definition": "log10(IC50 in uM); lower = stronger; NOT pIC50",
+    "structure_path": null
+  },
+  {
+    "complex_id": "COMPLEX_000002",
+    "mutation_id": "EGFR_WT",
+    "compound_id": "CMP_OSIMERTINIB",
+    "model_version": "boltz-2.2.1",
+    "model_checkpoint": "finetuned",
+    "affinity_pred_value": null,
+    "affinity_probability_binary": null,
+    "score_definition": "log10(IC50 in uM); lower = stronger; NOT pIC50",
+    "structure_path": "structures/COMPLEX_000002.cif"
+  }
+]
