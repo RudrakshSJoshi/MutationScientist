@@ -67,7 +67,7 @@ def overview(ctx):
     if not ctx.boltz.real_mode or not ctx.llm.real_mode:
         st.info("Running with mock placeholders for the parts not yet delivered. Set "
                 f"`{S.ENV_BOLTZ_PREDICTIONS}` (Person 2) and `{S.ENV_ADAPTION_API_KEY}`+"
-                f"`{S.ENV_ADAPTION_MODEL}` (Person 1) to go live — no UI change needed.")
+                f"`{S.ENV_ADAPTION_STACK}` (Person 1) to go live — no UI change needed.")
 
     st.markdown("#### The demo question")
     st.markdown("> *How does EGFR **C797S** affect the predicted interaction with "
