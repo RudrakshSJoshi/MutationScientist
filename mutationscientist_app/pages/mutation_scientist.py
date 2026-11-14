@@ -18,9 +18,27 @@ def render(ctx):
 
     # --- selection -------------------------------------------------------
     muts = [m["mutation_id"] for m in data.list_mutations()]
-    default_mut = muts.index("EGFR_C797S") if "EGFR_C797S" in muts else 0
+    if "_ms_mut" not in st.session_state:
+        # KEEP the headline default: EGFR_C797S × osimertinib (covalent -> no Boltz complex).
+        st.session_state["_ms_mut"] = "EGFR_C797S" if "EGFR_C797S" in muts else (muts[0] if muts else None)
+
+    # One-click non-covalent demo pair: this one DOES have a Boltz complex, so the
+    # report also shows a real prediction-vs-experiment pair (BLU-945 is a named,
+    # reversible/non-covalent mutant-selective TKI, included in the regression target).
+    NONCOV_MUT, NONCOV_CMP = "EGFR_L858R_C797S", "CMP_BLU945"
+    if st.button(
+        "🧪 Load non-covalent demo pair (has a Boltz prediction): "
+        "EGFR L858R/C797S × BLU-945",
+        help="The headline C797S × osimertinib pair is covalent and has no Boltz "
+             "complex, so it shows 'no prediction'. This companion pair has a real "
+             "Boltz complex plus a curated measurement.",
+    ):
+        st.session_state["_ms_mut"] = NONCOV_MUT
+        st.session_state["_ms_want_cmp"] = NONCOV_CMP
+        st.rerun()
+
     c1, c2 = st.columns(2)
-    mid = c1.selectbox("Mutation", muts, index=default_mut)
+    mid = c1.selectbox("Mutation", muts, key="_ms_mut")
 
     tested = data.compounds_tested_against(mid)
     # prefer a named compound (e.g. osimertinib) if present
@@ -28,9 +46,22 @@ def render(ctx):
     options = named + [t for t in tested if t not in named]
     if not options:
         options = [c["compound_id"] for c in data.list_compounds()]
-    default_cmp = next((i for i, o in enumerate(options) if "OSIMERT" in o.upper()), 0)
-    cid = c2.selectbox("Inhibitor", options, index=default_cmp,
-                       format_func=data.compound_display_name)
+
+    # Honour a pending quick-select, then reconcile any stale value against the
+    # current mutation's option list (options change when the mutation changes).
+    want = st.session_state.pop("_ms_want_cmp", None)
+    if want and want in options:
+        st.session_state["_ms_cmp"] = want
+    if st.session_state.get("_ms_cmp") not in options:
+        st.session_state.pop("_ms_cmp", None)
+
+    if "_ms_cmp" in st.session_state:
+        cid = c2.selectbox("Inhibitor", options, key="_ms_cmp",
+                           format_func=data.compound_display_name)
+    else:
+        default_cmp = next((i for i, o in enumerate(options) if "OSIMERT" in o.upper()), 0)
+        cid = c2.selectbox("Inhibitor", options, index=default_cmp, key="_ms_cmp",
+                           format_func=data.compound_display_name)
 
     mutation = data.get_mutation(mid)
     compound = data.get_compound(cid)

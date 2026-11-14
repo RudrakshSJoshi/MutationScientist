@@ -2,9 +2,16 @@
 llm_service.py — the MutationScientist report interface (Person 1 / Adaption).
 
 Modes:
-  * REAL  — if ADAPTION_API_KEY and ADAPTION_MODEL_ID are set, build the
-            structured context and call the model over an OpenAI-compatible
-            endpoint. Any failure degrades gracefully to the template.
+  * REAL  — built context is sent to a served model. Two providers are supported:
+      1. Adaption Responses API (PRIMARY) — when ADAPTION_API_KEY + ADAPTION_STACK
+         are set. POST {base}/api/v1/responses with body
+         {model:"stack:<slug>", input:<context text>, instructions:<persona>,
+         temperature}. Reply read from JSON "output_text" (fallback output[]).
+         Base defaults to https://api.prod.adaptionlabs.ai.
+      2. Generic OpenAI-compatible endpoint (SECONDARY) — when OPENAI_BASE_URL +
+         OPENAI_API_KEY + OPENAI_MODEL are set. POST {base}/chat/completions.
+    Adaption takes precedence when both are configured. Any failure degrades
+    gracefully to the template.
   * MOCK  — a grounded TEMPLATE report. It only ever restates values that are
             present in the supplied context (mutation record, measurements,
             Boltz prediction, evidence). It invents no numbers, no mechanisms
@@ -22,13 +29,40 @@ import config.settings as S
 
 class LLMService:
     def __init__(self):
-        self.api_key = S.env(S.ENV_ADAPTION_API_KEY)
-        self.model_id = S.env(S.ENV_ADAPTION_MODEL)
-        self.base_url = S.env(S.ENV_ADAPTION_BASE_URL)
-        self.real_mode = bool(self.api_key and self.model_id)
+        # Adaption Responses API (Person 1) — the PRIMARY real path. The served
+        # fine-tuned model is referenced as "stack:<slug>".
+        self.adaption_key = S.env(S.ENV_ADAPTION_API_KEY)
+        # Prefer ADAPTION_STACK; fall back to the legacy ADAPTION_MODEL_ID slug.
+        self.adaption_stack = S.env(S.ENV_ADAPTION_STACK) or S.env(S.ENV_ADAPTION_MODEL)
+        self.adaption_base = S.env(S.ENV_ADAPTION_BASE_URL) or S.ADAPTION_DEFAULT_BASE_URL
+        self._adaption_ready = bool(self.adaption_key and self.adaption_stack)
+
+        # Generic OpenAI-compatible endpoint — SECONDARY real path. A full trio
+        # is required (a hosted endpoint has no built-in default base url).
+        self.openai_base = S.env(S.ENV_OPENAI_BASE_URL)
+        self.openai_key = S.env(S.ENV_OPENAI_API_KEY)
+        self.openai_model = S.env(S.ENV_OPENAI_MODEL)
+        self._openai_ready = bool(self.openai_base and self.openai_key and self.openai_model)
+
+        # Adaption takes precedence when both are configured.
+        if self._adaption_ready:
+            self.provider = "adaption"
+            self.model_id = f"stack:{self.adaption_stack}"
+        elif self._openai_ready:
+            self.provider = "openai"
+            self.model_id = self.openai_model
+        else:
+            self.provider = None
+            self.model_id = None
+
+        self.real_mode = self._adaption_ready or self._openai_ready
 
     def mode_label(self) -> str:
-        return f"REAL ({self.model_id})" if self.real_mode else "MOCK (grounded template)"
+        if self.provider == "adaption":
+            return f"REAL (Adaption {self.model_id})"
+        if self.provider == "openai":
+            return f"REAL ({self.model_id})"
+        return "MOCK (grounded template)"
 
     # ------------------------------------------------------------------ context
     def build_context(self, mutation, compound, boltz_predictions, experimental_evidence,
@@ -78,7 +112,9 @@ class LLMService:
                                  experimental_evidence, measurements, data_service)
         if self.real_mode:
             try:
-                return self._generate_real(ctx)
+                if self.provider == "adaption":
+                    return self._generate_real_adaption(ctx)
+                return self._generate_real_openai(ctx)
             except Exception as e:  # never break the demo; fall back and say so
                 rep = self._generate_template(ctx)
                 rep["is_mock"] = True
@@ -86,28 +122,66 @@ class LLMService:
                 return rep
         return self._generate_template(ctx)
 
-    def _generate_real(self, ctx: dict) -> dict:
+    # The persona / system instructions, shared by both real providers. It forbids
+    # fabricated numbers, mechanisms and citations.
+    _SYSTEM = (
+        "You are MutationScientist, an evidence-grounded EGFR/NSCLC research "
+        "assistant. Use ONLY the supplied context. Never invent numbers, "
+        "mechanisms or citations. Keep biochemical affinity, cellular assays "
+        "and clinical response distinct. Respect the score definition exactly. "
+        "Separate established mechanism from computational prediction, and label "
+        "uncertainty. Not for clinical decisions."
+    )
+
+    def _user_text(self, ctx: dict) -> str:
+        return ("CONTEXT:\n" + json.dumps(ctx, indent=2) +
+                "\n\nWrite the structured research report.")
+
+    def _generate_real_adaption(self, ctx: dict) -> dict:
+        """PRIMARY: Adaption Responses API (POST {base}/api/v1/responses)."""
         import urllib.request
-        system = (
-            "You are MutationScientist, an evidence-grounded EGFR/NSCLC research "
-            "assistant. Use ONLY the supplied context. Never invent numbers, "
-            "mechanisms or citations. Keep biochemical affinity, cellular assays "
-            "and clinical response distinct. Respect the score definition exactly. "
-            "Separate established mechanism from computational prediction, and label "
-            "uncertainty. Not for clinical decisions."
-        )
-        url = (self.base_url or "https://api.adaptionlabs.ai/v1").rstrip("/") + "/chat/completions"
+        url = self.adaption_base.rstrip("/") + "/api/v1/responses"
         body = json.dumps({
-            "model": self.model_id,
+            "model": f"stack:{self.adaption_stack}",
+            "input": self._user_text(ctx),
+            "instructions": self._SYSTEM,
+            "temperature": 0.2,
+        }).encode()
+        req = urllib.request.Request(url, data=body, headers={
+            "Authorization": f"Bearer {self.adaption_key}", "Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            out = json.loads(resp.read())
+        text = out.get("output_text") or self._extract_output_text(out)
+        if not text:
+            raise ValueError("Adaption response had no output_text")
+        return {"is_mock": False, "model": self.model_id, "context": ctx,
+                "report_markdown": text, "sections": None}
+
+    @staticmethod
+    def _extract_output_text(out: dict) -> str:
+        """Fallback for the Responses API: concatenate output[].content[].text."""
+        chunks = []
+        for item in out.get("output", []) or []:
+            for c in (item.get("content") if isinstance(item, dict) else None) or []:
+                t = c.get("text") if isinstance(c, dict) else None
+                if t:
+                    chunks.append(t)
+        return "\n".join(chunks)
+
+    def _generate_real_openai(self, ctx: dict) -> dict:
+        """SECONDARY: generic OpenAI-compatible /chat/completions endpoint."""
+        import urllib.request
+        url = self.openai_base.rstrip("/") + "/chat/completions"
+        body = json.dumps({
+            "model": self.openai_model,
             "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": "CONTEXT:\n" + json.dumps(ctx, indent=2) +
-                 "\n\nWrite the structured research report."},
+                {"role": "system", "content": self._SYSTEM},
+                {"role": "user", "content": self._user_text(ctx)},
             ],
             "temperature": 0.2,
         }).encode()
         req = urllib.request.Request(url, data=body, headers={
-            "Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"})
+            "Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"})
         with urllib.request.urlopen(req, timeout=60) as resp:
             out = json.loads(resp.read())
         text = out["choices"][0]["message"]["content"]
