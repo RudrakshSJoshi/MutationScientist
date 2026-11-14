@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MutationScientist evidence response",
+  "type": "object",
+  "required": ["mutation_id", "profile_id", "compound_id", "evidence", "context", "total_matches", "limit", "offset", "pair_variability"],
+  "additionalProperties": false,
+  "properties": {
+    "mutation_id": {"$ref": "#/$defs/nullable_text"},
+    "profile_id": {"$ref": "#/$defs/nullable_text"},
+    "compound_id": {"$ref": "#/$defs/nullable_text"},
+    "evidence": {
+      "type": "array",
+      "items": {"allOf": [{"$ref": "#/$defs/evidence"}, {"properties": {"match_scope": {"const": "direct"}}}]}
+    },
+    "context": {
+      "type": "array",
+      "items": {"allOf": [{"$ref": "#/$defs/evidence"}, {"properties": {"match_scope": {"enum": ["entity_context", "related_profile"]}}}]}
+    },
+    "total_matches": {"type": "integer", "minimum": 0},
+    "limit": {"type": "integer", "minimum": 1, "maximum": 200},
+    "offset": {"type": "integer", "minimum": 0},
+    "pair_variability": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "nullable_text": {"type": ["string", "null"]},
+    "evidence": {
+      "type": "object",
+      "required": [
+        "evidence_id", "claim", "evidence_type", "assay_type", "evidence_category", "evidence_strength",
+        "mutation_id", "profile_id", "compound_id", "cancer_context", "source_id", "source_title", "pmid",
+        "doi", "source_url", "origin", "details", "match_scope"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "evidence_type": {
+          "enum": [
+            "annotation", "reference", "experimental", "assay_status", "literature_reported",
+            "clinical_observation", "computational_prediction", "literature_hypothesis"
+          ]
+        },
+        "assay_type": {"$ref": "#/$defs/nullable_text"},
+        "evidence_category": {"type": "string", "minLength": 1},
+        "evidence_strength": {"type": "string", "minLength": 1},
+        "mutation_id": {"$ref": "#/$defs/nullable_text"},
+        "profile_id": {"$ref": "#/$defs/nullable_text"},
+        "compound_id": {"$ref": "#/$defs/nullable_text"},
+        "cancer_context": {"$ref": "#/$defs/nullable_text"},
+        "source_id": {"$ref": "#/$defs/nullable_text"},
+        "source_title": {"$ref": "#/$defs/nullable_text"},
+        "pmid": {"$ref": "#/$defs/nullable_text"},
+        "doi": {"$ref": "#/$defs/nullable_text"},
+        "source_url": {"type": ["string", "null"], "format": "uri"},
+        "origin": {
+          "type": "object",
+          "required": ["kind", "file", "record_id"],
+          "properties": {
+            "kind": {"enum": ["dataset", "primary_source"]},
+            "file": {"type": "string"},
+            "record_id": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        "details": {
+          "type": "object",
+          "properties": {
+            "measurement_type": {"type": "string"},
+            "relation": {"$ref": "#/$defs/nullable_text"},
+            "value": {"$ref": "#/$defs/nullable_text"},
+            "unit": {"$ref": "#/$defs/nullable_text"},
+            "normalized_value": {"$ref": "#/$defs/nullable_text"},
+            "normalized_unit": {"$ref": "#/$defs/nullable_text"},
+            "source_record_id": {"$ref": "#/$defs/nullable_text"},
+            "locator": {"type": "string"}
+          }
+        },
+        "match_scope": {"enum": ["direct", "entity_context", "related_profile"]}
+      }
+    }
+  }
+}
