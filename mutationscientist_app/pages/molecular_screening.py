@@ -54,9 +54,12 @@ def render(ctx):
             st.subheader("Model prediction(s)")
             if preds:
                 for p in preds:
-                    ui.badges(ui.pred_source(p))
-                    ui.kv(p, ["complex_id", "model_checkpoint", "affinity_pred_value",
-                              "affinity_probability_binary", "structure_path"])
+                    charts.pred_vs_exp(p)
+                    with st.expander("Prediction record (raw fields)"):
+                        ui.kv(p, ["complex_id", "model_checkpoint", "affinity_pred_value",
+                                  "affinity_pred_ic50_nM_equiv", "affinity_probability_binary",
+                                  "confidence_score", "experimental_ic50_nM_equiv",
+                                  "structure_path"])
             else:
                 ui.honest_empty("No Boltz complex for this mutation–inhibitor pair "
                                 "— no prediction shown (nothing fabricated).")

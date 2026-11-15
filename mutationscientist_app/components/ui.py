@@ -64,6 +64,22 @@ def honest_empty(msg: str):
                 unsafe_allow_html=True)
 
 
+def provenance_legend():
+    """Persistent Truth Ladder legend — the product's integrity key, always visible."""
+    items = [
+        ("measured", "MEASURED", "observed · cited"),
+        ("predicted", "PREDICTED", "Boltz-2 model"),
+        ("reasoned", "REASONED", "our LLM"),
+        ("placeholder", "PLACEHOLDER", "mock · not real"),
+    ]
+    rows = "".join(
+        f"<div class='li'><span class='sw' style='background:{_TIER[t][0]}'></span>"
+        f"<b style='color:{_TIER[t][0]}'>{lbl}</b>&nbsp;· {desc}</div>"
+        for t, lbl, desc in items)
+    st.markdown(f"<div class='prov-legend'><div class='lh'>Provenance — the Truth Ladder</div>"
+                f"{rows}</div>", unsafe_allow_html=True)
+
+
 def kv(d: dict, keys: list[str] | None = None):
     """Two-column field/value card. Scientific values render monospaced."""
     rows = [(k, d.get(k, "")) for k in (keys or list(d.keys()))]

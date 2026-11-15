@@ -27,7 +27,6 @@ from pages import (mutation_explorer, inhibitor_explorer, molecular_screening,
                    structure_viewer, evidence_explorer, mutation_scientist)
 
 st.set_page_config(page_title=S.APP_TITLE, page_icon=S.APP_ICON, layout="wide")
-theme.inject()
 
 
 @st.cache_resource(show_spinner="Loading EGFR_RESEARCH_DATASET…")
@@ -91,6 +90,7 @@ PAGES = {
 
 
 def main():
+    theme.inject(light=bool(st.session_state.get("ms_light", False)))
     try:
         ctx = build_services()
     except Exception as e:
@@ -115,8 +115,13 @@ def main():
             st.success("✅ integrity OK")
         st.markdown(
             f"Boltz: {ui.badge('mock') if not ctx.boltz.real_mode else ui.badge('pretrained')}<br>"
-            f"LLM: {ui.badge('template') if not ctx.llm.real_mode else ui.badge('llm')}",
+            f"LLM: {ui.badge('template') if not ctx.llm.real_mode else ui.badge('llm')}<br>"
+            f"Evidence: {ui.badge('real')}",
             unsafe_allow_html=True)
+        ui.provenance_legend()
+        st.markdown("---")
+        st.toggle("☀️ Light mode", key="ms_light",
+                  help="Switch between the dark (default) and light validated palettes.")
 
     PAGES[choice](ctx)
 

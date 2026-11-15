@@ -108,6 +108,19 @@ class LLMService:
             "assay_type": m.get("assay_type"),
             "source": m.get("publication") or m.get("source_database"),
         } for m in (measurements or [])][:12]  # cap: keep the prompt (and latency) bounded
+        # Hand the model a clean, interpretable prediction — only the fields it
+        # should reason over. Drops local paths (structure_path), ensemble arrays
+        # and duplicated score text that add noise and can derail a small model.
+        preds_clean = [{
+            "complex_id": p.get("complex_id"),
+            "model_checkpoint": p.get("model_checkpoint"),
+            "affinity_pred_value": p.get("affinity_pred_value"),
+            "affinity_pred_ic50_nM_equiv": p.get("affinity_pred_ic50_nM_equiv"),
+            "affinity_probability_binary": p.get("affinity_probability_binary"),
+            "confidence_score": p.get("confidence_score"),
+            "experimental_ic50_nM_equiv": p.get("experimental_ic50_nM_equiv"),
+            "is_mock": p.get("is_mock", False),
+        } for p in (boltz_predictions or [])]
         return {
             "score_definition": S.SCORE_DEFINITION,
             "mutation": {
@@ -126,7 +139,7 @@ class LLMService:
                 "covalent_status": compound.get("covalent_status"),
                 "warhead_type": compound.get("warhead_type"),
             } if compound else None,
-            "boltz_predictions": boltz_predictions or [],
+            "boltz_predictions": preds_clean,
             "experimental_measurements": meas,
             "experimental_evidence": [
                 {"claim": e["claim"], "evidence_type": e["evidence_type"],
@@ -170,9 +183,26 @@ class LLMService:
         "uncertainty. Not for clinical decisions."
     )
 
+    _SECTIONS = (
+        "Write a COMPLETE, thorough structured research report in markdown, with a "
+        "short title and ALL of these `##` sections, each 2–4 sentences:\n"
+        "## 1. Mutation (established mechanism)\n"
+        "## 2. Inhibitor\n"
+        "## 3. Computational prediction (Boltz-2) — state the values with the score "
+        "convention (log10 IC50 µM, lower=stronger); if no prediction exists, say so "
+        "explicitly and do not fabricate one\n"
+        "## 4. Experimental evidence (cited)\n"
+        "## 5. Potential resistance implications\n"
+        "## 6. Confidence & uncertainties\n"
+        "## 7. Suggested validation experiments\n"
+        "## 8. References (only PMIDs/DOIs present in the context)\n"
+        "Use ONLY numbers present in the context; keep measured, predicted and "
+        "clinical distinct; never invent values or citations."
+    )
+
     def _user_text(self, ctx: dict) -> str:
-        return ("CONTEXT:\n" + json.dumps(ctx, indent=2) +
-                "\n\nWrite the structured research report.")
+        return ("CONTEXT (use ONLY this):\n" + json.dumps(ctx, indent=2) +
+                "\n\n" + self._SECTIONS)
 
     def _generate_real_adaption(self, ctx: dict) -> dict:
         """PRIMARY: Adaption Responses API (POST {base}/api/v1/responses)."""

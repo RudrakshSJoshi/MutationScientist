@@ -51,6 +51,12 @@ ENV_ADAPTION_MODEL = "ADAPTION_MODEL_ID"     # legacy alias; used as the stack s
 ENV_ADAPTION_BASE_URL = "ADAPTION_BASE_URL"  # default https://api.prod.adaptionlabs.ai
 ADAPTION_DEFAULT_BASE_URL = "https://api.prod.adaptionlabs.ai"
 
+# Optional: a LIVE evidence-retrieval API (Person 3 / Terminal 5). When set,
+# EvidenceService queries it (GET {url}?mutation_id=&compound_id=&match=) and
+# falls back to the curated+cited local evidence on any error. Until it is set,
+# the app serves the real curated evidence that ships with the dataset.
+ENV_EVIDENCE_API_URL = "EVIDENCE_API_URL"
+
 # Optional: a GENERIC OpenAI-compatible endpoint (e.g. a hosted fine-tuned model).
 # If ALL THREE are set, llm_service attempts the real call against this endpoint;
 # otherwise it uses the grounded template report and labels it as such. The
