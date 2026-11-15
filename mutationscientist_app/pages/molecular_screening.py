@@ -13,7 +13,7 @@ def render(ctx):
                 unsafe_allow_html=True)
     if not boltz.real_mode:
         ui.mock_banner("Boltz predictions")
-    st.caption(ctx.score_definition)
+    ui.score_callout(ctx.score_definition)
 
     tab_rank, tab_cmp, tab_pair = st.tabs(
         ["Inhibitor ranking (per mutation)", "WT vs mutant (per inhibitor)", "Single pair"])
@@ -29,10 +29,13 @@ def render(ctx):
             charts.ranking_table(ranking, data.compound_display_name)
 
     with tab_cmp:
-        # compounds that appear in >1 variant make the nicest comparison
-        cmp_ids = sorted({cx.compound_id for cx in data.boltz})
+        # Order so compounds spanning WT + multiple mutants come first — the
+        # default is then a real multi-variant comparison, not a single bar.
+        # (Type in the box to jump to a named inhibitor, e.g. BLU-945.)
+        cmp_ids = data.compounds_ranked_for_comparison()
         cid = st.selectbox("Inhibitor", cmp_ids,
-                           format_func=data.compound_display_name, key="cmp_cmp")
+                           format_func=data.compound_display_name, key="cmp_cmp",
+                           help="Sorted by variant coverage; search by name for a specific inhibitor.")
         compare = boltz.compare_wt_mutant(cid)
         charts.wt_vs_mutant_bar(compare, data.compound_display_name)
         if not compare["wt"]:
@@ -55,7 +58,8 @@ def render(ctx):
                     ui.kv(p, ["complex_id", "model_checkpoint", "affinity_pred_value",
                               "affinity_probability_binary", "structure_path"])
             else:
-                st.info("No Boltz complex for this exact pair.")
+                ui.honest_empty("No Boltz complex for this mutation–inhibitor pair "
+                                "— no prediction shown (nothing fabricated).")
 
             st.subheader("Experimental measurement(s) — distinct from predictions")
             if meas:

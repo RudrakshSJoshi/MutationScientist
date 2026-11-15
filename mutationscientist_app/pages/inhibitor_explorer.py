@@ -2,6 +2,7 @@
 from __future__ import annotations
 import streamlit as st
 from components import ui
+import config.settings as S
 
 
 def render(ctx):
@@ -18,8 +19,8 @@ def render(ctx):
 
     cov_filter = st.radio("Covalent status", ["all", "covalent", "non-covalent"], horizontal=True)
     if cov_filter != "all":
-        want = "coval" if cov_filter == "covalent" else None
-        comps = [c for c in comps if (("coval" in (c.get("covalent_status", "").lower())) == (want == "coval"))]
+        want_cov = cov_filter == "covalent"
+        comps = [c for c in comps if S.is_covalent(c.get("covalent_status")) == want_cov]
 
     if not comps:
         st.info("No inhibitors match.")
@@ -29,7 +30,7 @@ def render(ctx):
                           format_func=lambda cid: data.compound_display_name(cid))
     c = data.get_compound(choice)
 
-    is_cov = "coval" in (c.get("covalent_status", "").lower())
+    is_cov = S.is_covalent(c.get("covalent_status"))
     ui.badges("experimental")
 
     col1, col2 = st.columns(2)

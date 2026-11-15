@@ -4,9 +4,17 @@
 [client]
 showSidebarNavigation = false
 
+# Base theme tokens from the "Protein Lens" design system (design-system.md §2).
+# The heavy lifting (fonts, cards, provenance pills, nav, tables) is in
+# components/theme.py, injected at runtime; these set the native-widget baseline.
 [theme]
 base = "dark"
-primaryColor = "#4da3ff"
+primaryColor = "#35C4E8"              # discovery cyan — chrome accent only
+backgroundColor = "#0A0E17"           # --bg
+secondaryBackgroundColor = "#111726"  # --surface-1
+textColor = "#EAEEF6"                 # --text-1
+borderColor = "#26303F"               # --border
+linkColor = "#35C4E8"
 
 [server]
 headless = true

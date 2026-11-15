@@ -218,6 +218,27 @@ class DatasetService:
     def mutations_with_complexes(self) -> list[str]:
         return sorted({cx.mutation_id for cx in self.boltz})
 
+    @lru_cache(maxsize=1)
+    def _complex_coverage(self) -> dict:
+        """compound_id -> set of mutation_ids that have a complex for it."""
+        cov: dict[str, set] = {}
+        for cx in self.boltz:
+            cov.setdefault(cx.compound_id, set()).add(cx.mutation_id)
+        return cov
+
+    def compounds_ranked_for_comparison(self) -> list[str]:
+        """Compound ids ordered so the WT-vs-mutant comparison is informative:
+        those with BOTH a WT and a mutant complex first (widest coverage first),
+        then everything else. Keeps the lone-single-bar cases out of the default."""
+        cov = self._complex_coverage()
+
+        def key(cid):
+            muts = cov[cid]
+            has_both = ("EGFR_WT" in muts) and any(m != "EGFR_WT" for m in muts)
+            return (not has_both, -len(muts), cid)
+
+        return sorted(cov, key=key)
+
     # ---- structures ------------------------------------------------------
     def structures_for(self, mutation_id: str | None = None) -> list[dict]:
         """
