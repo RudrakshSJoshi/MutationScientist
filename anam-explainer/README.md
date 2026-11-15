@@ -66,9 +66,31 @@ npm start
 | `persona.js` | `SYSTEM_PROMPT` (grounding + no-fabrication rules), `GREETING`, `PERSONA_CONFIG` (`CUSTOMER_CLIENT_V1`, premium voiceId). |
 | `data/contexts.json` | The grounded hero packs (real mutation/compound/Boltz/evidence) — self-contained; no secrets. |
 | `public/index.html` + `public/app.js` | Demo UI: video stage, hero buttons, live prediction card, ask box, 90-sec pitch, client-side BYO loop. |
-| `tools/build_grounding.py` | Regenerates `data/contexts.json` + the consolidated real `boltz_predictions.json` from the dataset. |
+| `tools/build_grounding.py` | Regenerates `data/contexts.json` (+ "general" fallback pack) + the consolidated real `boltz_predictions.json`. |
 | `tools/list_voices.mjs` | Browse Anam voices to pick a `voiceId`. |
-| `tools/import_voice.mjs` | Optional: import a specific ElevenLabs Creator voice into your Anam org. |
+| `tools/import_voice.mjs` | Import a specific ElevenLabs voice (by id / share link) into your Anam org. |
+| `tools/design_voice.mjs` | **Craft** a distinctive Dr. Mutasci voice via ElevenLabs Voice Design (Creator), then import to Anam. |
+| `tools/serve_forever.sh` | Overnight watchdog: keeps `:3000` up, restarts on crash (logs to `tools/serve_forever.log`). |
+| `tools/record_demo.mjs` | Playwright: records a backup video of the avatar nailing both hero stories (silent — see below). |
+
+## Run it all night
+```bash
+bash tools/serve_forever.sh &     # keeps http://localhost:3000 up, auto-restarts on crash
+```
+The server degrades gracefully if the model endpoint drops (honest "can't reach my model" line), and recovers
+automatically when it returns. Keep Terminal 1's model server (`:8000`) up for live answers.
+
+## Voice (ElevenLabs Creator)
+Default: a premium British studio voice (Anam stock voices are ElevenLabs-backed, ZDR-safe). To craft a
+**bespoke** Dr. Mutasci voice: add `ELEVENLABS_API_KEY` to `.env`, then
+`node tools/design_voice.mjs` (ElevenLabs Voice Design → imports to Anam → prints the `voiceId`). Put that id
+in `persona.js` or `ANAM_VOICE_ID`. (Own-key voices need a Cara-4 avatar.) Or import an existing voice with
+`tools/import_voice.mjs`.
+
+## Backup video
+`node tools/record_demo.mjs` drives the live UI and records `demo/*.webm` (+ `.mp4`) of both hero stories —
+**silent** (Playwright can't capture the WebRTC audio). For an **audio** backup, screen-record with QuickTime
+(File → New Screen Recording, pick system audio) while clicking **"Play 90-sec pitch"**. `demo/` is gitignored.
 
 ## Regenerating the grounding
 `data/contexts.json` is built from the local research stack (not committed): the `EGFR_RESEARCH_DATASET`,
