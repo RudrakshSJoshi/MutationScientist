@@ -1,0 +1,93 @@
+Running on CPU, this will be slow. Consider using a GPU.
+Downloading the CCD data to /Users/ar/Documents/Codex/2026-11-14/new-chat/work/boltz_probe/cache/mols.tar. This may take a bit of time. You may change the cache directory with the --cache flag.
+Traceback (most recent call last):
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.18/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py", line 974, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 827, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connection.py", line 246, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='huggingface.co', port=443): Failed to resolve 'huggingface.co' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /boltz-community/boltz-2/resolve/main/mols.tar (Caused by NameResolutionError("HTTPSConnection(host='huggingface.co', port=443): Failed to resolve 'huggingface.co' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/bin/boltz", line 6, in <module>
+    sys.exit(cli())
+             ^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/click/core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/click/core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/click/core.py", line 2054, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/click/core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/click/core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/boltz/main.py", line 1580, in predict
+    download_boltz2(cache)
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/lightning_utilities/core/rank_zero.py", line 42, in wrapped_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/boltz/main.py", line 338, in download_boltz2
+    _download(MOL_URL, str(tar_mols))
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/boltz/main.py", line 273, in _download
+    response = requests.get(url, stream=True, allow_redirects=True, timeout=300)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ar/egfr-escape-atlas/task2/.venv/lib/python3.11/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /boltz-community/boltz-2/resolve/main/mols.tar (Caused by NameResolutionError("HTTPSConnection(host='huggingface.co', port=443): Failed to resolve 'huggingface.co' ([Errno 8] nodename nor servname provided, or not known)"))

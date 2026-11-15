@@ -1,0 +1,11 @@
+pdb_id,provenance,construct,inhibitor,resolution_A,ligand_code,author_to_clinical_offset,deposited_ligand_link,CA_746_to_750_A,source
+1M17,experimental X-ray,WT,erlotinib,2.6,AQ4,24,,11.011,https://www.rcsb.org/structure/1M17
+2ITY,experimental X-ray,WT,gefitinib,3.42,IRE,0,,10.128,https://www.rcsb.org/structure/2ITY
+2ITZ,experimental X-ray,L858R,gefitinib,2.8,IRE,0,,9.847,https://www.rcsb.org/structure/2ITZ
+6JXT,experimental X-ray,WT at resistance sites,osimertinib,2.31,YY3,0,LINK         SG  CYS A 797                 C9  YY3 A1101     1555   1555  1.80,,https://www.rcsb.org/structure/6JXT
+6LUD,experimental X-ray,L858R/T790M/C797S,osimertinib,2.05,YY3,0,,,https://www.rcsb.org/structure/6LUD
+6LUB,experimental X-ray,L858R/T790M/C797S,CH7233163,2.32,EUX,0,,,https://www.rcsb.org/structure/6LUB
+2J6M,experimental X-ray,WT,AEE788,3.1,AEE,0,,9.666,https://www.rcsb.org/structure/2J6M
+2JIU,experimental X-ray,T790M,AEE788,3.05,AEE,0,,11.059,https://www.rcsb.org/structure/2JIU
+7ZYM,experimental X-ray,T790M/C797S,brigatinib,2.5,6GY,0,,,https://www.rcsb.org/structure/7ZYM
+7TVD,experimental X-ray,L747_E749del,apo,2.96,,0,,3.797,https://www.rcsb.org/structure/7TVD
