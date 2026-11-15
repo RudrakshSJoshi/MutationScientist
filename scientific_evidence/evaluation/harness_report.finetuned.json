@@ -1,0 +1,305 @@
+{
+  "mode": "real:openai",
+  "n_items": 218,
+  "overall": {
+    "n": 218,
+    "pred_numbers": 367,
+    "ungrounded_numbers": 21,
+    "items_with_fabrication": 20,
+    "fabrication_rate": 0.0917,
+    "conflation_items": 1,
+    "conflation_rate": 0.0046,
+    "hedged_items": 212,
+    "hedged_rate": 0.9725,
+    "mean_jaccard": 0.3839
+  },
+  "by_task_type": {
+    "assay_distinction": {
+      "n": 32,
+      "pred_numbers": 61,
+      "ungrounded_numbers": 1,
+      "items_with_fabrication": 1,
+      "fabrication_rate": 0.0312,
+      "conflation_items": 1,
+      "conflation_rate": 0.0312,
+      "hedged_items": 31,
+      "hedged_rate": 0.9688,
+      "mean_jaccard": 0.3666
+    },
+    "evidence_qa": {
+      "n": 15,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 15,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.3884
+    },
+    "experimental_interpretation": {
+      "n": 83,
+      "pred_numbers": 128,
+      "ungrounded_numbers": 11,
+      "items_with_fabrication": 10,
+      "fabrication_rate": 0.1205,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 83,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.4091
+    },
+    "inhibitor_comparison": {
+      "n": 59,
+      "pred_numbers": 170,
+      "ungrounded_numbers": 7,
+      "items_with_fabrication": 7,
+      "fabrication_rate": 0.1186,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 55,
+      "hedged_rate": 0.9322,
+      "mean_jaccard": 0.416
+    },
+    "mutation_classification": {
+      "n": 8,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 7,
+      "hedged_rate": 0.875,
+      "mean_jaccard": 0.2453
+    },
+    "mutation_mechanism": {
+      "n": 12,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 12,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.2708
+    },
+    "resistance_interpretation": {
+      "n": 9,
+      "pred_numbers": 8,
+      "ungrounded_numbers": 2,
+      "items_with_fabrication": 2,
+      "fabrication_rate": 0.2222,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 9,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.2687
+    }
+  },
+  "flagged_potential_fabrications": [
+    {
+      "index": 6,
+      "source": "sft_test.csv",
+      "source_index": 6,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "10x"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: osimertinib IC50 is 12.5 nM against wild-type EGFR and 125 nM against EGFR ex19del/T790M/C797S. Inter"
+    },
+    {
+      "index": 7,
+      "source": "sft_test.csv",
+      "source_index": 7,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "14x"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: BLU-945 IC50 is 86.0 nM against wild-type EGFR and 6.32 nM against EGFR L858R/C797S. Interpret the ef"
+    },
+    {
+      "index": 9,
+      "source": "sft_test.csv",
+      "source_index": 9,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "562-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 149 nM against EGFR L858R/T790M. Interpret t"
+    },
+    {
+      "index": 10,
+      "source": "sft_test.csv",
+      "source_index": 10,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1.32-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 0.348 nM against EGFR L858R/C797S. Interpret"
+    },
+    {
+      "index": 11,
+      "source": "sft_test.csv",
+      "source_index": 11,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "0.86x"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 0.226 nM against EGFR ex19del/C797S. Interpr"
+    },
+    {
+      "index": 14,
+      "source": "sft_test.csv",
+      "source_index": 14,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "68x"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: JBJ-09-063 IC50 is 148 nM against wild-type EGFR and 10000 nM against EGFR ex19del. Interpret t"
+    },
+    {
+      "index": 15,
+      "source": "sft_test.csv",
+      "source_index": 15,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "939x"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: silevertinib IC50 is 10.7 nM against wild-type EGFR and 10000 nM against EGFR ex19del/T790M/C79"
+    },
+    {
+      "index": 18,
+      "source": "sft_test.csv",
+      "source_index": 18,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "562x"
+      ],
+      "prompt_snippet": "In the Melis 2026 biochemical kinase panel at Km,ATP, silevertinib gives an IC50 of 149 nM against EGFR L858R/T790M versus 0.265 nM against wild-type EGFR. Inte"
+    },
+    {
+      "index": 44,
+      "source": "sft_test.csv",
+      "source_index": 44,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "1736x"
+      ],
+      "prompt_snippet": "Compare two mid-ranked EGFR WT binders from BindingDB: BDB_200757 (19 nM) and BDB_793107 (33000 nM). Which is more potent?"
+    },
+    {
+      "index": 46,
+      "source": "sft_test.csv",
+      "source_index": 46,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "8x"
+      ],
+      "prompt_snippet": "Compare two mid-ranked EGFR T790M/C797S binders from BindingDB: BDB_547869 (2.4 nM) and BDB_547948 (19 nM). Which is more potent?"
+    },
+    {
+      "index": 114,
+      "source": "sft_test.csv",
+      "source_index": 114,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "160x"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557878 has a median IC50 of 34.0 nM and BDB_557906 has 5400.0 nM. How do they compare?"
+    },
+    {
+      "index": 115,
+      "source": "sft_test.csv",
+      "source_index": 115,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "19.1x"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557878 has a median IC50 of 34.0 nM and BDB_557856 has 650.0 nM. How do they compare?"
+    },
+    {
+      "index": 123,
+      "source": "sft_test.csv",
+      "source_index": 123,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "10.4x"
+      ],
+      "prompt_snippet": "Against EGFR exon 19 deletion (ex19del), BDB_790083 has a median IC50 of 16.9 nM and BDB_789958 has 176.0 nM. How do they compare?"
+    },
+    {
+      "index": 166,
+      "source": "sft_test.csv",
+      "source_index": 166,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "30000 nM",
+        "50000 nM"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557905 has an aggregated median IC50 of 29000 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the varian"
+    },
+    {
+      "index": 171,
+      "source": "sft_test.csv",
+      "source_index": 171,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Of the BindingDB compounds tested against EGFR S768I (BDB_557888 = 10 nM; BDB_557892 = 110 nM; BDB_557876 = 130 nM; BDB_557874 = 130 nM; BDB_557889 = 2700 nM; B"
+    },
+    {
+      "index": 181,
+      "source": "sft_test.csv",
+      "source_index": 181,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "32.4-fold"
+      ],
+      "prompt_snippet": "EGFR T790M/C797S is a known TKI-resistance genotype. How should the spread of these BindingDB IC50s (best BDB_547926 = 4.9 nM; worst BDB_707485 = 158 nM) be int"
+    },
+    {
+      "index": 189,
+      "source": "sft_test.csv",
+      "source_index": 189,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "122x"
+      ],
+      "prompt_snippet": "EGFR T790M/C797S is a known TKI-resistance genotype. How should the spread of these BindingDB IC50s (best BDB_707536 = 1.23 nM; worst BDB_701470 = 150 nM) be in"
+    },
+    {
+      "index": 209,
+      "source": "sft_test.csv",
+      "source_index": 209,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "3.3x"
+      ],
+      "prompt_snippet": "Compare two EGFR L858R/C797S compounds from BindingDB: BDB_727119 (1.5 nM) and BDB_759557 (4.9 nM). Which engages the target more potently and by roughly how mu"
+    },
+    {
+      "index": 216,
+      "source": "eval_questions.jsonl",
+      "source_index": 1,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "204x"
+      ],
+      "prompt_snippet": "At Km,ATP, osimertinib IC50 is 2.82 nM (L858R) vs 574 nM (L858R/C797S). State the fold-change and what it does not prove."
+    },
+    {
+      "index": 217,
+      "source": "eval_questions.jsonl",
+      "source_index": 2,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Why must KD, Ki and IC50 not be pooled into one affinity training target?"
+    }
+  ]
+}

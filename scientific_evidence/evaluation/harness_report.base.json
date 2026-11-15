@@ -1,0 +1,1214 @@
+{
+  "mode": "real:openai",
+  "n_items": 218,
+  "overall": {
+    "n": 218,
+    "pred_numbers": 784,
+    "ungrounded_numbers": 138,
+    "items_with_fabrication": 108,
+    "fabrication_rate": 0.4954,
+    "conflation_items": 30,
+    "conflation_rate": 0.1376,
+    "hedged_items": 201,
+    "hedged_rate": 0.922,
+    "mean_jaccard": 0.2236
+  },
+  "by_task_type": {
+    "assay_distinction": {
+      "n": 32,
+      "pred_numbers": 124,
+      "ungrounded_numbers": 16,
+      "items_with_fabrication": 10,
+      "fabrication_rate": 0.3125,
+      "conflation_items": 7,
+      "conflation_rate": 0.2188,
+      "hedged_items": 30,
+      "hedged_rate": 0.9375,
+      "mean_jaccard": 0.2012
+    },
+    "evidence_qa": {
+      "n": 15,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 2,
+      "conflation_rate": 0.1333,
+      "hedged_items": 15,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.203
+    },
+    "experimental_interpretation": {
+      "n": 83,
+      "pred_numbers": 254,
+      "ungrounded_numbers": 80,
+      "items_with_fabrication": 62,
+      "fabrication_rate": 0.747,
+      "conflation_items": 8,
+      "conflation_rate": 0.0964,
+      "hedged_items": 81,
+      "hedged_rate": 0.9759,
+      "mean_jaccard": 0.2397
+    },
+    "inhibitor_comparison": {
+      "n": 59,
+      "pred_numbers": 383,
+      "ungrounded_numbers": 36,
+      "items_with_fabrication": 30,
+      "fabrication_rate": 0.5085,
+      "conflation_items": 11,
+      "conflation_rate": 0.1864,
+      "hedged_items": 52,
+      "hedged_rate": 0.8814,
+      "mean_jaccard": 0.2423
+    },
+    "mutation_classification": {
+      "n": 8,
+      "pred_numbers": 1,
+      "ungrounded_numbers": 1,
+      "items_with_fabrication": 1,
+      "fabrication_rate": 0.125,
+      "conflation_items": 1,
+      "conflation_rate": 0.125,
+      "hedged_items": 8,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 0.1399
+    },
+    "mutation_mechanism": {
+      "n": 12,
+      "pred_numbers": 1,
+      "ungrounded_numbers": 1,
+      "items_with_fabrication": 1,
+      "fabrication_rate": 0.0833,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 8,
+      "hedged_rate": 0.6667,
+      "mean_jaccard": 0.1776
+    },
+    "resistance_interpretation": {
+      "n": 9,
+      "pred_numbers": 21,
+      "ungrounded_numbers": 4,
+      "items_with_fabrication": 4,
+      "fabrication_rate": 0.4444,
+      "conflation_items": 1,
+      "conflation_rate": 0.1111,
+      "hedged_items": 7,
+      "hedged_rate": 0.7778,
+      "mean_jaccard": 0.2023
+    }
+  },
+  "flagged_potential_fabrications": [
+    {
+      "index": 5,
+      "source": "sft_test.csv",
+      "source_index": 5,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "4.43-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: osimertinib IC50 is 12.5 nM against wild-type EGFR and 2.82 nM against EGFR L858R. Interpret the effe"
+    },
+    {
+      "index": 8,
+      "source": "sft_test.csv",
+      "source_index": 8,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "2.23-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: BLU-945 IC50 is 86.0 nM against wild-type EGFR and 38.5 nM against EGFR ex19del/C797S. Interpret the "
+    },
+    {
+      "index": 9,
+      "source": "sft_test.csv",
+      "source_index": 9,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "566-fold",
+        "566-fold",
+        "50%"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 149 nM against EGFR L858R/T790M. Interpret t"
+    },
+    {
+      "index": 10,
+      "source": "sft_test.csv",
+      "source_index": 10,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1.31-fold",
+        "1.31-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 0.348 nM against EGFR L858R/C797S. Interpret"
+    },
+    {
+      "index": 11,
+      "source": "sft_test.csv",
+      "source_index": 11,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "15%"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at Km,ATP: silevertinib IC50 is 0.265 nM against wild-type EGFR and 0.226 nM against EGFR ex19del/C797S. Interpr"
+    },
+    {
+      "index": 12,
+      "source": "sft_test.csv",
+      "source_index": 12,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1 mM",
+        "1 mM"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: BLU-945 IC50 is 1490 nM against wild-type EGFR and 409 nM against EGFR L858R. Interpret the eff"
+    },
+    {
+      "index": 13,
+      "source": "sft_test.csv",
+      "source_index": 13,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "2.35-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: BLU-945 IC50 is 1490 nM against wild-type EGFR and 550 nM against EGFR ex19del/C797S. Interpret"
+    },
+    {
+      "index": 14,
+      "source": "sft_test.csv",
+      "source_index": 14,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "67-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: JBJ-09-063 IC50 is 148 nM against wild-type EGFR and 10000 nM against EGFR ex19del. Interpret t"
+    },
+    {
+      "index": 15,
+      "source": "sft_test.csv",
+      "source_index": 15,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "930-fold"
+      ],
+      "prompt_snippet": "Using Melis et al. 2026 biochemical kinase data at 1 mmol/L ATP: silevertinib IC50 is 10.7 nM against wild-type EGFR and 10000 nM against EGFR ex19del/T790M/C79"
+    },
+    {
+      "index": 16,
+      "source": "sft_test.csv",
+      "source_index": 16,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "70%"
+      ],
+      "prompt_snippet": "Why does the EGFR L858R/T790M variant matter for choosing an inhibitor generation, given its listed resistance to 1st/2nd-gen TKI?"
+    },
+    {
+      "index": 17,
+      "source": "sft_test.csv",
+      "source_index": 17,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1.21-fold"
+      ],
+      "prompt_snippet": "In the Melis 2026 biochemical kinase panel at Km,ATP, silevertinib gives an IC50 of 0.219 nM against EGFR L858R versus 0.265 nM against wild-type EGFR. Interpre"
+    },
+    {
+      "index": 18,
+      "source": "sft_test.csv",
+      "source_index": 18,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "562-fold",
+        "562-fold"
+      ],
+      "prompt_snippet": "In the Melis 2026 biochemical kinase panel at Km,ATP, silevertinib gives an IC50 of 149 nM against EGFR L858R/T790M versus 0.265 nM against wild-type EGFR. Inte"
+    },
+    {
+      "index": 19,
+      "source": "sft_test.csv",
+      "source_index": 19,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "460-fold",
+        "460-fold"
+      ],
+      "prompt_snippet": "In the Melis 2026 biochemical kinase panel at Km,ATP, silevertinib gives an IC50 of 122 nM against EGFR ex19del/T790M versus 0.265 nM against wild-type EGFR. In"
+    },
+    {
+      "index": 20,
+      "source": "sft_test.csv",
+      "source_index": 20,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%",
+        "0.2 mM",
+        "50%",
+        "5 mM"
+      ],
+      "prompt_snippet": "For silevertinib against EGFR L858R, the Melis 2026 panel reports IC50 = 0.219 nM at Km,ATP and 1.86 nM at 1 mM ATP. Why do these differ and which is more physi"
+    },
+    {
+      "index": 22,
+      "source": "sft_test.csv",
+      "source_index": 22,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "The Melis 2026 panel reports silevertinib with IC50 = 1.32 nM against EGFR ex19del/C797S at 1mM ATP. Interpret this from a resistance standpoint."
+    },
+    {
+      "index": 23,
+      "source": "sft_test.csv",
+      "source_index": 23,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "20 \u00b5M",
+        "5 mM"
+      ],
+      "prompt_snippet": "For osimertinib against EGFR ex19del/T790M, the Melis 2026 panel reports IC50 = 1.41 nM at Km,ATP and 41.0 nM at 1 mM ATP. Why do these differ and which is more"
+    },
+    {
+      "index": 29,
+      "source": "sft_test.csv",
+      "source_index": 29,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "100 nM"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_557894 with a median IC50 of 510 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 30,
+      "source": "sft_test.csv",
+      "source_index": 30,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "100 nM"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_557848 with a median IC50 of 48 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 31,
+      "source": "sft_test.csv",
+      "source_index": 31,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1 nM"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_50468247 with a median IC50 of 0.91 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 32,
+      "source": "sft_test.csv",
+      "source_index": 32,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "100 nM",
+        "500 nM",
+        "50%",
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_557887 with a median IC50 of 110 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 34,
+      "source": "sft_test.csv",
+      "source_index": 34,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "100 nM"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_557855 with a median IC50 of 81 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 35,
+      "source": "sft_test.csv",
+      "source_index": 35,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_557860 with a median IC50 of 66 nM against EGFR S768I (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 36,
+      "source": "sft_test.csv",
+      "source_index": 36,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Among these BindingDB compounds tested against EGFR S768I \u2014 BDB_557872 5 nM; BDB_557894 510 nM; BDB_557848 48 nM; BDB_50468247 0.91 nM; BDB_557887 110 nM; BDB_5"
+    },
+    {
+      "index": 40,
+      "source": "sft_test.csv",
+      "source_index": 40,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%",
+        "22-fold"
+      ],
+      "prompt_snippet": "Compare two mid-ranked EGFR S768I binders from BindingDB: BDB_557872 (5 nM) and BDB_557887 (110 nM). Which is more potent?"
+    },
+    {
+      "index": 44,
+      "source": "sft_test.csv",
+      "source_index": 44,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%",
+        "1,737-fold"
+      ],
+      "prompt_snippet": "Compare two mid-ranked EGFR WT binders from BindingDB: BDB_200757 (19 nM) and BDB_793107 (33000 nM). Which is more potent?"
+    },
+    {
+      "index": 46,
+      "source": "sft_test.csv",
+      "source_index": 46,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%",
+        "8-fold"
+      ],
+      "prompt_snippet": "Compare two mid-ranked EGFR T790M/C797S binders from BindingDB: BDB_547869 (2.4 nM) and BDB_547948 (19 nM). Which is more potent?"
+    },
+    {
+      "index": 49,
+      "source": "sft_test.csv",
+      "source_index": 49,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB lists compound BDB_717314 with a median IC50 of 0.33 nM against EGFR C797S (based on 1 measurement). Interpret its potency."
+    },
+    {
+      "index": 65,
+      "source": "sft_test.csv",
+      "source_index": 65,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB reports a median IC50 of 4 nM for BDB_5447 tested against EGFR G719C. What does this tell you, and what does it not?"
+    },
+    {
+      "index": 66,
+      "source": "sft_test.csv",
+      "source_index": 66,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB reports a median IC50 of 1.2 nM for BDB_525446 tested against EGFR ex19del/T790M/C797S. What does this tell you, and what does it not?"
+    },
+    {
+      "index": 70,
+      "source": "sft_test.csv",
+      "source_index": 70,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "10-fold"
+      ],
+      "prompt_snippet": "Contrast the biochemical potency of BDB_761658 (median IC50 0.4 nM) and BDB_765210 (median IC50 4 nM) against EGFR L858R/T790M."
+    },
+    {
+      "index": 72,
+      "source": "sft_test.csv",
+      "source_index": 72,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "18.5-fold"
+      ],
+      "prompt_snippet": "Contrast the biochemical potency of BDB_765131 (median IC50 2 nM) and BDB_790088 (median IC50 37.1 nM) against EGFR L858R."
+    },
+    {
+      "index": 73,
+      "source": "sft_test.csv",
+      "source_index": 73,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In BindingDB, compound BDB_525480 has an aggregated median IC50 of 0.7 nM against the EGFR L858R/T790M/C797S variant. Interpret this value and its limitations."
+    },
+    {
+      "index": 75,
+      "source": "sft_test.csv",
+      "source_index": 75,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "82-fold"
+      ],
+      "prompt_snippet": "Contrast the biochemical potency of BDB_525469 (median IC50 5.5 nM) and BDB_671007 (median IC50 450 nM) against EGFR L858R/T790M/C797S."
+    },
+    {
+      "index": 80,
+      "source": "sft_test.csv",
+      "source_index": 80,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "68-fold"
+      ],
+      "prompt_snippet": "For EGFR L861Q, compare the most potent compound BDB_5447 (median IC50 2.2 nM) with the least potent BDB_50379214 (median IC50 150 nM). What is the approximate "
+    },
+    {
+      "index": 81,
+      "source": "sft_test.csv",
+      "source_index": 81,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "68-fold"
+      ],
+      "prompt_snippet": "Contrast the biochemical potency of BDB_5447 (median IC50 2.2 nM) and BDB_50379214 (median IC50 150 nM) against EGFR L861Q."
+    },
+    {
+      "index": 85,
+      "source": "sft_test.csv",
+      "source_index": 85,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_557858 has a median IC50 of 4.0 nM against the EGFR S768I variant. How should this value be interpreted?"
+    },
+    {
+      "index": 86,
+      "source": "sft_test.csv",
+      "source_index": 86,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "14 \u00b5M",
+        "100,000 nM"
+      ],
+      "prompt_snippet": "Interpret the reported potency of BDB_557909 (median IC50 14000.0 nM) against EGFR S768I."
+    },
+    {
+      "index": 87,
+      "source": "sft_test.csv",
+      "source_index": 87,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "What does a median IC50 of 210.0 nM tell you about BDB_557901 as an inhibitor of EGFR S768I?"
+    },
+    {
+      "index": 88,
+      "source": "sft_test.csv",
+      "source_index": 88,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Summarise the activity of BDB_557890 against the EGFR S768I variant given its BindingDB median IC50 of 15.0 nM."
+    },
+    {
+      "index": 89,
+      "source": "sft_test.csv",
+      "source_index": 89,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_557865 has a median IC50 of 2.0 nM against the EGFR S768I variant. How should this value be interpreted?"
+    },
+    {
+      "index": 90,
+      "source": "sft_test.csv",
+      "source_index": 90,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the reported potency of BDB_557851 (median IC50 2.5 nM) against EGFR S768I."
+    },
+    {
+      "index": 92,
+      "source": "sft_test.csv",
+      "source_index": 92,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Summarise the activity of BDB_557903 against the EGFR S768I variant given its BindingDB median IC50 of 490.0 nM."
+    },
+    {
+      "index": 95,
+      "source": "sft_test.csv",
+      "source_index": 95,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "7,000-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557865 has a median IC50 of 2.0 nM and BDB_557909 has 14000.0 nM. How do they compare?"
+    },
+    {
+      "index": 96,
+      "source": "sft_test.csv",
+      "source_index": 96,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "33-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557865 has a median IC50 of 2.0 nM and BDB_557897 has 66.0 nM. How do they compare?"
+    },
+    {
+      "index": 97,
+      "source": "sft_test.csv",
+      "source_index": 97,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "5,600-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557851 has a median IC50 of 2.5 nM and BDB_557909 has 14000.0 nM. How do they compare?"
+    },
+    {
+      "index": 100,
+      "source": "sft_test.csv",
+      "source_index": 100,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BDB_557865 shows a median IC50 of 2.0 nM against EGFR S768I. Does this mean it will work in patients with this mutation?"
+    },
+    {
+      "index": 101,
+      "source": "sft_test.csv",
+      "source_index": 101,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "175-fold"
+      ],
+      "prompt_snippet": "Against EGFR L858R/T790M, BDB_765222 has a median IC50 of 0.6 nM and BDB_625609 has 105.0 nM. How do they compare?"
+    },
+    {
+      "index": 102,
+      "source": "sft_test.csv",
+      "source_index": 102,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "36.7-fold"
+      ],
+      "prompt_snippet": "Against EGFR L858R/T790M, BDB_765222 has a median IC50 of 0.6 nM and BDB_200805 has 22.0 nM. How do they compare?"
+    },
+    {
+      "index": 106,
+      "source": "sft_test.csv",
+      "source_index": 106,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_557878 has a median IC50 of 34.0 nM against the EGFR S768I variant. How should this value be interpreted?"
+    },
+    {
+      "index": 107,
+      "source": "sft_test.csv",
+      "source_index": 107,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the reported potency of BDB_557856 (median IC50 650.0 nM) against EGFR S768I."
+    },
+    {
+      "index": 108,
+      "source": "sft_test.csv",
+      "source_index": 108,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "What does a median IC50 of 2200.0 nM tell you about BDB_557879 as an inhibitor of EGFR S768I?"
+    },
+    {
+      "index": 109,
+      "source": "sft_test.csv",
+      "source_index": 109,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Summarise the activity of BDB_557883 against the EGFR S768I variant given its BindingDB median IC50 of 67.0 nM."
+    },
+    {
+      "index": 110,
+      "source": "sft_test.csv",
+      "source_index": 110,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_557900 has a median IC50 of 220.0 nM against the EGFR S768I variant. How should this value be interpreted?"
+    },
+    {
+      "index": 111,
+      "source": "sft_test.csv",
+      "source_index": 111,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "5.4 \u00b5M",
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the reported potency of BDB_557906 (median IC50 5400.0 nM) against EGFR S768I."
+    },
+    {
+      "index": 112,
+      "source": "sft_test.csv",
+      "source_index": 112,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "1.94-fold"
+      ],
+      "prompt_snippet": "Among these compounds tested against EGFR S768I (median IC50 values in nM): BDB_557878 (34.0 nM), BDB_557856 (650.0 nM), BDB_557879 (2200.0 nM), BDB_557883 (67."
+    },
+    {
+      "index": 113,
+      "source": "sft_test.csv",
+      "source_index": 113,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "For EGFR S768I, which of these is the weakest inhibitor by median IC50: BDB_557878 (34.0 nM), BDB_557856 (650.0 nM), BDB_557879 (2200.0 nM), BDB_557883 (67.0 nM"
+    },
+    {
+      "index": 114,
+      "source": "sft_test.csv",
+      "source_index": 114,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "159-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557878 has a median IC50 of 34.0 nM and BDB_557906 has 5400.0 nM. How do they compare?"
+    },
+    {
+      "index": 115,
+      "source": "sft_test.csv",
+      "source_index": 115,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "19.1-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557878 has a median IC50 of 34.0 nM and BDB_557856 has 650.0 nM. How do they compare?"
+    },
+    {
+      "index": 116,
+      "source": "sft_test.csv",
+      "source_index": 116,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "80.6-fold"
+      ],
+      "prompt_snippet": "Against EGFR S768I, BDB_557883 has a median IC50 of 67.0 nM and BDB_557906 has 5400.0 nM. How do they compare?"
+    },
+    {
+      "index": 120,
+      "source": "sft_test.csv",
+      "source_index": 120,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_717392 has a median IC50 of 0.51 nM against the EGFR C797S variant. How should this value be interpreted?"
+    },
+    {
+      "index": 122,
+      "source": "sft_test.csv",
+      "source_index": 122,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_679684 has a median IC50 of 70.0 nM against the EGFR exon 19 deletion (ex19del) variant. How should this value "
+    },
+    {
+      "index": 123,
+      "source": "sft_test.csv",
+      "source_index": 123,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "10.4-fold",
+        "50%"
+      ],
+      "prompt_snippet": "Against EGFR exon 19 deletion (ex19del), BDB_790083 has a median IC50 of 16.9 nM and BDB_789958 has 176.0 nM. How do they compare?"
+    },
+    {
+      "index": 124,
+      "source": "sft_test.csv",
+      "source_index": 124,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BDB_790096 shows a median IC50 of 8.98 nM against EGFR exon 19 deletion (ex19del). Does this mean it will work in patients with this mutation?"
+    },
+    {
+      "index": 125,
+      "source": "sft_test.csv",
+      "source_index": 125,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "In an aggregated BindingDB dataset, compound BDB_717540 has a median IC50 of 0.75 nM against the EGFR ex19del/T790M variant. How should this value be interprete"
+    },
+    {
+      "index": 126,
+      "source": "sft_test.csv",
+      "source_index": 126,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "What does a median IC50 of 0.02 nM tell you about BDB_717471 as an inhibitor of EGFR ex19del/T790M?"
+    },
+    {
+      "index": 131,
+      "source": "sft_test.csv",
+      "source_index": 131,
+      "task_type": "mutation_mechanism",
+      "ungrounded_numbers": [
+        "2%"
+      ],
+      "prompt_snippet": "Explain the molecular nature of the EGFR L861Q mutation."
+    },
+    {
+      "index": 132,
+      "source": "sft_test.csv",
+      "source_index": 132,
+      "task_type": "mutation_classification",
+      "ungrounded_numbers": [
+        "1%"
+      ],
+      "prompt_snippet": "Is EGFR L861Q an activating mutation, a resistance mutation, or both?"
+    },
+    {
+      "index": 134,
+      "source": "sft_test.csv",
+      "source_index": 134,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "1%",
+        "100-fold",
+        "10-fold"
+      ],
+      "prompt_snippet": "What is the relevance of EGFR L861Q to EGFR inhibitor selection?"
+    },
+    {
+      "index": 138,
+      "source": "sft_test.csv",
+      "source_index": 138,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "52-fold",
+        "18.3-fold"
+      ],
+      "prompt_snippet": "At Km,ATP, BLU-945 (CMP_BLU945) inhibits wild-type EGFR with IC50 = 86.0 nM and the L858R/T790M double mutant with IC50 = 4.7 nM. Interpret the mutant-vs-WT sel"
+    },
+    {
+      "index": 139,
+      "source": "sft_test.csv",
+      "source_index": 139,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "10 \u00b5M",
+        "100-fold"
+      ],
+      "prompt_snippet": "For BLU-945 (CMP_BLU945) against the exon-19 deletion (ex19del) mutant, IC50 = 40.2 nM at Km,ATP but 504 nM at 1 mM ATP. Explain the difference."
+    },
+    {
+      "index": 140,
+      "source": "sft_test.csv",
+      "source_index": 140,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BLU-945 (CMP_BLU945) is reported with an IC50 of 7.61 nM against L858R at Km,ATP. Is this the same as its binding affinity (KD/Ki)?"
+    },
+    {
+      "index": 141,
+      "source": "sft_test.csv",
+      "source_index": 141,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%",
+        "10 nM"
+      ],
+      "prompt_snippet": "Interpret the potency of BindingDB compound BDB_50529707 against WT EGFR: median IC50 = 78.5 nM (n = 4 measurement(s))."
+    },
+    {
+      "index": 142,
+      "source": "sft_test.csv",
+      "source_index": 142,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the potency of BindingDB compound BDB_790008 against L858R EGFR: median IC50 = 37.3 nM (n = 1 measurement(s))."
+    },
+    {
+      "index": 143,
+      "source": "sft_test.csv",
+      "source_index": 143,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the potency of BindingDB compound BDB_200793 against L858R EGFR: median IC50 = 0.17 nM (n = 1 measurement(s))."
+    },
+    {
+      "index": 149,
+      "source": "sft_test.csv",
+      "source_index": 149,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Give the full potency ordering of these compounds against ex19del/T790M EGFR and explain what kind of data this is. Median IC50s: BDB_717513 0.04 nM, BDB_717494"
+    },
+    {
+      "index": 150,
+      "source": "sft_test.csv",
+      "source_index": 150,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "100-fold"
+      ],
+      "prompt_snippet": "Why does the EGFR ex19del/T790M/C797S annotation (classification = \"activating+resistance\", resistance = \"osimertinib\") matter for choosing or designing an EGFR"
+    },
+    {
+      "index": 152,
+      "source": "sft_test.csv",
+      "source_index": 152,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the potency of BindingDB compound BDB_789995 against L858R/T790M EGFR: median IC50 = 3.56 nM (n = 1 measurement(s))."
+    },
+    {
+      "index": 153,
+      "source": "sft_test.csv",
+      "source_index": 153,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Give the full potency ordering of these compounds against L858R/T790M EGFR and explain what kind of data this is. Median IC50s: BDB_789988 400.0 nM, BDB_789995 "
+    },
+    {
+      "index": 158,
+      "source": "sft_test.csv",
+      "source_index": 158,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the potency of BindingDB compound BDB_50308944 against WT EGFR: median IC50 = 90.0 nM (n = 1 measurement(s))."
+    },
+    {
+      "index": 159,
+      "source": "sft_test.csv",
+      "source_index": 159,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "104-fold"
+      ],
+      "prompt_snippet": "Contrast the potency of BDB_717186 (median IC50 0.25 nM) and BDB_759867 (median IC50 26.0 nM) against L858R/C797S EGFR."
+    },
+    {
+      "index": 162,
+      "source": "sft_test.csv",
+      "source_index": 162,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557888 (structure SMILES: COc1cc2ncnc(Nc3ccc(Br)c(Cl)c3)c2cc1OC1CCN(C1)C(=O)C=C) has an aggregated median IC50 of 10 nM (from 1 measureme"
+    },
+    {
+      "index": 163,
+      "source": "sft_test.csv",
+      "source_index": 163,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557876 has an aggregated median IC50 of 130 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the variant,"
+    },
+    {
+      "index": 164,
+      "source": "sft_test.csv",
+      "source_index": 164,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557889 has an aggregated median IC50 of 2700 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the variant"
+    },
+    {
+      "index": 165,
+      "source": "sft_test.csv",
+      "source_index": 165,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557891 (structure SMILES: COc1cc2ncnc(Nc3cccc(CO)c3)c2cc1OC1CCN(C1)C(=O)C=C) has an aggregated median IC50 of 4500 nM (from 1 measurement"
+    },
+    {
+      "index": 166,
+      "source": "sft_test.csv",
+      "source_index": 166,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "29 \u00b5M",
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557905 has an aggregated median IC50 of 29000 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the varian"
+    },
+    {
+      "index": 167,
+      "source": "sft_test.csv",
+      "source_index": 167,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557902 has an aggregated median IC50 of 3900 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the variant"
+    },
+    {
+      "index": 168,
+      "source": "sft_test.csv",
+      "source_index": 168,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557892 (structure SMILES: COc1cc2ncnc(Nc3ccc(Cl)c(CO)c3)c2cc1OC1CCN(CC1)C(=O)C=C) has an aggregated median IC50 of 110 nM (from 1 measure"
+    },
+    {
+      "index": 169,
+      "source": "sft_test.csv",
+      "source_index": 169,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_557874 has an aggregated median IC50 of 130 nM (from 1 measurement record(s)) against EGFR S768I. How potent is this against the variant,"
+    },
+    {
+      "index": 170,
+      "source": "sft_test.csv",
+      "source_index": 170,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "11-fold"
+      ],
+      "prompt_snippet": "Among these BindingDB compounds profiled against EGFR S768I (BDB_557888 = 10 nM; BDB_557892 = 110 nM; BDB_557876 = 130 nM; BDB_557874 = 130 nM; BDB_557889 = 270"
+    },
+    {
+      "index": 171,
+      "source": "sft_test.csv",
+      "source_index": 171,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "29 \u00b5M"
+      ],
+      "prompt_snippet": "Of the BindingDB compounds tested against EGFR S768I (BDB_557888 = 10 nM; BDB_557892 = 110 nM; BDB_557876 = 130 nM; BDB_557874 = 130 nM; BDB_557889 = 2700 nM; B"
+    },
+    {
+      "index": 173,
+      "source": "sft_test.csv",
+      "source_index": 173,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "2,900-fold"
+      ],
+      "prompt_snippet": "Contrast the strongest and weakest BindingDB compounds against EGFR S768I: BDB_557888 (10 nM) versus BDB_557905 (29000 nM)."
+    },
+    {
+      "index": 174,
+      "source": "sft_test.csv",
+      "source_index": 174,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "41-fold"
+      ],
+      "prompt_snippet": "Compare BDB_557892 (110 nM) and BDB_557891 (4500 nM) as inhibitors of EGFR S768I."
+    },
+    {
+      "index": 180,
+      "source": "sft_test.csv",
+      "source_index": 180,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "32-fold"
+      ],
+      "prompt_snippet": "Contrast the strongest and weakest BindingDB compounds against EGFR T790M/C797S: BDB_547926 (4.9 nM) versus BDB_707485 (158 nM)."
+    },
+    {
+      "index": 182,
+      "source": "sft_test.csv",
+      "source_index": 182,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%",
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_765212 has an aggregated median IC50 of 4 nM (from 1 measurement record(s)) against EGFR L858R/T790M. How potent is this against the vari"
+    },
+    {
+      "index": 184,
+      "source": "sft_test.csv",
+      "source_index": 184,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "1 nM",
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_759830 (structure SMILES: COc4cc3ncnc(c1cn(C)nc1c2ccccc2)c3nc4NC(=O)c5cnn(C(F)(F)F)c5C) has an aggregated median IC50 of 0.7 nM (from 1 m"
+    },
+    {
+      "index": 189,
+      "source": "sft_test.csv",
+      "source_index": 189,
+      "task_type": "resistance_interpretation",
+      "ungrounded_numbers": [
+        "122-fold"
+      ],
+      "prompt_snippet": "EGFR T790M/C797S is a known TKI-resistance genotype. How should the spread of these BindingDB IC50s (best BDB_707536 = 1.23 nM; worst BDB_701470 = 150 nM) be in"
+    },
+    {
+      "index": 190,
+      "source": "sft_test.csv",
+      "source_index": 190,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_717341 has an aggregated median IC50 of 0.44 nM (from 1 measurement record(s)) against EGFR C797S. How potent is this against the variant"
+    },
+    {
+      "index": 192,
+      "source": "sft_test.csv",
+      "source_index": 192,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "BindingDB compound BDB_717526 has an aggregated median IC50 of 0.01 nM (from 1 measurement record(s)) against EGFR ex19del/T790M. How potent is this against the"
+    },
+    {
+      "index": 195,
+      "source": "sft_test.csv",
+      "source_index": 195,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "68.5-fold"
+      ],
+      "prompt_snippet": "Compare two EGFR L858R compounds from BindingDB: BDB_790012 (0.61 nM) and BDB_789957 (41.8 nM). Which engages the target more potently and by roughly how much?"
+    },
+    {
+      "index": 196,
+      "source": "sft_test.csv",
+      "source_index": 196,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "222-fold"
+      ],
+      "prompt_snippet": "Contrast the strongest and weakest EGFR L858R inhibitors in this BindingDB set: BDB_200004 at 1.0 nM versus BDB_789958 at 222.0 nM."
+    },
+    {
+      "index": 198,
+      "source": "sft_test.csv",
+      "source_index": 198,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "33 \u00b5M",
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the BindingDB potency of compound BDB_793079 against the EGFR WT variant (median IC50 33000.0 nM)."
+    },
+    {
+      "index": 199,
+      "source": "sft_test.csv",
+      "source_index": 199,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the BindingDB potency of compound BDB_50431333 against the EGFR WT variant (median IC50 61.0 nM)."
+    },
+    {
+      "index": 200,
+      "source": "sft_test.csv",
+      "source_index": 200,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%",
+        "4.6 \u00b5M"
+      ],
+      "prompt_snippet": "Interpret the BindingDB potency of compound BDB_50192486 against the EGFR WT variant (median IC50 4600.0 nM)."
+    },
+    {
+      "index": 202,
+      "source": "sft_test.csv",
+      "source_index": 202,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "33 \u00b5M"
+      ],
+      "prompt_snippet": "What should I keep in mind about the source and quality of these EGFR WT IC50 values (e.g. BDB_793079 at 33000.0 nM) when I read them?"
+    },
+    {
+      "index": 204,
+      "source": "sft_test.csv",
+      "source_index": 204,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the BindingDB potency of compound BDB_50141097 against the EGFR WT variant (median IC50 21.0 nM)."
+    },
+    {
+      "index": 209,
+      "source": "sft_test.csv",
+      "source_index": 209,
+      "task_type": "inhibitor_comparison",
+      "ungrounded_numbers": [
+        "3.3-fold"
+      ],
+      "prompt_snippet": "Compare two EGFR L858R/C797S compounds from BindingDB: BDB_727119 (1.5 nM) and BDB_759557 (4.9 nM). Which engages the target more potently and by roughly how mu"
+    },
+    {
+      "index": 212,
+      "source": "sft_test.csv",
+      "source_index": 212,
+      "task_type": "experimental_interpretation",
+      "ungrounded_numbers": [
+        "50%"
+      ],
+      "prompt_snippet": "Interpret the BindingDB potency of compound BDB_717399 against the EGFR C797S variant (median IC50 0.55 nM)."
+    },
+    {
+      "index": 217,
+      "source": "eval_questions.jsonl",
+      "source_index": 2,
+      "task_type": "assay_distinction",
+      "ungrounded_numbers": [
+        "50%",
+        "50%"
+      ],
+      "prompt_snippet": "Why must KD, Ki and IC50 not be pooled into one affinity training target?"
+    }
+  ]
+}

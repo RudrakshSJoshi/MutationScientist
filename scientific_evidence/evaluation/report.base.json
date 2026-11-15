@@ -1,0 +1,1602 @@
+{
+  "mode": "real:openai",
+  "model": "Qwen/Qwen3.5-4B @ http://localhost:8000/v1",
+  "n_items": 30,
+  "overall": {
+    "n": 30,
+    "passed": 0,
+    "pass_rate": 0.0,
+    "mean_factual": 0.6363,
+    "items_with_fabrication": 11,
+    "items_with_invented_citation": 0,
+    "citation_recall": 0.0,
+    "citation_items_scored": 29,
+    "conflation_items": 5,
+    "hedge_required": 16,
+    "hedge_missing": 0,
+    "mean_jaccard": 0.1826
+  },
+  "by_task_type": {
+    "assay_distinction": {
+      "n": 6,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "mean_factual": 0.5466,
+      "items_with_fabrication": 3,
+      "items_with_invented_citation": 0,
+      "citation_recall": 0.0,
+      "citation_items_scored": 5,
+      "conflation_items": 3,
+      "hedge_required": 5,
+      "hedge_missing": 0,
+      "mean_jaccard": 0.1818
+    },
+    "evidence_qa": {
+      "n": 6,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "mean_factual": 0.5278,
+      "items_with_fabrication": 0,
+      "items_with_invented_citation": 0,
+      "citation_recall": 0.0,
+      "citation_items_scored": 6,
+      "conflation_items": 0,
+      "hedge_required": 1,
+      "hedge_missing": 0,
+      "mean_jaccard": 0.1408
+    },
+    "inhibitor_comparison": {
+      "n": 6,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "mean_factual": 0.7931,
+      "items_with_fabrication": 2,
+      "items_with_invented_citation": 0,
+      "citation_recall": 0.0,
+      "citation_items_scored": 6,
+      "conflation_items": 0,
+      "hedge_required": 5,
+      "hedge_missing": 0,
+      "mean_jaccard": 0.2277
+    },
+    "mutation_mechanism": {
+      "n": 6,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "mean_factual": 0.707,
+      "items_with_fabrication": 3,
+      "items_with_invented_citation": 0,
+      "citation_recall": 0.0,
+      "citation_items_scored": 6,
+      "conflation_items": 0,
+      "hedge_required": 0,
+      "hedge_missing": 0,
+      "mean_jaccard": 0.1732
+    },
+    "resistance_interpretation": {
+      "n": 6,
+      "passed": 0,
+      "pass_rate": 0.0,
+      "mean_factual": 0.6071,
+      "items_with_fabrication": 3,
+      "items_with_invented_citation": 0,
+      "citation_recall": 0.0,
+      "citation_items_scored": 6,
+      "conflation_items": 2,
+      "hedge_required": 5,
+      "hedge_missing": 0,
+      "mean_jaccard": 0.1896
+    }
+  },
+  "items": [
+    {
+      "id": "MM01",
+      "task_type": "mutation_mechanism",
+      "question": "What residue change defines EGFR C797S, in which protein domain does it sit, and why does it cause osimertinib resistance?",
+      "prediction": "**Residue Change and Domain Location**\nThe **C797S** mutation is a substitution of **Cysteine (C)** at position **797** to **Serine (S)**. This residue is located in the **activation loop (A-loop)** of the **tyrosine kinase domain (TKD)** of the EGFR protein. Specifically, it corresponds to the conserved cysteine residue (Cys797 in human EGFR) that forms a critical disulfide bond with Cys825 in the adjacent intracellular loop.\n\n**Mechanism of Osimertinib Resistance**\nC797S causes resistance to osimertinib through a **steric hindrance mechanism** that disrupts drug binding:\n\n1.  **Structural Disruption**: In the wild-type protein, Cys797 forms a disulfide bridge with Cys825. The mutation replaces the bulky Cysteine side chain with the smaller Serine side chain.\n2.  **Bridge Breakage**: The loss of the Cys797 residue breaks the Cys797–Cys825 disulfide bond.\n3.  **Loop Conformational Change**: This breakage allows the activation loop to adopt a more open, extended conformation.\n4.  **Steric Clash**: Osimertinib binds in the ATP pocket and makes critical contacts with the activation loop. The open conformation of the loop, resulting from the C797S mutation, creates a physical steric clash with the osimertinib molecule, preventing it from binding effectively.\n\n**Biochemical vs. Cellular Distinction**\n*   **Biochemical Context**:",
+      "scores": {
+        "factual": {
+          "score": 0.7778,
+          "required": 9,
+          "hits": 7,
+          "missed": [
+            "all:covalent",
+            "any:acrylamide/thiol/anchor"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": false,
+          "hits": []
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.2086,
+        "passed": false
+      }
+    },
+    {
+      "id": "MM02",
+      "task_type": "mutation_mechanism",
+      "question": "What is the EGFR T790M substitution, where is it located, and what resistance does it confer?",
+      "prediction": "The **EGFR T790M substitution** is a point mutation where Threonine (T) at position 790 is replaced by Methionine (M) in the EGFR protein.\n\n*   **Location:** It is located in the **activation loop** (specifically the C-terminal tail region) of the EGFR kinase domain. This region is critical for the conformational changes required for catalytic activity.\n*   **Resistance Mechanism:** The T790M mutation confers **resistance to first-generation EGFR tyrosine kinase inhibitors (TKIs)** such as gefitinib and erlotinib.\n    *   **Biochemical Basis:** The substitution increases the affinity of the drug for the inactive conformation of the kinase while simultaneously decreasing the affinity for the active conformation. This shifts the equilibrium toward the inactive state in the presence of the drug, rendering the inhibitor ineffective.\n    *   **Clinical Context:** It is the most common mechanism of acquired resistance (occurring in ~50% of cases) in patients with EGFR-mutant NSCLC who have progressed after treatment with first-generation TKIs.\n    *   **Therapeutic Implication:** Because of this specific resistance profile, T790M-positive tumors typically respond to **third-generation TKIs** (e.g., osimertinib), which are designed to overcome this resistance by binding with higher affinity to the mutant form.\n\n*Note: The specific IC50 or Ki values for this mutation against specific drugs are not provided in the prompt and cannot be generated. Clinical response rates vary based on tumor burden, prior treatment history, and other co-mutations.*",
+      "scores": {
+        "factual": {
+          "score": 0.75,
+          "required": 8,
+          "hits": 6,
+          "missed": [
+            "all:gatekeeper",
+            "all:ATP"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 1,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "50%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "not",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1765,
+        "passed": false
+      }
+    },
+    {
+      "id": "MM03",
+      "task_type": "mutation_mechanism",
+      "question": "What kind of mutation is EGFR L858R and what is its functional consequence?",
+      "prediction": "**EGFR L858R** is a point mutation located in the kinase domain of the Epidermal Growth Factor Receptor (EGFR), specifically at codon 858 where Leucine (L) is replaced by Arginine (R).\n\n**Functional Consequence:**\nThis mutation induces a **constitutive activation** of the EGFR kinase. It stabilizes the receptor in an active conformation, leading to continuous autophosphorylation and downstream signaling (e.g., MAPK/ERK and PI3K/AKT pathways) even in the absence of ligand binding.\n\n*   **Biochemical Impact:** It significantly increases the catalytic activity ($k_{cat}$) of the kinase, resulting in a high affinity for ATP and enhanced phosphorylation of substrates.\n*   **Clinical Context:** This mutation is the most common driver mutation in non-small cell lung cancer (NSCLC), found in approximately 45–50% of cases. It is highly sensitive to first-generation tyrosine kinase inhibitors (TKIs) like gefitinib and erlotinib, as well as third-generation TKIs like osimertinib.\n\n*Note: Specific quantitative values (e.g., exact fold-change in $k_{cat}$ or specific IC50 values for specific inhibitors) are not provided in the prompt and would require citing specific experimental data or literature with a DOI/PMID to be stated.*",
+      "scores": {
+        "factual": {
+          "score": 1.0,
+          "required": 7,
+          "hits": 7,
+          "missed": [],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 1,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "50%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "experimental",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1923,
+        "passed": false
+      }
+    },
+    {
+      "id": "MM04",
+      "task_type": "mutation_mechanism",
+      "question": "What is an EGFR exon-19 deletion (ex19del) and why does it matter for therapy?",
+      "prediction": "An **EGFR exon-19 deletion (ex19del)** is a specific somatic mutation in the *EGFR* gene where one or more nucleotides are missing from exon 19. This deletion results in a frameshift, leading to the production of a truncated EGFR protein with a constitutively active tyrosine kinase domain. It is one of the most common driver mutations in non-small cell lung cancer (NSCLC), occurring in approximately 45–50% of patients with adenocarcinoma.\n\n**Why it matters for therapy:**\nThe presence of an ex19del mutation is a critical biomarker that dictates first-line treatment strategy. Because this mutation creates a specific conformational state on the ATP-binding pocket of the EGFR kinase, it is highly sensitive to **first-generation EGFR tyrosine kinase inhibitors (TKIs)**, specifically **gefitinib** and **erlotinib**.\n\n*   **Clinical Response:** Patients harboring ex19del typically exhibit high response rates (often >70%) and prolonged progression-free survival when treated with these agents compared to those with wild-type EGFR or other mutations.\n*   **Therapeutic Implications:** The identification of ex19del is essential for selecting appropriate targeted therapy. While second-generation TKIs (e.g., afatinib) and third-generation TKIs (e.g., osimertinib) are also effective, the specific sensitivity profile and resistance mechanisms can vary slightly between mutation types. For instance, while ex19del is highly sensitive to first-generation TKIs, resistance often develops via T790M acquisition, necessitating a switch to third-generation agents in later lines of therapy.\n\n*Note:",
+      "scores": {
+        "factual": {
+          "score": 0.5,
+          "required": 6,
+          "hits": 3,
+          "missed": [
+            "all:746",
+            "all:activat",
+            "any:ELREA/E746"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 2,
+          "n_ungrounded": 2,
+          "ungrounded": [
+            "50%",
+            "70%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1235,
+        "passed": false
+      }
+    },
+    {
+      "id": "MM05",
+      "task_type": "mutation_mechanism",
+      "question": "Describe EGFR S768I: the substitution, its location and functional class.",
+      "prediction": "Based on the provided information, here is the description of the EGFR S768I mutation:\n\n*   **Substitution:** Serine (S) to Isoleucine (I).\n*   **Location:** Codon 768 of the EGFR protein.\n*   **Functional Class:** This is a **non-coding** or **non-driver** mutation. It is located in the C-terminal tail of the receptor, outside of the kinase domain and the primary ATP-binding pocket. It is generally not associated with constitutive activation, oncogenic signaling, or primary drug resistance in the same manner as kinase domain mutations (e.g., L858R, T790M).\n\n*Note: Specific functional data (e.g., affinity changes, IC50 shifts) for this specific variant are not provided in the current context and would require experimental measurement to determine.*",
+      "scores": {
+        "factual": {
+          "score": 0.5,
+          "required": 8,
+          "hits": 4,
+          "missed": [
+            "any:exon-20/exon 20",
+            "any:atypical/uncommon",
+            "all:activating",
+            "all:variable"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 3,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "experimental",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1892,
+        "passed": false
+      }
+    },
+    {
+      "id": "MM06",
+      "task_type": "mutation_mechanism",
+      "question": "Describe EGFR L861Q: the substitution, its location and functional class.",
+      "prediction": "**EGFR L861Q** is a point mutation characterized by the substitution of **Leucine (L)** with **Glutamine (Q)** at **codon 861** of the Epidermal Growth Factor Receptor (EGFR) protein.\n\n*   **Location**: This mutation occurs within the **kinase domain** of EGFR, specifically in the **activation loop** (residues 720–777). It is located in the region responsible for regulating kinase activity and substrate recognition.\n*   **Functional Class**: L861Q is classified as a **somatic activating mutation**. It is most commonly found in **non-small cell lung cancer (NSCLC)**, particularly in patients with **adenocarcinoma** and **squamous cell carcinoma**.\n*   **Mechanism**: The substitution disrupts the normal conformational changes required for proper kinase regulation, leading to **constitutive activation** of the receptor. This results in continuous downstream signaling (e.g., MAPK/ERK and PI3K/AKT pathways) independent of ligand binding, driving uncontrolled cell proliferation and survival.\n*   **Clinical Context**: While L861Q is an activating mutation, it is distinct from the more common sensitizing mutations (like L858R). Patients harboring L861Q often exhibit **primary resistance** to first-generation tyrosine kinase inhibitors (TKIs) such as gefitinib and erlotinib, though they may show variable responses to second-generation TKIs (e.g., afatinib) or third-generation TKIs (e.g., osimertinib), depending on the specific experimental data and patient history.\n\n*",
+      "scores": {
+        "factual": {
+          "score": 0.7143,
+          "required": 7,
+          "hits": 5,
+          "missed": [
+            "any:exon-21/exon 21",
+            "all:atypical"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "experimental",
+            "may"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1491,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI01",
+      "task_type": "resistance_interpretation",
+      "question": "At Km,ATP, osimertinib's biochemical IC50 is 2.82 nM against EGFR L858R and 574 nM against L858R/C797S. State the fold-change and what it does and does not demonstrate.",
+      "prediction": "Based on the values provided in your prompt, here is the analysis of osimertinib's potency against the specified EGFR mutations.\n\n### Fold-Change Calculation\nThe fold-change is calculated by dividing the IC50 of the resistant mutant by the IC50 of the sensitive mutant:\n\n$$ \\text{Fold-Change} = \\frac{574 \\text{ nM}}{2.82 \\text{ nM}} \\approx 203.5 $$\n\n**Result:** The fold-change is approximately **204-fold**.\n\n### What This Demonstrates\nThis biochemical fold-change demonstrates the **intrinsic loss of binding affinity** (or catalytic inhibition efficiency) of osimertinib for the L858R/C797S double mutant compared to the L858R single mutant in an isolated-enzyme context.\n*   It quantifies that the C797S mutation significantly reduces the drug's ability to inhibit the enzyme at the ATP site.\n*   It confirms that the L858R/C797S variant is intrinsically less sensitive to osimertinib than the L858R variant.\n\n### What This Does NOT Demonstrate\nStrictly adhering to the distinction between biochemical and cellular/clinical outcomes:\n1.  **It does not prove clinical resistance:** A 204-fold increase in IC50 does not guarantee that a patient with the L858R/C797S mutation will fail to respond to osimertinib therapy. Cellular factors (e.g., drug transporters, efflux pumps, intracellular concentration) and clinical factors (e.g., tumor heterogeneity, dosing)",
+      "scores": {
+        "factual": {
+          "score": 0.5714,
+          "required": 7,
+          "hits": 4,
+          "missed": [
+            "2.82 nM",
+            "574 nM",
+            "any:covalent/time-dependent"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 2,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "does not prove",
+            "isolated",
+            "not",
+            "not demonstrate"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2603,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI02",
+      "task_type": "resistance_interpretation",
+      "question": "Osimertinib's biochemical IC50 against L858R/C797S is 574 nM at Km,ATP but >10000 nM at 1 mM ATP. Explain the difference and how to read the 1 mM value.",
+      "prediction": "The difference in Osimertinib's biochemical IC50 values (574 nM at low ATP vs. >10,000 nM at 1 mM ATP) reflects the **competitive nature of ATP** against the drug at the ATP-binding pocket of the EGFR kinase domain.\n\n**Mechanism of the Difference:**\n*   **Low ATP (Km,ATP):** At sub-saturating ATP concentrations, the enzyme is more likely to be in a state where the drug can bind effectively. The reported 574 nM represents the concentration of drug required to inhibit 50% of the kinase activity under these specific low-ATP conditions.\n*   **High ATP (1 mM):** At 1 mM ATP, the concentration of ATP is significantly higher than the Km of ATP for EGFR (typically ~10–20 µM). This saturates the ATP-binding site, effectively out-competing the drug for binding. Consequently, the observed IC50 increases dramatically (>10,000 nM), indicating that the drug's potency is severely compromised when ATP is abundant.\n\n**How to Read the 1 mM Value:**\nThe value >10,000 nM is a **conditional potency measurement**. It indicates that under physiological or near-physiological ATP concentrations (1 mM), Osimertinib loses its ability to inhibit the wild-type or mutant kinase at clinically relevant concentrations. This highlights that the 574 nM value is an artifact of the assay condition (low ATP) and does not reflect the drug's true efficacy in a cellular environment where ATP is abundant.\n\n**Critical Distinction:**\nThis is a **biochemical (isolated-enzyme) affinity",
+      "scores": {
+        "factual": {
+          "score": 0.8333,
+          "required": 6,
+          "hits": 5,
+          "missed": [
+            "any:right-censored/censored/lower bound"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 13,
+          "n_ungrounded": 2,
+          "ungrounded": [
+            "50%",
+            "20 µM"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "isolated",
+            "not",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.1569,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI03",
+      "task_type": "resistance_interpretation",
+      "question": "Mechanistically, why does C797S specifically abolish osimertinib activity while sparing some other inhibitor classes?",
+      "prediction": "Based on the provided prompt, there is no specific experimental data, IC50 values, or structural parameters given to calculate or derive a mechanistic explanation. Therefore, I cannot invent numbers or specific kinetic constants to support a detailed quantitative argument.\n\nHowever, I can explain the **mechanistic principle** based on established biochemical literature regarding the C797S mutation and osimertinib, distinguishing between binding affinity (biochemical) and cellular inhibition.\n\n**Mechanistic Explanation:**\n\nThe C797S mutation (Cysteine to Serine at position 797) abolishes osimertinib activity primarily through **loss of a critical hydrogen bond**.\n\n1.  **Structural Interaction**: Osimertinib contains a basic amine group that forms a specific hydrogen bond with the side chain of the C797 cysteine residue within the EGFR ATP-binding pocket. This interaction is essential for the high-affinity binding of osimertinib to the T790M/C797S double mutant.\n2.  **Effect of Mutation**: The C797S mutation replaces the cysteine thiol group with a serine hydroxyl group. While serine can form hydrogen bonds, the geometry and chemical properties of the serine side chain in this specific pocket do not allow for the formation of the same stabilizing hydrogen bond with the osimertinib amine.\n3.  **Resulting Affinity**: Consequently, the **biochemical affinity (Ki or IC50)** of osimertinib for the C797S mutant is drastically reduced compared to the wild-type or T790M-only mutant. In many studies, this results in a loss of",
+      "scores": {
+        "factual": {
+          "score": 0.4286,
+          "required": 7,
+          "hits": 3,
+          "missed": [
+            "all:covalent",
+            "any:reversible/allosteric",
+            "any:BLU-945/JBJ",
+            "any:requires measurement/still requires/measurement"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": true,
+          "sentences": [
+            "**Resulting Affinity**: Consequently, the **biochemical affinity (Ki or IC50)** of osimertinib for the C797S mutant is drastically reduced compared to the wild-type or T790M-only mutant."
+          ]
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "do not",
+            "experimental",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.142,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI04",
+      "task_type": "resistance_interpretation",
+      "question": "What is osimertinib's biochemical IC50 against the L858R/T790M/C797S triple mutant in Melis Table 2, and how should the answer report it?",
+      "prediction": "Based on the provided context, the specific biochemical IC50 value for osimertinib against the L858R/T790M/C797S triple mutant in Melis Table 2 is **not available**.\n\nAs per the CARDINAL RULES, I cannot fabricate numbers or infer values from the prompt. The text provided does not contain the specific data point required to answer this question. To determine this value, you would need to consult the original Melis et al. publication directly and locate the specific entry in Table 2 corresponding to the triple mutant and osimertinib's IC50.",
+      "scores": {
+        "factual": {
+          "score": 0.6667,
+          "required": 3,
+          "hits": 2,
+          "missed": [
+            "any:broad/resistance"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "does not",
+            "not",
+            "not available"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2292,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI05",
+      "task_type": "resistance_interpretation",
+      "question": "Why is gefitinib (a first-generation EGFR-TKI) ineffective against T790M-bearing EGFR?",
+      "prediction": "Gefitinib is ineffective against the T790M mutation primarily due to **steric hindrance** caused by the mutation's conformational change, which alters the drug's binding affinity.\n\nThe T790M mutation involves the substitution of Threonine (polar) with Methionine (hydrophobic) at position 790 in the EGFR kinase domain. This change induces a conformational shift in the ATP-binding pocket, specifically increasing the hydrophobicity of the pocket.\n\n*   **Mechanism of Failure:** Gefitinib is a hydrophobic molecule that relies on hydrophobic interactions within the ATP pocket for binding. The introduction of the hydrophobic Methionine residue at position 790 creates a steric clash and unfavorable energetic environment for the hydrophobic gefitinib molecule, effectively displacing it from the ATP-binding site.\n*   **Affinity Distinction:** While specific IC50 or Ki values for this displacement are not provided in the prompt, it is a well-established biochemical fact that the T790M mutation increases the IC50 of gefitinib by approximately **100-fold** compared to wild-type EGFR. Conversely, the second-generation TKI osimertinib, which contains a bulky hydrophobic group, can accommodate this mutation and bind with high affinity.\n\nThis biochemical resistance mechanism explains why gefitinib fails to inhibit the mutant enzyme in vitro and consequently fails to produce clinical response in patients harboring the T790M mutation.",
+      "scores": {
+        "factual": {
+          "score": 0.5714,
+          "required": 7,
+          "hits": 4,
+          "missed": [
+            "any:reversible/ATP-competitive",
+            "any:first-generation/1st-gen",
+            "all:gatekeeper"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 1,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "100-fold"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.16,
+        "passed": false
+      }
+    },
+    {
+      "id": "RI06",
+      "task_type": "resistance_interpretation",
+      "question": "BLU-945's biochemical IC50 against L858R/C797S is 6.32 nM, versus 574 nM for osimertinib against the same variant (Km,ATP). What does this indicate about overcoming C797S resistance?",
+      "prediction": "Based on the data provided, BLU-945 demonstrates a significantly higher **biochemical affinity** for the L858R/C797S variant compared to osimertinib, with an IC50 of 6.32 nM versus 574 nM. This represents an approximately **89-fold improvement** in potency against this specific resistance mechanism.\n\nHowever, this biochemical advantage **does not guarantee** cellular efficacy (e.g., GI50) or clinical response. As per the CARDINAL RULES:\n*   **Biochemical vs. Cellular Distinction:** A lower IC50 in an isolated-enzyme or binding assay indicates stronger inhibition of the mutant kinase *in vitro*, but it does not prove the drug can effectively penetrate the cell, overcome intracellular efflux, or sustain inhibition in the presence of compensatory mechanisms.\n*   **Resistance Context:** While the data suggests BLU-945 is a potent candidate for overcoming C797S resistance at the molecular level, clinical outcomes depend on factors beyond simple affinity, such as pharmacokinetics and cellular viability thresholds.\n\n**Conclusion:** The data indicates superior **biochemical potency** against the C797S mutation relative to osimertinib, but no conclusion can be drawn regarding its ability to overcome resistance in a cellular or clinical setting without additional experimental data (e.g., GI50 values or clinical trial results).",
+      "scores": {
+        "factual": {
+          "score": 0.5714,
+          "required": 7,
+          "hits": 4,
+          "missed": [
+            "91 fold",
+            "all:reversible",
+            "any:fourth-generation/4th-gen"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 3,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "89-fold"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": true,
+          "sentences": [
+            "**Conclusion:** The data indicates superior **biochemical potency** against the C797S mutation relative to osimertinib, but no conclusion can be drawn regarding its ability to overcome resistance in a cellular or clinical setting without additional experimental data (e.g., GI50 values or clinical trial results)."
+          ]
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "does not prove",
+            "experimental",
+            "isolated",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.189,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC01",
+      "task_type": "inhibitor_comparison",
+      "question": "On EGFR L858R/C797S at Km,ATP, rank osimertinib (574 nM), BLU-945 (6.32 nM) and JBJ-09-063 (32.9 nM) by biochemical potency and note the caveat.",
+      "prediction": "Based on the provided measurements at Km,ATP, the compounds are ranked by biochemical potency as follows:\n\n1.  **BLU-945** (6.32 nM)\n2.  **JBJ-09-063** (32.9 nM)\n3.  **Osimertinib** (574 nM)\n\n**Caveat:**\nThese values represent **biochemical affinity** (inhibition of ATP binding to the mutant enzyme). This does not directly predict **cellular potency** (e.g., GI50) or **clinical response**. Cellular efficacy is influenced by factors such as drug permeability, intracellular concentration, and the specific cellular context of the L858R/C797S double mutant, which may differ significantly from isolated enzyme kinetics.",
+      "scores": {
+        "factual": {
+          "score": 0.6667,
+          "required": 6,
+          "hits": 4,
+          "missed": [
+            "any:lower/stronger",
+            "all:allosteric"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 3,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "isolated",
+            "may",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.3208,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC02",
+      "task_type": "inhibitor_comparison",
+      "question": "BLU-945 inhibits wild-type EGFR with IC50 86.0 nM and L858R/T790M with 4.7 nM (Km,ATP). Interpret the selectivity.",
+      "prediction": "Based on the provided data, BLU-945 demonstrates **potency discrimination** rather than strict **selectivity** against the L858R/T790M mutant.\n\n*   **Potency Ratio:** The compound is approximately **18-fold more potent** against the L858R/T790M mutant (4.7 nM) compared to wild-type EGFR (86.0 nM).\n*   **Assay Context:** The values provided (86.0 nM and 4.7 nM) are explicitly labeled as **Km,ATP**, indicating these are biochemical measurements reflecting ATP competition at the active site.\n*   **Interpretation:** While the drug binds more tightly to the mutant conformation in this isolated-enzyme assay, a 18-fold difference does not constitute high selectivity. In a cellular context, the presence of wild-type EGFR (which is often the dominant isoform in L858R/T790M-positive tumors) would likely result in significant off-target inhibition of the wild-type receptor, potentially limiting therapeutic efficacy or increasing toxicity.\n*   **Limitation:** Biochemical Km,ATP values do not directly predict cellular GI50 or clinical response due to differences in intracellular ATP concentration, enzyme kinetics, and cellular signaling pathways.\n\n**Conclusion:** BLU-945 shows modest preferential binding to the L858R/T790M mutant in ATP-competitive assays, but the lack of a high fold-difference suggests it is not a highly selective inhibitor for this mutant over wild-type EGFR.",
+      "scores": {
+        "factual": {
+          "score": 1.0,
+          "required": 5,
+          "hits": 5,
+          "missed": [],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 6,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "do not",
+            "does not",
+            "isolated",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2418,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC03",
+      "task_type": "inhibitor_comparison",
+      "question": "JBJ-09-063's biochemical IC50 is 32.9 nM against L858R/C797S but >10000 nM against ex19del/C797S (Km,ATP). What does this say about allosteric inhibitors?",
+      "prediction": "Based on the data provided, JBJ-09-063 exhibits a **potency gap** of approximately 300-fold between its activity against the L858R/C797S double mutant and the ex19del/C797S double mutant.\n\n*   **Potency against L858R/C797S:** 32.9 nM.\n*   **Potency against ex19del/C797S:** >10,000 nM.\n\n**Interpretation regarding allosteric inhibitors:**\nThis profile is characteristic of **allosteric inhibitors** (specifically those targeting the C797S mutation). Unlike ATP-competitive inhibitors, which typically bind to the active site and are often rendered inactive by the ex19del mutation (due to the loss of the ATP-binding pocket), allosteric inhibitors bind to a distinct regulatory site.\n\nThe fact that JBJ-09-063 retains measurable activity (even if high in the >10,000 nM range) against the ex19del/C797S mutant suggests that the drug's mechanism of action does not rely on the ATP-binding pocket being intact. Instead, it likely binds to the C797S allosteric site to stabilize the inactive conformation of the kinase, regardless of the ex19del deletion. The extreme loss of potency (>10,000 nM) against the ex19del variant indicates that while the C797S site is the primary target, the specific structural context provided by the ex19del deletion may significantly destabilize the drug-binding pocket or alter the conformational equilibrium required",
+      "scores": {
+        "factual": {
+          "score": 0.8,
+          "required": 5,
+          "hits": 4,
+          "missed": [
+            "any:context-dependent/depends/cannot be generalised/must be measured"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 5,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "300-fold"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "may",
+            "not",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.1656,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC04",
+      "task_type": "inhibitor_comparison",
+      "question": "Silevertinib's biochemical IC50 is 0.219 nM against L858R but 149 nM against L858R/T790M (Km,ATP). Interpret.",
+      "prediction": "Based on the data provided, here is the interpretation of Silevertinib's activity profile:\n\n**1. Potency Differential**\n*   **Wild-type (L858R):** The compound exhibits high potency with an IC50 of **0.219 nM**.\n*   **T790M Mutant (L858R/T790M):** The compound shows significantly reduced potency with a value of **149 nM**.\n*   **Fold-Change:** The loss of potency against the T790M mutant is approximately **680-fold** (149 / 0.219).\n\n**2. Assay Specificity and Mechanism**\n*   **Biochemical Context:** The values provided (0.219 nM and 149 nM) are explicitly labeled as **Km,ATP** (Michaelis constant for ATP). This indicates the assay measures the inhibition of ATP binding or hydrolysis by the kinase domain in an isolated enzyme setting.\n*   **Mechanism Implication:** The dramatic increase in Km,ATP against the T790M mutant suggests that the T790M mutation alters the conformation of the ATP-binding pocket, reducing the affinity of Silevertinib for the active site or preventing the drug from effectively competing with ATP. This is consistent with the known mechanism of resistance where T790M creates a steric clash with first-generation EGFR inhibitors.\n\n**3. Distinction of Metrics**\n*   **Biochemical vs. Cellular:** These values represent **biochemical affinity** (isolated enzyme kinetics). They do not directly predict **cellular viability** (e",
+      "scores": {
+        "factual": {
+          "score": 0.6667,
+          "required": 6,
+          "hits": 4,
+          "missed": [
+            "all:covalent",
+            "all:does not"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 5,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "do not",
+            "isolated",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2038,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC05",
+      "task_type": "inhibitor_comparison",
+      "question": "Compare gefitinib and osimertinib by generation and binding mechanism, and their expected behaviour against T790M.",
+      "prediction": "### Comparison of Gefitinib and Osimertinib\n\n**1. Generation**\n*   **Gefitinib:** First-generation (1st Gen) EGFR tyrosine kinase inhibitor (TKI).\n*   **Osimertinib:** Third-generation (3rd Gen) EGFR TKI.\n\n**2. Binding Mechanism**\n*   **Gefitinib:** Binds to the ATP-binding pocket of the EGFR kinase domain. It exhibits high affinity for the **active conformation** of the kinase (ATP-bound state). It does not effectively bind to the inactive conformation.\n*   **Osimertinib:** Also binds to the ATP-binding pocket but is structurally designed to accommodate the **T790M gatekeeper mutation**. It binds with high affinity to both the **active and inactive conformations** of the kinase, allowing it to inhibit the drug-resistant mutant form.\n\n**3. Expected Behaviour Against T790M**\n*   **Gefitinib:** **Ineffective.** The T790M mutation introduces a methionine residue at position 790, which sterically hinders the binding of first-generation TKIs like gefitinib. Consequently, gefitinib shows significantly reduced affinity and potency against the T790M-mutant EGFR.\n*   **Osimertinib:** **Highly Potent.** Osimertinib is specifically engineered to overcome the T790M resistance mechanism. It maintains potent inhibition against the T790M-mutant EGFR while retaining activity against wild-type EGFR.\n\n**Note on Clinical vs. Biochemical Data:**\nWhile biochemical assays (e.g., ATP competition)",
+      "scores": {
+        "factual": {
+          "score": 0.625,
+          "required": 8,
+          "hits": 5,
+          "missed": [
+            "all:reversible",
+            "all:covalent",
+            "any:Cys797/acrylamide"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1857,
+        "passed": false
+      }
+    },
+    {
+      "id": "IC06",
+      "task_type": "inhibitor_comparison",
+      "question": "Osimertinib's biochemical IC50 against L858R is 2.82 nM at Km,ATP but 52.5 nM at 1 mM ATP. Why do these differ and which is more physiological?",
+      "prediction": "The difference in Osimertinib's biochemical IC50 values against the L858R mutation arises from the **competitive nature of ATP** binding to the ATP-binding pocket of the EGFR kinase domain.\n\n*   **At 1 mM ATP:** ATP acts as a high-concentration competitive inhibitor. Osimertinib must displace this abundant ATP to bind to the enzyme. Consequently, a higher concentration of Osimertinib (52.5 nM) is required to achieve 50% inhibition.\n*   **At Km,ATP:** The ATP concentration is set to the enzyme's Michaelis constant (typically ~10–20 µM for EGFR). While still competitive, the relative occupancy of the ATP site is lower than at 1 mM, allowing Osimertinib to bind more effectively at a lower concentration (2.82 nM).\n\n**Which is more physiological?**\nNeither value alone represents a single \"physiological\" state, as cellular ATP concentrations fluctuate. However, **1 mM ATP** is generally considered a more relevant approximation for **in vitro biochemical assays** intended to predict cellular efficacy, as it mimics the high-energy state of the cell where ATP competes for the active site. In contrast, the Km,ATP condition isolates the intrinsic affinity of the drug for the enzyme without the confounding variable of saturating ATP, which is useful for determining binding potency but less predictive of actual cellular inhibition where ATP is abundant.\n\n*Note: Specific cellular GI50 or clinical response data for Osimertinib against L858R is not provided in your prompt and cannot be generated.*",
+      "scores": {
+        "factual": {
+          "score": 1.0,
+          "required": 6,
+          "hits": 6,
+          "missed": [],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 7,
+          "n_ungrounded": 2,
+          "ungrounded": [
+            "50%",
+            "20 µM"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "not",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2484,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD01",
+      "task_type": "assay_distinction",
+      "question": "Why must KD, Ki and IC50 values not be pooled into a single affinity training target?",
+      "prediction": "KD, Ki, and IC50 values must not be pooled into a single affinity training target because they represent fundamentally different types of measurements with distinct biological contexts, units, and error profiles.\n\n1.  **Biochemical vs. Cellular vs. Clinical Distinction**:\n    *   **KD (Dissociation Constant)** and **Ki (Inhibition Constant)** measure **biochemical affinity** in isolated systems (e.g., purified protein or cell lysate). They describe the strength of binding between a ligand and its target.\n    *   **IC50 (Half-Maximal Inhibitory Concentration)** typically measures **cellular potency** (e.g., GI50 or viability assays). It reflects the concentration required to inhibit a biological response (like cell growth) by 50%. This value is heavily influenced by factors such as drug permeability, intracellular concentration, metabolic stability, and the specific assay conditions, not just binding affinity.\n    *   **Clinical Response** is the outcome in patients, which depends on pharmacokinetics, tumor heterogeneity, and resistance mechanisms.\n\n2.  **Different Units and Scales**:\n    *   KD and Ki are usually expressed in molar units (M, nM, µM).\n    *   IC50 is also in molar units but represents a functional threshold, not an equilibrium constant.\n    *   Pooling them ignores the massive variance in magnitude and the different physical meanings of the numbers. A compound with a low KD (high affinity) may have a high IC50 (low potency) if it cannot enter the cell or is rapidly metabolized.\n\n3.  **Non-Linearity and Assay Specificity**:\n    *   The relationship between",
+      "scores": {
+        "factual": {
+          "score": 0.75,
+          "required": 8,
+          "hits": 6,
+          "missed": [
+            "any:ATP/substrate/assay format",
+            "any:time-dependent/covalent"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 1,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "isolated",
+            "may",
+            "not",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2086,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD02",
+      "task_type": "assay_distinction",
+      "question": "Distinguish a biochemical enzyme IC50 from a cellular viability IC50 for osimertinib, using the dataset's values.",
+      "prediction": "To distinguish between a biochemical enzyme IC50 and a cellular viability IC50 for osimertinib, we must look at the **target of measurement**, the **unit of response**, and the **biological context** of the assay.\n\n**1. Biochemical Enzyme IC50**\n*   **Target:** This value measures the inhibition of the **EGFR kinase enzyme** itself in an isolated system (e.g., purified protein or cell lysate).\n*   **Mechanism:** It quantifies how much osimertinib is required to reduce the enzyme's catalytic activity (ATP hydrolysis) by 50%.\n*   **Context:** It is a **binding/kinetic parameter** reflecting the drug's affinity for the ATP-binding pocket of the mutant EGFR (e.g., T790M or C797S).\n*   **Limitation:** It does not account for cellular uptake, intracellular drug distribution, efflux pumps, or downstream signaling pathway complexity.\n\n**2. Cellular Viability IC50 (GI50)**\n*   **Target:** This value measures the reduction in **cell survival or proliferation** in a living cell line (e.g., H1975, A549, or HCC827).\n*   **Mechanism:** It quantifies the concentration of osimertinib required to reduce cell viability by 50% after a specific treatment period (e.g., 72 hours).\n*   **Context:** It is a **functional outcome parameter** reflecting the drug's efficacy in killing or stopping the growth of cancer cells expressing the mutation.\n*   **Limitation:** It is influenced by factors such",
+      "scores": {
+        "factual": {
+          "score": 0.3333,
+          "required": 6,
+          "hits": 2,
+          "missed": [
+            "574 nM",
+            "2950 nM",
+            "all:NCI-H1975",
+            "any:must not/different"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 2,
+          "n_ungrounded": 2,
+          "ungrounded": [
+            "50%",
+            "50%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": true,
+          "sentences": [
+            "To distinguish between a biochemical enzyme IC50 and a cellular viability IC50 for osimertinib, we must look at the **target of measurement**, the **unit of response**, and the **biological context** of the assay."
+          ]
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "isolated",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.2051,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD03",
+      "task_type": "assay_distinction",
+      "question": "Why is a covalent inhibitor's IC50 (e.g. osimertinib) not an equilibrium affinity, and how is it flagged in the data?",
+      "prediction": "A covalent inhibitor's IC50 is **not** an equilibrium affinity because it measures the concentration required to inhibit 50% of the enzyme activity under specific kinetic conditions, which includes the rate of the covalent bond formation step ($k_{inact}$) and the dissociation of the enzyme-inhibitor complex ($k_{off}$). Unlike non-covalent inhibitors that bind reversibly and reach a thermodynamic equilibrium ($K_i$ or $K_d$), covalent inhibitors form a permanent (or very slow-dissociating) bond. Therefore, the IC50 reflects a kinetic parameter ($K_I = k_{off}/k_{on}$ or $k_{inact}/K_I$) rather than a simple thermodynamic binding constant.\n\nIn experimental data, this distinction is flagged by:\n1.  **The nature of the measurement**: The value is reported as an **IC50** (or sometimes $IC_{50}^{covalent}$) rather than a $K_i$, $K_d$, or $K_{eq}$.\n2.  **Time-dependence**: The inhibition profile is time-dependent. Data plots will show that inhibition increases over time at a fixed inhibitor concentration, or that the rate of inhibition ($k_{obs}$) depends on the inhibitor concentration. Equilibrium affinity data typically shows immediate saturation without a time-dependent lag.\n3.  **Mechanism notation**: The data table or figure legend will explicitly state the mechanism as **\"Time-dependent\"** or **\"Irreversible\"** (or \"covalent\"), distinguishing it from \"Reversible\" or \"Competitive/Non-competitive\" labels used for equilibrium binders.\n\n*Note: Without specific numbers provided in your prompt",
+      "scores": {
+        "factual": {
+          "score": 0.7143,
+          "required": 7,
+          "hits": 5,
+          "missed": [
+            "all:osimertinib",
+            "any:requires_review/excluded/regression target"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 1,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "50%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": true,
+          "sentences": [
+            "A covalent inhibitor's IC50 is **not** an equilibrium affinity because it measures the concentration required to inhibit 50% of the enzyme activity under specific kinetic conditions, which includes the rate of the covalent bond formation step ($k_{inact}$) and the dissociation of the enzyme-inhibitor complex ($k_{off}$)."
+          ]
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "experimental",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.1688,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD04",
+      "task_type": "assay_distinction",
+      "question": "BindingDB lists gefitinib against T790M with a KD of 4.6 nM and IC50 values spanning 22.5-853 nM. Why are these not interchangeable, and what caveat applies?",
+      "prediction": "These values are not interchangeable because they measure fundamentally different biological phenomena using distinct experimental setups:\n\n*   **KD (4.6 nM):** This is a **biochemical binding affinity** constant. It quantifies the equilibrium dissociation of the drug-enzyme complex in an isolated system (e.g., purified T790M protein and gefitinib). It reflects how tightly the drug binds to the receptor's active site.\n*   **IC50 (22.5–853 nM):** These are **functional potency** values. They represent the concentration of drug required to inhibit a specific biological readout (such as ATPase activity, kinase activity, or downstream signaling) by 50%. The wide range (22.5–853 nM) indicates variability in the assay conditions, the specific functional readout measured, or the presence of allosteric effects or steric hindrance in the cellular or lysate environment.\n\n**The Critical Caveat:**\nA low **KD** (high binding affinity) **does not guarantee** a low **IC50** (high functional potency).\n\nIn the context of the T790M mutation, the threonine-to-methionine substitution alters the active site geometry. While gefitinib may still bind reasonably well (low KD), the resulting complex may be functionally unstable or unable to effectively block the kinase's catalytic activity compared to wild-type or other sensitizing mutations. Therefore, the functional inhibition (IC50) is often significantly higher than the binding affinity (KD) would suggest.\n\n*Note: The specific IC50 range (22.5–853 nM) and KD (4.6 nM) provided in",
+      "scores": {
+        "factual": {
+          "score": 0.8571,
+          "required": 7,
+          "hits": 6,
+          "missed": [
+            "any:aggregat/median/inter-laboratory/protocol"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 6,
+          "n_ungrounded": 1,
+          "ungrounded": [
+            "50%"
+          ]
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": true,
+          "sentences": [
+            "Therefore, the functional inhibition (IC50) is often significantly higher than the binding affinity (KD) would suggest.",
+            "*Note: The specific IC50 range (22.5–853 nM) and KD (4.6 nM) provided in"
+          ]
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "does not",
+            "experimental",
+            "isolated",
+            "may",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.1685,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD05",
+      "task_type": "assay_distinction",
+      "question": "What is the affinity label convention for the Boltz-2 regression target in this dataset, and which measurements are excluded?",
+      "prediction": "Based on the provided prompt, there is no dataset, specific study, or experimental context described. Consequently, the following information is **not available** and cannot be determined:\n\n*   **Affinity label convention for the Boltz-2 regression target:** The definition of this specific target variable and its labeling scheme (e.g., whether it represents $-\\log(K_d)$, $-\\log(IC_{50})$, or a raw concentration) is not provided in the input.\n*   **Excluded measurements:** The list of measurements excluded from this specific analysis is not provided in the input.\n\nTo answer this accurately, please provide the dataset description, the relevant paper (with DOI/PMID), or the specific experimental results table containing the \"Boltz-2\" target and measurement definitions.",
+      "scores": {
+        "factual": {
+          "score": 0.125,
+          "required": 8,
+          "hits": 1,
+          "missed": [
+            "all:log10(IC50",
+            "any:micromolar/uM/µM",
+            "all:lower",
+            "all:stronger",
+            "any:not pic50",
+            "any:KD/Ki",
+            "any:cellular/EC50"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": true,
+          "n_expected": 0,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "experimental",
+            "not",
+            "not available"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1453,
+        "passed": false
+      }
+    },
+    {
+      "id": "AD06",
+      "task_type": "assay_distinction",
+      "question": "Does the dataset provide numeric cellular IC50/GI50 values for the EGFR inhibitors? Answer truthfully.",
+      "prediction": "No, the dataset does not provide numeric cellular IC50/GI50 values for the EGFR inhibitors.\n\nPer the CARDINAL RULES, I cannot invent or fabricate numbers. Since no specific IC50, GI50, or viability percentage was included in your prompt or provided dataset, these values are not available for this analysis.\n\n*Note: Biochemical affinity (e.g., IC50 in isolated enzyme assays) and cellular potency (e.g., GI50 in viability assays) are distinct metrics. Without explicit data points in the input, neither can be reported.*",
+      "scores": {
+        "factual": {
+          "score": 0.5,
+          "required": 4,
+          "hits": 2,
+          "missed": [
+            "any:header-only/cellular_assays",
+            "any:no-fabrication/must not/invented"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "does not",
+            "isolated",
+            "not",
+            "not available"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.1947,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ01",
+      "task_type": "evidence_qa",
+      "question": "Give the DOI and PMID for the Melis et al. 2026 comparative profiling paper that is the primary source for the biochemical IC50 panel.",
+      "prediction": "The DOI and PMID for the Melis et al. 2026 comparative profiling paper are not available.\n\nAs an evidence-grounded assistant, I cannot fabricate citations, DOIs, or PMID numbers. Furthermore, no such paper exists in the current scientific literature; the year 2026 is in the future. Please verify the publication year or provide the correct citation details so I can assist with the actual data.",
+      "scores": {
+        "factual": {
+          "score": 0.0,
+          "required": 2,
+          "hits": 0,
+          "missed": [
+            "all:10.3389/fonc.2026.1952701",
+            "all:42835192"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 2,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "not",
+            "not available"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1622,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ02",
+      "task_type": "evidence_qa",
+      "question": "Provide a traceable citation for the claim that EGFR C797S is an acquired on-target resistance mechanism to osimertinib.",
+      "prediction": "Based on the CARDINAL RULES, I cannot provide a specific DOI, PMID, or evidence_id for a claim unless you supply the specific study in your prompt.\n\nHowever, I can explain the mechanism and the nature of the evidence required to support this claim:\n\n**Mechanism:**\nEGFR C797S is an acquired on-target resistance mechanism to osimertinib (AZD9291) when it arises in the context of the T790M mutation. Osimertinib binds to the inactive conformation of the EGFR kinase. The C797S mutation alters the conformation of the kinase domain such that osimertinib can no longer bind effectively, thereby restoring kinase activity.\n\n**Evidence Type:**\nSupport for this claim comes from **biochemical** and **cellular** assays, not clinical response data alone.\n*   **Biochemical:** Studies demonstrate that the C797S mutation increases the $K_D$ (dissociation constant) or decreases the affinity of osimertinib binding to the T790M/C797S double mutant compared to the T790M single mutant.\n*   **Cellular:** Studies show that cell lines harboring the T790M/C797S double mutation exhibit significantly higher GI50 or IC50 values against osimertinib compared to T790M-only lines.\n\n**Important Distinction:**\nWhile C797S is a well-established mechanism, the **clinical response** (tumor shrinkage or progression-free survival) depends on the specific patient's tumor microenvironment, the presence of other mutations (e.g., MET amplification, HER2",
+      "scores": {
+        "factual": {
+          "score": 0.75,
+          "required": 4,
+          "hits": 3,
+          "missed": [
+            "all:EVIDENCE_00001"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 3,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1161,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ03",
+      "task_type": "evidence_qa",
+      "question": "What source supports BLU-945 being active against C797S-containing EGFR mutants?",
+      "prediction": "Based on the provided context, there is **no information** regarding BLU-945, C797S-containing EGFR mutants, or any supporting source (DOI/PMID/evidence_id).\n\nAccording to the CARDINAL RULES, I cannot invent or fabricate numbers, citations, or evidence. Therefore, I cannot confirm activity for this specific combination without the relevant data being supplied in the prompt.",
+      "scores": {
+        "factual": {
+          "score": 0.6667,
+          "required": 3,
+          "hits": 2,
+          "missed": [
+            "any:EVIDENCE_00016/reversible"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 3,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.15,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ04",
+      "task_type": "evidence_qa",
+      "question": "Cite the evidence that osimertinib binds Cys797 covalently via an acrylamide warhead.",
+      "prediction": "Based on the CARDINAL RULES, I cannot cite specific evidence (DOI, PMID, or evidence_id) for this claim because **no such evidence was provided in your prompt**.\n\nFurthermore, the premise of your question contains a factual error that must be corrected: **Osimertinib does not contain an acrylamide warhead.**\n\n*   **Mechanism:** Osimertinib is a third-generation EGFR inhibitor that binds reversibly to the ATP-binding pocket of the mutant EGFR (specifically T790M, L858R, and exon 19 deletions). It does not form a covalent bond via an acrylamide warhead.\n*   **Covalent Binding:** The covalent binding via an acrylamide warhead is characteristic of **acrylamide-based irreversible inhibitors** (e.g., certain proteasome inhibitors or specific kinase inhibitors designed with that specific warhead), not osimertinib.\n*   **Cys797:** While Cys797 is a critical residue in the EGFR kinase domain involved in the catalytic mechanism and allosteric regulation, osimertinib's primary interaction is non-covalent with the hinge region (Asn821, Gly822, etc.) and the ATP pocket.\n\n**Conclusion:**\nThere is no evidence to cite because osimertinib does not bind Cys797 covalently via an acrylamide warhead. This statement describes a mechanism that does not exist for this drug.",
+      "scores": {
+        "factual": {
+          "score": 0.75,
+          "required": 4,
+          "hits": 3,
+          "missed": [
+            "all:EVIDENCE_00036"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 3,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "does not",
+            "not"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1163,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ05",
+      "task_type": "evidence_qa",
+      "question": "What evidence supports G719A, S768I and L861Q as atypical activating EGFR mutations with variable TKI sensitivity?",
+      "prediction": "Based on established biochemical and cellular data, the mutations **G719X** (specifically G719A), **S768I**, and **L861Q** are classified as atypical activating mutations. Their sensitivity to Tyrosine Kinase Inhibitors (TKIs) is indeed variable, often showing resistance to first-generation TKIs (like Gefitinib and Erlotinib) and variable responses to second-generation TKIs (like Afatinib), while typically remaining sensitive to third-generation TKIs (like Osimertinib).\n\nHere is the evidence breakdown regarding their classification and sensitivity profiles:\n\n### 1. Classification as Atypical Activating Mutations\nThese mutations are defined by their ability to activate the EGFR kinase domain without requiring the loss of the tumor suppressor *TP53* or the amplification of *ERBB2* (HER2), distinguishing them from the \"classic\" exon 19 deletions and L858R mutation.\n\n*   **G719X (G719A, G719C, G719S, G719R):** These mutations occur in the activation loop of the kinase domain. They stabilize the active conformation of the kinase, leading to constitutive signaling.\n    *   *Evidence:* Biochemical studies confirm that G719X mutations result in increased ATPase activity and enhanced kinase activity compared to wild-type EGFR, similar to L858R, but with distinct structural dynamics in the activation loop.\n*   **S768I:** Located in the activation loop, this mutation mimics the active state of the kinase.\n    *   *Evidence:* Structural analysis indicates that",
+      "scores": {
+        "factual": {
+          "score": 0.75,
+          "required": 4,
+          "hits": 3,
+          "missed": [
+            "all:EVIDENCE_00031"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 3,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": false,
+        "jaccard": 0.1172,
+        "passed": false
+      }
+    },
+    {
+      "id": "EQ06",
+      "task_type": "evidence_qa",
+      "question": "If asked for a randomized controlled trial PMID proving BLU-945 cures C797S NSCLC patients, how should the model respond?",
+      "prediction": "I cannot provide a randomized controlled trial (RCT) PMID proving that BLU-945 cures C797S NSCLC patients because **no such RCT exists in the scientific literature.**\n\nBLU-945 (amivantamab) is a bispecific antibody targeting EGFR and MET. While it has shown efficacy in clinical trials for EGFR-mutant NSCLC (including some with C797S mutations in specific contexts or combination settings), it has not demonstrated a \"cure\" in a randomized controlled trial for C797S-mutant patients. Furthermore, EGFR-mutant NSCLC is a chronic disease managed with targeted therapies; \"cure\" is not the standard clinical endpoint for this indication in current trials.\n\nIf you request a PMID for this specific claim, I must state: **No such PMID exists.**\n\n*   **Biochemical vs. Clinical Distinction:** Preclinical data may show BLU-945 inhibits C797S mutant activity in cell lines or xenograft models, but this does not equate to clinical cure in humans.\n*   **Current Evidence:** Clinical data regarding BLU-945 and C797S mutations typically comes from phase I/II trials (e.g., AMBITION-1) or case reports, not RCTs demonstrating cure.\n*   **Resistance Context:** C797S is a known resistance mechanism to first-generation EGFR TKIs (like osimertinib). While combination strategies (e.g., with MET inhibitors or other agents) are being investigated, no regimen has been proven to cure C797S NSCLC in an RCT.\n\nIf you have specific pre",
+      "scores": {
+        "factual": {
+          "score": 0.25,
+          "required": 4,
+          "hits": 1,
+          "missed": [
+            "any:must not/not invent",
+            "all:investigational",
+            "any:no randomized/no randomised/no clinical/no such trial"
+          ],
+          "overclaims": []
+        },
+        "grounding": {
+          "n_pred_numbers": 0,
+          "n_ungrounded": 0,
+          "ungrounded": []
+        },
+        "citation": {
+          "expected_satisfied": false,
+          "n_expected": 1,
+          "matched_expected": [],
+          "cited_dois": [],
+          "cited_pmids": [],
+          "invented_dois": [],
+          "invented_pmids": [],
+          "has_invented_citation": false
+        },
+        "conflation": {
+          "conflation": false,
+          "sentences": []
+        },
+        "hedging": {
+          "hedged": true,
+          "hits": [
+            "cannot",
+            "does not",
+            "may",
+            "not",
+            "not demonstrate",
+            "typically"
+          ]
+        },
+        "calibration_ok": true,
+        "requires_hedge": true,
+        "jaccard": 0.183,
+        "passed": false
+      }
+    }
+  ]
+}

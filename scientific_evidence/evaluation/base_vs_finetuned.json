@@ -1,0 +1,73 @@
+{
+  "finetuned_model": "/Users/home/Desktop/EGFR_TRAINING/mlx_model @ http://localhost:8000/v1",
+  "base_model": "Qwen/Qwen3.5-4B @ http://localhost:8000/v1",
+  "n_items": 30,
+  "metrics": [
+    {
+      "metric": "pass_rate",
+      "label": "Pass rate",
+      "finetuned": 0.0,
+      "base": 0.0,
+      "delta": 0.0,
+      "better": "tie"
+    },
+    {
+      "metric": "mean_factual",
+      "label": "Mean factual correctness",
+      "finetuned": 0.5555,
+      "base": 0.6363,
+      "delta": -0.0808,
+      "better": "base"
+    },
+    {
+      "metric": "items_with_fabrication",
+      "label": "Items with fabricated numbers",
+      "finetuned": 6,
+      "base": 11,
+      "delta": -5,
+      "better": "fine-tuned"
+    },
+    {
+      "metric": "items_with_invented_citation",
+      "label": "Items with invented DOI/PMID",
+      "finetuned": 9,
+      "base": 0,
+      "delta": 9,
+      "better": "base"
+    },
+    {
+      "metric": "citation_recall",
+      "label": "Citation recall",
+      "finetuned": 0.0,
+      "base": 0.0,
+      "delta": 0.0,
+      "better": "tie"
+    },
+    {
+      "metric": "conflation_items",
+      "label": "Biochem/cellular conflation flags",
+      "finetuned": 0,
+      "base": 5,
+      "delta": -5,
+      "better": "fine-tuned"
+    },
+    {
+      "metric": "hedge_missing",
+      "label": "Hedging missing (of required)",
+      "finetuned": 3,
+      "base": 0,
+      "delta": 3,
+      "better": "base"
+    },
+    {
+      "metric": "mean_jaccard",
+      "label": "Mean overlap vs reference (Jaccard)",
+      "finetuned": 0.231,
+      "base": 0.1826,
+      "delta": 0.0484,
+      "better": "fine-tuned"
+    }
+  ],
+  "n_fixed_by_finetune": 0,
+  "n_remaining_finetune_failures": 30
+}
