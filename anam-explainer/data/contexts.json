@@ -1,0 +1,322 @@
+{
+  "osimertinib_resistance": {
+    "title": "C797S resistance to osimertinib",
+    "question": "How does the C797S mutation affect osimertinib binding, and what does the evidence say about resistance?",
+    "mutation_id": "EGFR_L858R_C797S",
+    "compound_id": "CMP_OSIMERTINIB",
+    "card": {
+      "mutation": "L858R/C797S",
+      "compound": "osimertinib",
+      "drug_class": "pyrimidine mutant-selective TKI",
+      "covalent": "covalent",
+      "has_real_prediction": false,
+      "affinity_pred_value": null,
+      "affinity_probability_binary": null,
+      "confidence_score": null,
+      "experimental_affinity_label": null,
+      "measurements": [
+        {
+          "type": "IC50",
+          "value": "574",
+          "unit": "nM",
+          "relation": "=",
+          "source": "Melis et al. 2026"
+        },
+        {
+          "type": "IC50",
+          "value": "10000",
+          "unit": "nM",
+          "relation": ">",
+          "source": "Melis et al. 2026"
+        }
+      ],
+      "headline_claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+      "n_evidence": 10,
+      "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value."
+    },
+    "context": {
+      "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value.",
+      "mutation": {
+        "mutation_id": "EGFR_L858R_C797S",
+        "notation": "L858R/C797S",
+        "type": "compound",
+        "domain": "Protein kinase domain",
+        "known_mechanism": "Activating + covalent-anchor loss.",
+        "resistance_association": "osimertinib",
+        "classification": "activating+resistance"
+      },
+      "compound": {
+        "compound_id": "CMP_OSIMERTINIB",
+        "name": "osimertinib",
+        "drug_class": "pyrimidine mutant-selective TKI",
+        "covalent_status": "covalent",
+        "warhead_type": "acrylamide (Cys797)"
+      },
+      "boltz_predictions": [],
+      "experimental_measurements": [
+        {
+          "measurement_id": "MEAS_000006",
+          "measurement_type": "IC50",
+          "value": "574",
+          "unit": "nM",
+          "relation": "=",
+          "assay_type": "biochemical_kinase_mobility_shift",
+          "source": "Melis et al. 2026, Front Oncol"
+        },
+        {
+          "measurement_id": "MEAS_000042",
+          "measurement_type": "IC50",
+          "value": "10000",
+          "unit": "nM",
+          "relation": ">",
+          "assay_type": "biochemical_kinase_mobility_shift",
+          "source": "Melis et al. 2026, Front Oncol"
+        }
+      ],
+      "experimental_evidence": [
+        {
+          "claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "43021317",
+          "doi": "10.1186/s12929-026-01297-0",
+          "source_title": "Repurposing of abemaciclib to overcome C797S-mediated osimertinib resistance in EGFR-mutant lung adenocarcinoma"
+        },
+        {
+          "claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42440354",
+          "doi": "10.1158/1078-0432.ccr-26-0704",
+          "source_title": "Osimertinib plus Gefitinib in Patients with EGFR-Mutated Advanced Non-Small Cell Lung Cancer and EGFR (C797X) Mutation Following First-Line Osimertinib: ORCHARD"
+        },
+        {
+          "claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "",
+          "doi": "",
+          "source_title": "Comparative profiling of osimertinib and fourth-generation EGFR inhibitors on EGFR-mutant proteins and cell lines"
+        },
+        {
+          "claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42729980",
+          "doi": "10.20517/cdr.2026.79",
+          "source_title": "Resistance to third-generation EGFR TKIs - what can be expected from the fourth-generation?"
+        },
+        {
+          "claim": "Literature reports EGFR C797S as an acquired on-target resistance mechanism to osimertinib in NSCLC.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "",
+          "doi": "10.21203/rs.3.rs-11373456/v1",
+          "source_title": "Macrocyclic Polyamine\u2013Quinazoline Conjugates Show Mutant EGFR Inhibition and DNA- Damage-Associated Activity"
+        },
+        {
+          "claim": "Literature describes osimertinib's covalent acrylamide bond to Cys797 as its binding mechanism.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42964983",
+          "doi": "10.1021/acscentsci.6c01219",
+          "source_title": "Overcoming EGFR Resistance by Monovalent and Bident Inhibitors Targeting Cys775"
+        },
+        {
+          "claim": "Literature describes osimertinib's covalent acrylamide bond to Cys797 as its binding mechanism.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "",
+          "doi": "",
+          "source_title": "Comparative profiling of osimertinib and fourth-generation EGFR inhibitors on EGFR-mutant proteins and cell lines"
+        },
+        {
+          "claim": "Literature describes osimertinib's covalent acrylamide bond to Cys797 as its binding mechanism.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "41373548",
+          "doi": "10.3390/ijms262311390",
+          "source_title": "Exploratory Covalent Docking of Michael-Acceptor Natural Products at Reactive Cysteines in Cancer Tyrosine Kinases"
+        },
+        {
+          "claim": "Literature describes osimertinib's covalent acrylamide bond to Cys797 as its binding mechanism.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42126003",
+          "doi": "10.1158/1535-7163.mct-25-1056",
+          "source_title": "BLU-451, a CNS-Active, Potent, and Selective Small-Molecule Inhibitor against Uncommon EGFR Mutations"
+        },
+        {
+          "claim": "Literature describes osimertinib's covalent acrylamide bond to Cys797 as its binding mechanism.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "41432179",
+          "doi": "10.1021/acs.jmedchem.5c02924",
+          "source_title": "Covalent Alkynylpyridopyrimidinones Targeting Cysteine 775 of the Epidermal Growth Factor Receptor Overcome Resistance to Current Therapies"
+        }
+      ],
+      "comparison_measurements": {
+        "label": "sensitising baseline: L858R without C797S",
+        "mutation_id": "EGFR_L858R",
+        "compound_id": "CMP_OSIMERTINIB",
+        "measurements": [
+          {
+            "measurement_type": "IC50",
+            "value": "2.82",
+            "unit": "nM",
+            "relation": "=",
+            "source": "Melis et al. 2026, Front Oncol"
+          },
+          {
+            "measurement_type": "IC50",
+            "value": "52.5",
+            "unit": "nM",
+            "relation": "=",
+            "source": "Melis et al. 2026, Front Oncol"
+          }
+        ]
+      }
+    }
+  },
+  "blu945_prediction": {
+    "title": "BLU-945 vs L858R/C797S (real Boltz prediction)",
+    "question": "What does the Boltz-2 prediction say about BLU-945 against L858R/C797S, and how does it compare to the measured potency?",
+    "mutation_id": "EGFR_L858R_C797S",
+    "compound_id": "CMP_BLU945",
+    "card": {
+      "mutation": "L858R/C797S",
+      "compound": "BLU-945",
+      "drug_class": "reversible mutant-selective TKI",
+      "covalent": "non-covalent",
+      "has_real_prediction": true,
+      "affinity_pred_value": -2.0097243785858154,
+      "affinity_probability_binary": 0.7965598106384277,
+      "confidence_score": 0.7573639154434204,
+      "experimental_affinity_label": -1.3568,
+      "measurements": [
+        {
+          "type": "IC50",
+          "value": "6.32",
+          "unit": "nM",
+          "relation": "=",
+          "source": "Melis et al. 2026"
+        },
+        {
+          "type": "IC50",
+          "value": "306",
+          "unit": "nM",
+          "relation": "=",
+          "source": "Melis et al. 2026"
+        }
+      ],
+      "headline_claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+      "n_evidence": 5,
+      "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value."
+    },
+    "context": {
+      "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value.",
+      "mutation": {
+        "mutation_id": "EGFR_L858R_C797S",
+        "notation": "L858R/C797S",
+        "type": "compound",
+        "domain": "Protein kinase domain",
+        "known_mechanism": "Activating + covalent-anchor loss.",
+        "resistance_association": "osimertinib",
+        "classification": "activating+resistance"
+      },
+      "compound": {
+        "compound_id": "CMP_BLU945",
+        "name": "BLU-945",
+        "drug_class": "reversible mutant-selective TKI",
+        "covalent_status": "non-covalent",
+        "warhead_type": "none"
+      },
+      "boltz_predictions": [
+        {
+          "complex_id": "COMPLEX_001557",
+          "mutation_id": "EGFR_L858R_C797S",
+          "compound_id": "CMP_BLU945",
+          "model_version": "boltz-2",
+          "model_checkpoint": "pretrained",
+          "affinity_pred_value": -2.0097243785858154,
+          "affinity_pred_ic50_nM_equiv": 9.78,
+          "experimental_ic50_nM_equiv": 43.97,
+          "affinity_probability_binary": 0.7965598106384277,
+          "affinity_pred_ensemble": [
+            -1.8683873414993286,
+            -2.151061534881592
+          ],
+          "confidence_score": 0.7573639154434204,
+          "ligand_iptm": 0.9541687965393066,
+          "complex_plddt": 0.7081627249717712,
+          "experimental_affinity_label": -1.3568,
+          "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value.",
+          "structure_path": "/Users/home/Desktop/EGFR_TRAINING/boltz_run/smoke_out/boltz_results_smoke_in/predictions/COMPLEX_001557/COMPLEX_001557_model_0.cif",
+          "is_mock": false
+        }
+      ],
+      "experimental_measurements": [
+        {
+          "measurement_id": "MEAS_000015",
+          "measurement_type": "IC50",
+          "value": "6.32",
+          "unit": "nM",
+          "relation": "=",
+          "assay_type": "biochemical_kinase_mobility_shift",
+          "source": "Melis et al. 2026, Front Oncol"
+        },
+        {
+          "measurement_id": "MEAS_000051",
+          "measurement_type": "IC50",
+          "value": "306",
+          "unit": "nM",
+          "relation": "=",
+          "assay_type": "biochemical_kinase_mobility_shift",
+          "source": "Melis et al. 2026, Front Oncol"
+        }
+      ],
+      "experimental_evidence": [
+        {
+          "claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "",
+          "doi": "",
+          "source_title": "Comparative profiling of osimertinib and fourth-generation EGFR inhibitors on EGFR-mutant proteins and cell lines"
+        },
+        {
+          "claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42835192",
+          "doi": "10.3389/fonc.2026.1952701",
+          "source_title": "Comparative profiling of osimertinib and fourth-generation EGFR inhibitors on EGFR-mutant proteins and cell lines"
+        },
+        {
+          "claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42082576",
+          "doi": "10.1038/s41598-026-51989-8",
+          "source_title": "Structure-guided identification and biological evaluation of reversible EGFR C797S inhibitors"
+        },
+        {
+          "claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42603542",
+          "doi": "10.1016/j.bioorg.2026.110353",
+          "source_title": "Recent advances in synthetic strategies of fourth-generation EGFR tyrosine kinase inhibitors under clinical trials for the treatment of resistant non-small cell lung cancer (NSCLC)"
+        },
+        {
+          "claim": "Literature reports BLU-945 as a fourth-generation reversible EGFR inhibitor active against C797S-containing mutants.",
+          "evidence_type": "literature_reported",
+          "assay_type": "",
+          "pmid": "42352924",
+          "doi": "10.3390/ijms27125197",
+          "source_title": "Resistance to EGFR Inhibitors in NSCLC: Mechanistic Insights and Emerging Therapies"
+        }
+      ]
+    }
+  }
+}
