@@ -20,7 +20,9 @@ PR #1) — extended, not duplicated:
 ```
 scientific_evidence/
 ├── retriever/                         (existing: build/search/question — verified)
+│   └── linkup_source.py               (NEW — optional live-literature layer via Linkup)
 ├── evidence_api.py                    (existing: retrieve_evidence interface)
+├── evidence_server.py                 (NEW — live HTTP evidence API for the app + avatar)
 ├── retrieval_results_examples.jsonl   (NEW — worked retrieval outputs)
 ├── llm_dataset_audit.csv              (NEW — flagged SFT rows, traceable)
 ├── llm_dataset_audit_report.md        (NEW — audit summary)
@@ -31,11 +33,17 @@ scientific_evidence/
     ├── reference_answers.jsonl        (cited gold prose for human review / dry-run)
     ├── evaluation_rubric.md           (scoring rubric)
     ├── scorers.py                     (deterministic scorers; ported + extended)
-    ├── run_benchmark.py               (endpoint-agnostic runner: dry-run/openai/adaption)
+    ├── run_benchmark.py               (runner: dry-run / openai / adaption; --with-evidence RAG)
+    ├── compare_models.py              (NEW — base vs fine-tuned comparison)
+    ├── make_figures.py                (NEW — SVG figures, pure stdlib)
     ├── audit_llm_dataset.py           (the SFT audit generator)
     ├── valid_citations.json           (corpus DOIs/PMIDs for invented-citation checks)
-    ├── evaluation_report.md           (current result: dry-run self-test)
-    └── report.json                    (full machine-readable results)
+    ├── SCIENTIFIC_VALIDATION_REPORT.md(NEW — polished model-validation report + figures)
+    ├── base_vs_finetuned.{md,json}    (NEW — real base-vs-fine-tuned results)
+    ├── fig_*.svg                       (NEW — figures)
+    ├── report.{finetuned,base,finetuned_rag}.json  (NEW — per-model results)
+    ├── harness_report.{finetuned,base}.{md,json}   (NEW — EGFR_TRAINING harness results)
+    └── report.json / evaluation_report.md          (primary = fine-tune, RAG/open-book)
 ```
 
 Environment: `uv` + Python 3.13, fully local, **no paid/external APIs** for
@@ -185,21 +193,23 @@ plus the cardinal number-grounding and hedging checks.
   number, an invented DOI, an invented PMID, an assay conflation, a missing
   required fact, and a missing expected citation.
 
-**Model status:** the fine-tuned endpoint is not yet wired. The runner is
-endpoint-agnostic and ready:
+**Real results (graded against the live local model, no paid API).** Full write-up with
+figures: [`evaluation/SCIENTIFIC_VALIDATION_REPORT.md`](evaluation/SCIENTIFIC_VALIDATION_REPORT.md).
+Headline, over the **218-item** EGFR_TRAINING harness (closed-book):
 
-```bash
-# local OpenAI-compatible server (e.g. vLLM on :8000)
-OPENAI_BASE_URL=http://localhost:8000/v1 OPENAI_API_KEY=sk-x OPENAI_MODEL=<name> \
-  python -m scientific_evidence.evaluation.run_benchmark --backend openai
+| Metric | Fine-tuned | Base Qwen3.5-4B |
+|---|---|---|
+| Number-fabrication rate | **9.2 %** | 49.5 % |
+| Biochemical/cellular conflation rate | **0.5 %** | 13.8 % |
+| Hedging present | **97.2 %** | 92.2 % |
 
-# Adaption hosted fine-tune (Responses API; slug provided once the stack exists)
-ADAPTION_API_KEY=... ADAPTION_STACK=<slug> \
-  python -m scientific_evidence.evaluation.run_benchmark --backend adaption
-```
-
-When the endpoint is up, the same 30 held-out questions can grade the fine-tune
-against the base model with identical scoring.
+On the strict 30-item benchmark, **closed-book** the fine-tune invents DOIs from memory (9 items) —
+a real, reported weakness. **With retrieved evidence supplied (the deployed RAG path)** that
+resolves: fine-tune **citation recall 0 % → 79 %**, invented citations **9 → 1**, factual
+0.555 → 0.653. The fine-tune is both more useful *and* more grounded; fabrication is reduced ~5×
+but is **not** zero, and every residual flag is listed per-item. Base-vs-fine-tuned under RAG could
+not be measured (the serving stack was reconfigured to a fine-tune-only gateway mid-session) — see
+the report's Limitations.
 
 ## 7. How the evidence service is called by the application
 
@@ -219,6 +229,39 @@ result = retrieve_evidence(mutation_id="EGFR_C797S", compound_id="CMP_OSIMERTINI
 Accepts mutation_id / profile / compound_id / compound_name / free-text `query`
 ("C797S + osimertinib") / resistance_mechanism / assay_type / PMID / DOI. Output is
 structured, source-linked evidence — never an unreferenced paragraph.
+
+### 7a. Live HTTP evidence API (for the Evidence Explorer + avatar)
+
+`evidence_server.py` wraps the same retriever in a dependency-free HTTP service so the
+browser-based Evidence Explorer (Terminal 3) and the avatar (Terminal 4) can fetch cited
+evidence **live, behind every answer**, with CORS enabled. The JSON response matches the schema
+in `~/Desktop/application/services/evidence_service.py` exactly, so it is a drop-in:
+
+```bash
+python -m scientific_evidence.evidence_server            # http://127.0.0.1:8077
+GET /evidence?mutation_id=EGFR_C797S&compound_id=CMP_OSIMERTINIB&match=pair
+GET /evidence?query=C797S + osimertinib&live=1           # live=1 adds Linkup literature
+```
+→ `{ mutation_id, compound_id, match, count, evidence:[{evidence_id, claim, assay_type, pmid,
+doi, source_url, …}], context, pair_variability, live_evidence }`. Verified: the C797S×osimertinib
+pair returns 11 cited items each with a real PMID + DOI; an unknown mutation returns a clean `400`.
+
+### 7b. Live literature (Linkup) — optional, cached, never fabricated
+
+`retriever/linkup_source.py` adds **live, current** literature (PubMed / Europe PMC-level) via
+Linkup and normalises each hit to the same evidence schema, merged **separately** from curated
+evidence (`live_evidence`) so the two are never confused. Hard rules enforced in code:
+
+- **Fully local by default** — with no `LINKUP_API_KEY` the layer is simply disabled; it makes
+  **zero** network calls and the curated system is unaffected (verified).
+- **Never invents a citation** — a live hit is emitted only if it carries a real source URL, and a
+  DOI/PMID is attached only when one is actually found in the result; otherwise those fields stay
+  empty and the URL is the citation.
+- **Cached** on disk (gitignored) so repeated queries cost no credits.
+
+*Status:* built and self-tested; not yet exercised live because no Linkup key is present on this
+machine. Set `LINKUP_API_KEY` to enable (`python -m scientific_evidence.retriever.linkup_source
+--query "C797S osimertinib resistance"`).
 
 ---
 

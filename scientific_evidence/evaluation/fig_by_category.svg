@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="472" viewBox="0 0 760 472" font-family="Segoe UI,Helvetica,Arial,sans-serif">
+<rect width="760" height="472" fill="#ffffff"/>
+<text x="54" y="26" font-size="18" font-weight="700" fill="#111827">Number-fabrication rate by task (harness)</text>
+<text x="54" y="46" font-size="12.5" fill="#6b7280">lower is better · the fine-tune invents fewer numbers in every scored category</text>
+<line x1="54" y1="372.0" x2="740" y2="372.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="376.0" font-size="11" fill="#6b7280" text-anchor="end">0%</text>
+<line x1="54" y1="297.0" x2="740" y2="297.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="301.0" font-size="11" fill="#6b7280" text-anchor="end">25%</text>
+<line x1="54" y1="222.0" x2="740" y2="222.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="226.0" font-size="11" fill="#6b7280" text-anchor="end">50%</text>
+<line x1="54" y1="147.0" x2="740" y2="147.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="151.0" font-size="11" fill="#6b7280" text-anchor="end">75%</text>
+<line x1="54" y1="72.0" x2="740" y2="72.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="76.0" font-size="11" fill="#6b7280" text-anchor="end">100%</text>
+<rect x="62.3" y="362.6" width="37.7" height="9.4" fill="#2563eb" rx="2"/>
+<rect x="106.0" y="278.2" width="37.7" height="93.8" fill="#9ca3af" rx="2"/>
+<text x="81.2" y="357.6" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">3%</text>
+<text x="124.8" y="273.2" font-size="10.5" fill="#6b7280" text-anchor="middle">31%</text>
+<text x="103.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">assay</text>
+<text x="103.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">distinction</text>
+<rect x="160.3" y="372.0" width="37.7" height="0.0" fill="#2563eb" rx="2"/>
+<rect x="204.0" y="372.0" width="37.7" height="0.0" fill="#9ca3af" rx="2"/>
+<text x="179.2" y="367.0" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">0%</text>
+<text x="222.8" y="367.0" font-size="10.5" fill="#6b7280" text-anchor="middle">0%</text>
+<text x="201.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">evidence qa</text>
+<rect x="258.3" y="335.9" width="37.7" height="36.1" fill="#2563eb" rx="2"/>
+<rect x="302.0" y="147.9" width="37.7" height="224.1" fill="#9ca3af" rx="2"/>
+<text x="277.2" y="330.9" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">12%</text>
+<text x="320.8" y="142.9" font-size="10.5" fill="#6b7280" text-anchor="middle">75%</text>
+<text x="299.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">experimental</text>
+<text x="299.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">interpretation</text>
+<rect x="356.3" y="336.4" width="37.7" height="35.6" fill="#2563eb" rx="2"/>
+<rect x="400.0" y="219.5" width="37.7" height="152.5" fill="#9ca3af" rx="2"/>
+<text x="375.2" y="331.4" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">12%</text>
+<text x="418.8" y="214.5" font-size="10.5" fill="#6b7280" text-anchor="middle">51%</text>
+<text x="397.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">inhibitor</text>
+<text x="397.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">comparison</text>
+<rect x="454.3" y="372.0" width="37.7" height="0.0" fill="#2563eb" rx="2"/>
+<rect x="498.0" y="334.5" width="37.7" height="37.5" fill="#9ca3af" rx="2"/>
+<text x="473.2" y="367.0" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">0%</text>
+<text x="516.8" y="329.5" font-size="10.5" fill="#6b7280" text-anchor="middle">12%</text>
+<text x="495.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">mutation</text>
+<text x="495.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">classification</text>
+<rect x="552.3" y="372.0" width="37.7" height="0.0" fill="#2563eb" rx="2"/>
+<rect x="596.0" y="347.0" width="37.7" height="25.0" fill="#9ca3af" rx="2"/>
+<text x="571.2" y="367.0" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">0%</text>
+<text x="614.8" y="342.0" font-size="10.5" fill="#6b7280" text-anchor="middle">8%</text>
+<text x="593.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">mutation</text>
+<text x="593.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">mechanism</text>
+<rect x="650.3" y="305.3" width="37.7" height="66.7" fill="#2563eb" rx="2"/>
+<rect x="694.0" y="238.7" width="37.7" height="133.3" fill="#9ca3af" rx="2"/>
+<text x="669.2" y="300.3" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">22%</text>
+<text x="712.8" y="233.7" font-size="10.5" fill="#6b7280" text-anchor="middle">44%</text>
+<text x="691.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">resistance</text>
+<text x="691.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">interpretation</text>
+<rect x="54" y="444" width="12" height="12" fill="#2563eb" rx="2"/>
+<text x="72" y="454" font-size="12" fill="#111827">fine-tuned</text>
+<rect x="148" y="444" width="12" height="12" fill="#9ca3af" rx="2"/>
+<text x="166" y="454" font-size="12" fill="#111827">base Qwen3.5-4B</text>
+</svg>

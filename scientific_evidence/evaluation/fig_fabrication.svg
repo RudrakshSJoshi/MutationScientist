@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="472" viewBox="0 0 760 472" font-family="Segoe UI,Helvetica,Arial,sans-serif">
+<rect width="760" height="472" fill="#ffffff"/>
+<text x="54" y="26" font-size="18" font-weight="700" fill="#111827">Scientific discipline — fine-tuned vs base (harness, 218 items)</text>
+<text x="54" y="46" font-size="12.5" fill="#6b7280">lower is better · number-fabrication and biochemical/cellular conflation rates</text>
+<line x1="54" y1="372.0" x2="740" y2="372.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="376.0" font-size="11" fill="#6b7280" text-anchor="end">0%</text>
+<line x1="54" y1="297.0" x2="740" y2="297.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="301.0" font-size="11" fill="#6b7280" text-anchor="end">25%</text>
+<line x1="54" y1="222.0" x2="740" y2="222.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="226.0" font-size="11" fill="#6b7280" text-anchor="end">50%</text>
+<line x1="54" y1="147.0" x2="740" y2="147.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="151.0" font-size="11" fill="#6b7280" text-anchor="end">75%</text>
+<line x1="54" y1="72.0" x2="740" y2="72.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="76.0" font-size="11" fill="#6b7280" text-anchor="end">100%</text>
+<rect x="119.3" y="344.5" width="46.0" height="27.5" fill="#2563eb" rx="2"/>
+<rect x="171.3" y="223.4" width="46.0" height="148.6" fill="#9ca3af" rx="2"/>
+<text x="142.3" y="339.5" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">9%</text>
+<text x="194.3" y="218.4" font-size="10.5" fill="#6b7280" text-anchor="middle">50%</text>
+<text x="168.3" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">Number</text>
+<text x="168.3" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">fabrication</text>
+<text x="168.3" y="412.0" font-size="10.5" fill="#111827" text-anchor="middle">rate</text>
+<rect x="348.0" y="370.6" width="46.0" height="1.4" fill="#2563eb" rx="2"/>
+<rect x="400.0" y="330.7" width="46.0" height="41.3" fill="#9ca3af" rx="2"/>
+<text x="371.0" y="365.6" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">0%</text>
+<text x="423.0" y="325.7" font-size="10.5" fill="#6b7280" text-anchor="middle">14%</text>
+<text x="397.0" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">Assay</text>
+<text x="397.0" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">conflation</text>
+<text x="397.0" y="412.0" font-size="10.5" fill="#111827" text-anchor="middle">rate</text>
+<rect x="576.7" y="363.8" width="46.0" height="8.2" fill="#2563eb" rx="2"/>
+<rect x="628.7" y="348.6" width="46.0" height="23.4" fill="#9ca3af" rx="2"/>
+<text x="599.7" y="358.8" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">3%</text>
+<text x="651.7" y="343.6" font-size="10.5" fill="#6b7280" text-anchor="middle">8%</text>
+<text x="625.7" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">Un-hedged rate</text>
+<rect x="54" y="444" width="12" height="12" fill="#2563eb" rx="2"/>
+<text x="72" y="454" font-size="12" fill="#111827">fine-tuned</text>
+<rect x="148" y="444" width="12" height="12" fill="#9ca3af" rx="2"/>
+<text x="166" y="454" font-size="12" fill="#111827">base Qwen3.5-4B</text>
+</svg>

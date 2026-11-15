@@ -28,14 +28,17 @@ always fails the item; nothing is silently smoothed over.
 import argparse
 import json
 import os
+import sqlite3
 import sys
 import urllib.request
 import urllib.error
+from contextlib import closing
 from pathlib import Path
 
 from .scorers import load_valid_citations, score_item
 
 HERE = Path(__file__).resolve().parent
+DB_PATH = HERE.parent / "evidence_database" / "evidence.sqlite3"
 
 SYSTEM_PROMPT = (
     "You are MutationScientist, an evidence-grounded assistant that explains EGFR "
@@ -90,6 +93,62 @@ def _http_post_json(url, payload, headers, timeout):
         return json.loads(resp.read().decode("utf-8"))
 
 
+# --------------------------------------------------------------------------- #
+# RAG (open-book) context — supply the retrieved evidence the deployed app/avatar
+# always provide, so citation + grounding are tested as the product behaves,
+# not closed-book from a 4B model's memory.
+# --------------------------------------------------------------------------- #
+def fetch_sources(expected_citations, db):
+    seen, out = set(), []
+    for c in expected_citations or []:
+        c = str(c).strip()
+        if c.lower().startswith("10."):
+            rows = db.execute("SELECT evidence_id,pmid,doi,payload FROM evidence "
+                              "WHERE doi=? COLLATE NOCASE LIMIT 2", (c,)).fetchall()
+        elif c.upper().startswith(("EVIDENCE_", "SOURCE_", "MEAS_", "BDB_", "PROF_")):
+            rows = db.execute("SELECT evidence_id,pmid,doi,payload FROM evidence "
+                              "WHERE evidence_id=? COLLATE NOCASE LIMIT 1", (c,)).fetchall()
+        else:
+            rows = []
+        for eid, pmid, doi, payload in rows:
+            try:
+                claim = json.loads(payload).get("claim", "")
+            except (ValueError, TypeError):
+                claim = ""
+            if eid in seen or not claim:
+                continue
+            seen.add(eid)
+            out.append({"evidence_id": eid, "pmid": pmid or "", "doi": doi or "", "claim": claim})
+    return out
+
+
+def build_evidence_block(sources):
+    if not sources:
+        return ""
+    lines = ["SOURCES (retrieved evidence for this question — cite these by their "
+             "evidence_id / DOI / PMID; do NOT cite any source not listed here, and "
+             "do NOT state any number that is not in these sources or the question):"]
+    for s in sources:
+        tag = "[" + s["evidence_id"]
+        if s["pmid"]:
+            tag += f" | PMID {s['pmid']}"
+        if s["doi"]:
+            tag += f" | DOI {s['doi']}"
+        lines.append(tag + "] " + s["claim"])
+    return "\n".join(lines)
+
+
+def attach_evidence(items):
+    """Populate each item's _prompt (sources + question) and evidence_context
+    (claims, so the grounding scorer counts supplied numbers as grounded)."""
+    with closing(sqlite3.connect(DB_PATH.as_uri() + "?mode=ro", uri=True)) as db:
+        for it in items:
+            srcs = fetch_sources(it.get("expected_citations"), db)
+            it["evidence_context"] = [s["claim"] for s in srcs]
+            block = build_evidence_block(srcs)
+            it["_prompt"] = (block + "\n\nQUESTION: " + it["question"]) if block else it["question"]
+
+
 def predict_dry_run(item, _cfg):
     return item["reference_answer"]
 
@@ -100,7 +159,7 @@ def predict_openai(item, cfg):
         "model": cfg["model"],
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": item["question"]},
+            {"role": "user", "content": item.get("_prompt", item["question"])},
         ],
         "temperature": 0,
         "max_tokens": cfg["max_tokens"],
@@ -130,7 +189,7 @@ def predict_adaption(item, cfg):
     url = cfg["base_url"].rstrip("/") + "/api/v1/responses"
     payload = {
         "model": "stack:" + cfg["stack"],
-        "input": item["question"],
+        "input": item.get("_prompt", item["question"]),
         "instructions": SYSTEM_PROMPT,
         "temperature": 0,
         "max_output_tokens": cfg["max_tokens"],
@@ -194,10 +253,12 @@ def aggregate(results):
 # --------------------------------------------------------------------------- #
 # Reports
 # --------------------------------------------------------------------------- #
-def write_reports(mode, model_label, overall, by_task, results):
+def write_reports(mode, model_label, overall, by_task, results, tag=""):
     report = {"mode": mode, "model": model_label, "n_items": overall["n"],
               "overall": overall, "by_task_type": by_task, "items": results}
-    (HERE / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    json_name = f"report.{tag}.json" if tag else "report.json"
+    md_name = f"evaluation_report.{tag}.md" if tag else "evaluation_report.md"
+    (HERE / json_name).write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
 
     md = []
     md.append("# EGFR MutationScientist — independent evaluation report\n")
@@ -274,8 +335,8 @@ def write_reports(mode, model_label, overall, by_task, results):
               "ADAPTION_API_KEY=... ADAPTION_STACK=<slug> \\\n"
               "  python -m scientific_evidence.evaluation.run_benchmark --backend adaption\n"
               "```\n")
-    (HERE / "evaluation_report.md").write_text("\n".join(md), encoding="utf-8")
-    return HERE / "report.json", HERE / "evaluation_report.md"
+    (HERE / md_name).write_text("\n".join(md), encoding="utf-8")
+    return HERE / json_name, HERE / md_name
 
 
 # --------------------------------------------------------------------------- #
@@ -291,11 +352,20 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--max-tokens", type=int, default=600)
     ap.add_argument("--timeout", type=int, default=120)
+    ap.add_argument("--out-tag", default="",
+                    help="Suffix outputs as report.<tag>.json / evaluation_report.<tag>.md "
+                         "(keeps multiple models' results side by side, e.g. base vs finetuned).")
+    ap.add_argument("--with-evidence", action="store_true",
+                    help="RAG / open-book: prepend the retrieved source evidence to each "
+                         "question (the deployed app/avatar always supply it). Tests grounded "
+                         "citation behaviour instead of closed-book recall.")
     args = ap.parse_args()
 
     items = load_benchmark(args.benchmark, args.references)
     if args.limit > 0:
         items = items[: args.limit]
+    if args.with_evidence:
+        attach_evidence(items)
     valid_dois, valid_pmids = load_valid_citations()
 
     if args.dry_run:
@@ -323,6 +393,10 @@ def main():
         model_label = f"stack:{cfg['stack']}"
         predict = predict_adaption
 
+    if args.with_evidence and not args.dry_run:
+        mode += "+rag"
+        model_label += " (RAG/open-book)"
+
     results = []
     for idx, item in enumerate(items):
         try:
@@ -335,7 +409,7 @@ def main():
                         "question": item["question"], "prediction": prediction, "scores": scores})
 
     overall, by_task = aggregate(results)
-    json_path, md_path = write_reports(mode, model_label, overall, by_task, results)
+    json_path, md_path = write_reports(mode, model_label, overall, by_task, results, tag=args.out_tag)
 
     print(f"Mode: {mode}   Model: {model_label}")
     print(f"Items: {overall['n']}   Pass rate: {overall['pass_rate']:.1%} "

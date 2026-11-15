@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="472" viewBox="0 0 760 472" font-family="Segoe UI,Helvetica,Arial,sans-serif">
+<rect width="760" height="472" fill="#ffffff"/>
+<text x="54" y="26" font-size="18" font-weight="700" fill="#111827">Why RAG: invented citations &amp; fabricated numbers (fine-tune)</text>
+<text x="54" y="46" font-size="12.5" fill="#6b7280">30-item benchmark · counts of items flagged · lower is better</text>
+<line x1="54" y1="372.0" x2="740" y2="372.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="376.0" font-size="11" fill="#6b7280" text-anchor="end">0</text>
+<line x1="54" y1="222.0" x2="740" y2="222.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="226.0" font-size="11" fill="#6b7280" text-anchor="end">5</text>
+<line x1="54" y1="72.0" x2="740" y2="72.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="46" y="76.0" font-size="11" fill="#6b7280" text-anchor="end">10</text>
+<rect x="176.5" y="343.0" width="46.0" height="29.0" fill="#2563eb" rx="2"/>
+<rect x="228.5" y="111.1" width="46.0" height="260.9" fill="#9ca3af" rx="2"/>
+<text x="199.5" y="338.0" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">1</text>
+<text x="251.5" y="106.1" font-size="10.5" fill="#6b7280" text-anchor="middle">9</text>
+<text x="225.5" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">Items w/</text>
+<text x="225.5" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">invented</text>
+<text x="225.5" y="412.0" font-size="10.5" fill="#111827" text-anchor="middle">citation</text>
+<rect x="519.5" y="256.1" width="46.0" height="115.9" fill="#2563eb" rx="2"/>
+<rect x="571.5" y="198.1" width="46.0" height="173.9" fill="#9ca3af" rx="2"/>
+<text x="542.5" y="251.1" font-size="10.5" fill="#2563eb" text-anchor="middle" font-weight="600">4</text>
+<text x="594.5" y="193.1" font-size="10.5" fill="#6b7280" text-anchor="middle">6</text>
+<text x="568.5" y="388.0" font-size="10.5" fill="#111827" text-anchor="middle">Items w/</text>
+<text x="568.5" y="400.0" font-size="10.5" fill="#111827" text-anchor="middle">fabricated</text>
+<text x="568.5" y="412.0" font-size="10.5" fill="#111827" text-anchor="middle">number</text>
+<rect x="54" y="444" width="12" height="12" fill="#2563eb" rx="2"/>
+<text x="72" y="454" font-size="12" fill="#111827">with RAG evidence</text>
+<rect x="198" y="444" width="12" height="12" fill="#9ca3af" rx="2"/>
+<text x="216" y="454" font-size="12" fill="#111827">closed-book</text>
+</svg>

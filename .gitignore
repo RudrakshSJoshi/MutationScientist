@@ -8,3 +8,6 @@ venv/
 
 # Built evidence index (regenerate with scientific_evidence.retriever.build)
 scientific_evidence/evidence_database/*.sqlite3
+
+# Live-literature cache (Linkup) — regenerated on demand, may contain fetched text
+scientific_evidence/evidence_database/linkup_cache/
