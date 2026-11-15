@@ -2,3 +2,5 @@ WIN/winner_model.zip
 venv/
 .ipynb_checkpoints
 .env
+# Large model weights
+*.safetensors
