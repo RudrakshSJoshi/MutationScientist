@@ -1,0 +1,103 @@
+{
+  "mode": "dry-run",
+  "n_items": 218,
+  "overall": {
+    "n": 218,
+    "pred_numbers": 360,
+    "ungrounded_numbers": 0,
+    "items_with_fabrication": 0,
+    "fabrication_rate": 0.0,
+    "conflation_items": 0,
+    "conflation_rate": 0.0,
+    "hedged_items": 200,
+    "hedged_rate": 0.9174,
+    "mean_jaccard": 1.0
+  },
+  "by_task_type": {
+    "assay_distinction": {
+      "n": 32,
+      "pred_numbers": 63,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 30,
+      "hedged_rate": 0.9375,
+      "mean_jaccard": 1.0
+    },
+    "evidence_qa": {
+      "n": 15,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 12,
+      "hedged_rate": 0.8,
+      "mean_jaccard": 1.0
+    },
+    "experimental_interpretation": {
+      "n": 83,
+      "pred_numbers": 123,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 79,
+      "hedged_rate": 0.9518,
+      "mean_jaccard": 1.0
+    },
+    "inhibitor_comparison": {
+      "n": 59,
+      "pred_numbers": 165,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 54,
+      "hedged_rate": 0.9153,
+      "mean_jaccard": 1.0
+    },
+    "mutation_classification": {
+      "n": 8,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 8,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 1.0
+    },
+    "mutation_mechanism": {
+      "n": 12,
+      "pred_numbers": 0,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 8,
+      "hedged_rate": 0.6667,
+      "mean_jaccard": 1.0
+    },
+    "resistance_interpretation": {
+      "n": 9,
+      "pred_numbers": 9,
+      "ungrounded_numbers": 0,
+      "items_with_fabrication": 0,
+      "fabrication_rate": 0.0,
+      "conflation_items": 0,
+      "conflation_rate": 0.0,
+      "hedged_items": 9,
+      "hedged_rate": 1.0,
+      "mean_jaccard": 1.0
+    }
+  },
+  "flagged_potential_fabrications": []
+}
