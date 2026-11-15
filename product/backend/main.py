@@ -8,6 +8,7 @@ Endpoints (for the React frontend):
   GET  /health                         — liveness + service modes
   GET  /predict?mutation=&compound=    — Boltz-2 prediction(s) for a pair
   GET  /evidence?mutation=&compound=   — curated/live cited evidence
+  GET  /evidence/graph?keywords=       — source-linked EGFR graph search
   POST /interpret                      — calls the :8000 model on the structured record
 
 HARD RULES (carried over from the app, enforced here too):
@@ -26,13 +27,14 @@ from pathlib import Path
 from typing import Optional
 
 # --- reuse the Streamlit app's services (do NOT re-create them) --------------
+REPO_ROOT = Path(__file__).resolve().parents[2]
 APP_DIR = Path(os.environ.get("MUTATIONSCIENTIST_APP_DIR",
                               str(Path.home() / "Desktop" / "application"))).expanduser().resolve()
 if not (APP_DIR / "services").is_dir():
     raise RuntimeError(
         f"Could not find the Streamlit app's services at {APP_DIR}. "
         "Set MUTATIONSCIENTIST_APP_DIR to the application/ directory.")
-sys.path.insert(0, str(APP_DIR))
+sys.path[:0] = [str(APP_DIR), str(REPO_ROOT)]
 
 import config.settings as S                       # noqa: E402
 from services.dataset_service import DatasetService   # noqa: E402
@@ -43,6 +45,7 @@ from services.llm_service import LLMService           # noqa: E402
 from fastapi import FastAPI, HTTPException, Query     # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware    # noqa: E402
 from pydantic import BaseModel                        # noqa: E402
+from scientific_evidence.evidence_api import search_graph  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Provenance — the Truth Ladder, expressed as data (no Streamlit/UI import).
@@ -225,6 +228,32 @@ def evidence(mutation: Optional[str] = Query(None, description="mutation id or n
     res = _evidence.retrieve(mutation_id=mid, compound_id=cid, match=match)
     # Evidence is MEASURED/cited truth — label it so the frontend styles it right.
     return {**res, "provenance": "measured", "source": _evidence.mode_label()}
+
+
+@app.get("/evidence/graph", responses={503: {"description": "Evidence index unavailable"}})
+def evidence_graph(
+    keywords: str = Query(..., min_length=1, max_length=200,
+                          description="EGFR alias, variant, compound, assay, PMID, DOI, or PDB ID"),
+    exact_only: bool = Query(False, description="Restrict variant queries to exact variants"),
+    assay_type: Optional[str] = Query(None, description="Indexed assay type, such as biochemical_binding"),
+    cell_line: Optional[str] = Query(None, min_length=1, max_length=100,
+                                     description="Exact cell line or clone"),
+    atp_condition: Optional[str] = Query(None, description="Km,ATP or 1 mmol/L ATP"),
+    limit: int = Query(15, ge=1, le=50),
+    offset: int = Query(0, ge=0, le=2**63 - 1),
+):
+    """Return the graph and its underlying evidence records with source links."""
+    try:
+        return search_graph(
+            keywords, exact_only=exact_only, assay_type=assay_type, cell_line=cell_line,
+            atp_condition=atp_condition, limit=limit, offset=offset,
+        )
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            503, "Evidence index unavailable. Run python3 -m scientific_evidence.retriever.build.",
+        ) from exc
 
 
 class InterpretBody(BaseModel):

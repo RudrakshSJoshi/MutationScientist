@@ -124,6 +124,36 @@ evidence rows (`claim`, `mechanism`, `assay_type`, `pmid`/`doi`, `source_url`, â
 }
 ```
 
+### `GET /evidence/graph`
+
+From a repository checkout, build the SQLite evidence index and start the API.
+
+```bash
+python3 -m scientific_evidence.retriever.build
+export MUTATIONSCIENTIST_APP_DIR="$PWD/mutationscientist_app"
+export EGFR_DATASET_ROOT="$PWD/EGFR_RESEARCH_DATASET/EGFR_RESEARCH_DATASET"
+./product/backend/run.sh
+```
+
+Pass `keywords` with an EGFR protein alias such as `ERBB1` or `P00533`, variant,
+inhibitor, assay, PMID, DOI, or PDB ID. Set `exact_only=true` to limit a variant
+query to that variant. Optional filters include `assay_type`, `cell_line`, and
+`atp_condition`. Use `limit` (1â€“50, default 15) and `offset` to page through results.
+
+```bash
+curl --get 'http://127.0.0.1:8080/evidence/graph' \
+  --data-urlencode 'keywords=ERBB1 T790M gefitinib' \
+  --data-urlencode 'assay_type=biochemical_binding' \
+  --data-urlencode 'exact_only=true'
+```
+
+The response includes `anchors`, `nodes`, `edges`, `evidence`, and
+`total_matches`. Each edge has an `evidence_id` linking it to the index.
+Use each evidence record's `match_scope`, `assay_type`, and `evidence_type`
+when displaying the observation, and use `source_url` for its citation.
+A query without matching evidence returns HTTP 200 with an empty list.
+Invalid filters return HTTP 422. A missing index returns HTTP 503.
+
 ### `POST /interpret`
 Body `{ "mutation": "...", "compound": "...", "match": "any" }`. Assembles the
 structured record (mutation + compound + Boltz prediction + measurements +
