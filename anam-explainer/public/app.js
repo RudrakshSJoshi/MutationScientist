@@ -75,9 +75,16 @@ function renderCard(key){
       affinity regression target. The story here is evidence-led.</div>
       <div class="conv">Measured IC50: ${meas} (${c.measurements?.[0]?.source||"dataset"}).</div>`;
   }
+  const pill=(label,kind)=>`<span class="prov-pill" style="--pc:var(--${kind})"><span class="prov-dot"></span>${label}</span>`;
+  const pills=[
+    ...(c.has_real_prediction?[pill("Boltz prediction","predicted")]:[]),
+    pill(`${(c.measurements||[]).length} measured`,"measured"),
+    pill(`${c.n_evidence||0} cited`,"accent"),
+  ].join("");
   cardEl.innerHTML=`
     <div class="head"><div class="pair">${c.mutation} × ${c.compound}</div>
       <span class="badge ${cov}">${c.covalent||"?"}</span></div>
+    <div class="prov-row">${pills}</div>
     <div class="claim">${c.headline_claim||""}</div>
     ${predHtml}`;
   cardEl.style.display="block";
