@@ -1,21 +1,57 @@
-# EGFR kinase-domain structural analysis
+# Structural findings (PREDICTED complexes — Boltz-2, not experimental)
 
-Ten deposited X-ray structures were analysed. `structure_inventory.csv` records PDB IDs, resolution, construct and ligand. `experimental_contacts.csv` contains the residue and atom IDs behind each contact. `experimental_overlays.csv` contains 3D alignment statistics. The PNG projects the aligned coordinates onto the reference ligand's first two principal axes. The PyMOL script opens the deposited structures for interactive inspection, using its own fit.
+All structures here are **computational predictions**, not experimentally determined. Pocket = protein residues with any atom within 5.0 Å of any ligand atom.
 
-| Experimental comparison | Coordinate observation | Interpretation |
-| --- | --- | --- |
-| Gefitinib in WT (2ITY) and L858R (2ITZ) | Met793 N to gefitinib N3 is 2.670 and 2.667 Å. The 33 fitted pocket Cα atoms have 0.410 Å RMSD. The 31 matched ligand atoms have 1.479 Å RMSD. Residue 858 is approximately 10 Å from gefitinib in both structures. | The same close hinge contact is present in both structures. The primary study measured approximately 20-fold tighter gefitinib binding to L858R using a direct binding assay. The distance alone does not explain the affinity difference. [2ITY](https://www.rcsb.org/structure/2ITY) · [2ITZ](https://www.rcsb.org/structure/2ITZ) · [Yun et al.](https://doi.org/10.1016/j.ccr.2006.12.017) |
-| Erlotinib in WT (1M17) | Met793 backbone N to ligand N2 is 2.699 Å. Thr790 OG1 to ligand C1 is 3.406 Å. | The ligand occupies the ATP pocket near the hinge and gatekeeper. Author residue numbering uses a −24 offset relative to the clinical positions in this report. [1M17](https://www.rcsb.org/structure/1M17) |
-| Osimertinib in the reference construct (6JXT) and L858R/T790M/C797S (6LUD) | 6JXT records a Cys797 SG–ligand C9 covalent LINK at 1.80 Å. 6LUD has bound osimertinib with no corresponding deposited LINK. The closest Ser797 atom is the backbone N at 3.127 Å. Matched ligand RMSD is 1.454 Å after fitting 33 pocket Cα atoms. | A crystallographic ligand pose can remain visible after the covalent anchor is lost. The structures differ at three resistance/activation sites, so the pose shift cannot be assigned to one substitution. Both constructs also carry E865A/E866A/K867A. [6JXT](https://www.rcsb.org/structure/6JXT) · [6LUD](https://www.rcsb.org/structure/6LUD) |
-| CH7233163 and osimertinib in the same triple mutant (6LUB and 6LUD) | The 32 pocket Cα anchors align to 0.457 Å RMSD. CH7233163 approaches the Met793 backbone N within 2.789 Å and the Met790 side chain within 3.361 Å. Its closest Ser797 contact is 4.141 Å. | This is a structure-backed comparator for a ligand that can occupy the mutant pocket without a Cys797 anchor. [6LUB](https://www.rcsb.org/structure/6LUB) · [6LUD](https://www.rcsb.org/structure/6LUD) · [Kashima et al.](https://doi.org/10.1158/1535-7163.MCT-20-0229) |
-| AEE788 in WT (2J6M) and T790M (2JIU) | The nearest gatekeeper contact is Thr790 CG2–ligand CAD at 3.022 Å in WT and Met790 SD–CAD at 3.828 Å in T790M. The 33 pocket Cα anchors align to 0.846 Å RMSD and the 33 ligand atoms to 1.005 Å. | AEE788 occupies the pocket in both structures. The geometry shows that this ligand can be accommodated in the T790M construct. [2J6M](https://www.rcsb.org/structure/2J6M) · [2JIU](https://www.rcsb.org/structure/2JIU) |
-| Brigatinib in T790M/C797S (7ZYM) | Met793 backbone O–ligand N7 is 2.795 Å. Met790 side chain–ligand Cl is 3.427 Å. The closest Ser797 contact is 4.589 Å. | The crystal gives a ligand-matched reference for dataset complex `COMPLEX_003293`. The C797S-only pilot has a different resistance background. [7ZYM](https://www.rcsb.org/structure/7ZYM) |
-| Apo exon-19 deletion (7TVD) | L747–E749 are deleted. The retained E746 and A750 Cα atoms are 3.797 Å apart, compared with 10.128 Å in gefitinib-bound WT 2ITY. | This documents local loop shortening for L747_E749del. The project's ex19del sequence is E746_A750del and requires an exact variant match for a direct structural comparison. The apo and liganded structures also differ in ligand state. [7TVD](https://www.rcsb.org/structure/7TVD) · [2ITY](https://www.rcsb.org/structure/2ITY) |
 
-T790M sits at the gatekeeper position. Its closest heavy-atom distance to osimertinib is 3.981 Å in the triple mutant. That distance provides no isolated steric comparison. Independent measurements show that increased ATP affinity contributes to T790M-mediated resistance, so an apparent pocket contact should be interpreted alongside ATP-competition experiments. [Yun et al.](https://doi.org/10.1073/pnas.0709662105)
+Analysed 70 predicted complexes. Mutated residue in the binding pocket in 38/70.
 
-## Coordinate method and limitations
 
-Chain A was used throughout. The analysis excludes hydrogens, water and other heterogens from ligand–protein distance calculations. It selects the highest-occupancy coordinates for alternate atoms and prefers blank/A on ties. Contact distance is the minimum heavy-atom Euclidean distance per residue, with a 4.0 Å reporting cutoff. Distance identifies proximity. Geometry and chemistry are needed to assign hydrogen bonds or steric clashes. Fits use the shared clinical positions in the script's fixed set of pocket Cα atoms, and ligand RMSD matches deposited heavy-atom names. Coordinates came from the [wwPDB archive](https://www.wwpdb.org/about/usage-policies).
+## COMPLEX_000342 — BDB_195860 × L858R
+- Predicted affinity: 1.614 log₁₀(IC50 µM); P(binder)=0.53
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: MET793 (2.7 Å), GLN791 (3.32 Å), ALA743 (3.36 Å), THR790 (3.38 Å), LEU844 (3.46 Å), VAL726 (3.52 Å), GLY796 (3.64 Å), LEU718 (3.73 Å), LEU792 (3.83 Å), PRO794 (3.88 Å)
 
-6JX0 is a relevant single-T790M osimertinib structure. Its public entry was verified, but coordinate retrieval failed during this run. All poses analysed here are deposited X-ray structures. Predicted poses and their confidence values are pending a successful Boltz run. [6JX0](https://www.rcsb.org/structure/6JX0)
+## COMPLEX_000401 — BDB_200757 × L858R
+- Predicted affinity: -1.340 log₁₀(IC50 µM); P(binder)=0.73
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: THR854 (2.38 Å), ASP855 (2.8 Å), GLU762 (2.86 Å), MET793 (2.87 Å), ALA859 (2.88 Å), MET766 (2.92 Å), GLN791 (3.14 Å), LYS745 (3.2 Å), VAL774 (3.32 Å), GLY796 (3.38 Å)
+
+## COMPLEX_000425 — BDB_200809 × L858R
+- Predicted affinity: -2.350 log₁₀(IC50 µM); P(binder)=0.82
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: THR854 (2.43 Å), GLU762 (2.53 Å), MET793 (2.75 Å), MET766 (2.84 Å), HIS835 (3.02 Å), ASP855 (3.12 Å), GLN791 (3.18 Å), LYS745 (3.29 Å), ALA743 (3.4 Å), VAL834 (3.41 Å)
+
+## COMPLEX_003899 — BDB_3570 × WT
+- Predicted affinity: -2.342 log₁₀(IC50 µM); P(binder)=0.87
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: MET793 (2.86 Å), LEU788 (3.17 Å), GLN791 (3.2 Å), ALA743 (3.39 Å), THR790 (3.39 Å), GLU762 (3.41 Å), LYS745 (3.54 Å), LEU844 (3.55 Å), GLY796 (3.66 Å), LEU718 (3.75 Å)
+
+## COMPLEX_003209 — BDB_494876 × T790M
+- Predicted affinity: -0.524 log₁₀(IC50 µM); P(binder)=0.34
+- Mutated residue(s) contacting ligand: 790
+- Top pocket residues: MET793 (2.76 Å), PHE795 (3.0 Å), PHE997 (3.06 Å), GLN791 (3.19 Å), MET790 (3.35 Å), LEU1001 (3.38 Å), ALA743 (3.41 Å), GLY796 (3.65 Å), LYS716 (3.66 Å), LYS745 (3.67 Å)
+
+## COMPLEX_002263 — BDB_494930 × L858R_T790M_C797S
+- Predicted affinity: -0.978 log₁₀(IC50 µM); P(binder)=0.34
+- Mutated residue(s) contacting ligand: 790, 797
+- Top pocket residues: THR854 (2.58 Å), MET793 (2.81 Å), GLN791 (3.0 Å), GLU804 (3.08 Å), LEU844 (3.11 Å), PRO990 (3.11 Å), PHE997 (3.25 Å), PHE795 (3.26 Å), ASP855 (3.3 Å), LEU718 (3.37 Å)
+
+## COMPLEX_000889 — BLU945 × L858R
+- Predicted affinity: -1.220 log₁₀(IC50 µM); P(binder)=0.57
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: ASP1175 (2.4 Å), THR854 (2.62 Å), THR1191 (2.63 Å), MET793 (2.7 Å), LYS728 (2.82 Å), PHE1187 (2.87 Å), GLN791 (2.89 Å), LEU844 (3.1 Å), SER1190 (3.11 Å), LYS745 (3.23 Å)
+
+## COMPLEX_001557 — BLU945 × L858R_C797S
+- Predicted affinity: -1.460 log₁₀(IC50 µM); P(binder)=0.58
+- Mutated residue(s) contacting ligand: none within 5 Å
+- Top pocket residues: LYS716 (2.29 Å), THR854 (2.61 Å), MET793 (2.88 Å), LEU1001 (3.03 Å), THR790 (3.15 Å), LEU844 (3.15 Å), LYS745 (3.16 Å), GLN791 (3.22 Å), VAL726 (3.32 Å), PRO794 (3.34 Å)
+
+## COMPLEX_002230 — BLU945 × L858R_T790M
+- Predicted affinity: -2.012 log₁₀(IC50 µM); P(binder)=0.79
+- Mutated residue(s) contacting ligand: 790
+- Top pocket residues: LEU1077 (2.34 Å), THR854 (2.73 Å), MET793 (2.83 Å), PRO794 (2.83 Å), GLN791 (2.99 Å), LYS745 (3.16 Å), LYS728 (3.24 Å), LEU844 (3.27 Å), ARG1068 (3.28 Å), PHE997 (3.3 Å)
+
+## COMPLEX_003136 — BLU945 × L858R_T790M_C797S
+- Predicted affinity: -2.128 log₁₀(IC50 µM); P(binder)=0.89
+- Mutated residue(s) contacting ligand: 790, 797
+- Top pocket residues: THR854 (2.52 Å), MET793 (2.8 Å), LEU1001 (2.93 Å), GLN791 (2.94 Å), LYS745 (3.05 Å), LEU844 (3.08 Å), LYS728 (3.1 Å), PRO794 (3.18 Å), VAL726 (3.22 Å), GLY796 (3.23 Å)

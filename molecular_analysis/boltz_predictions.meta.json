@@ -1,0 +1,10 @@
+{
+  "label_convention": "log10(IC50 uM); LOWER=STRONGER; NOT pIC50",
+  "generated_by": "boltz predict (affinity) on Apple MPS, precision 32-true, no_kernels",
+  "n_predicted": 70,
+  "settings_legend": {
+    "results": "boltz2-defaults(recycle3,ss200,affens5)",
+    "results_night": "reduced(recycle1,ss50,affens3)"
+  },
+  "score_definition": "Boltz-2 pretrained affinity head, affinity_pred_value = log10(IC50 uM); LOWER = STRONGER. affinity_probability_binary = P(binder)."
+}
