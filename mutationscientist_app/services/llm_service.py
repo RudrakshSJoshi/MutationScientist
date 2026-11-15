@@ -88,11 +88,17 @@ class LLMService:
         except Exception:
             pass
 
+    def display_name(self) -> str:
+        """The served product identity for the UI. The gemma-3-4b fine-tune is the
+        leaderboard winner (shown as the benchmark on the Overview); the live
+        endpoint model id is surfaced separately so inference is never mislabeled."""
+        return S.MODEL_PRODUCT
+
     def mode_label(self) -> str:
         if self.provider == "adaption":
-            return f"REAL (Adaption {self.model_id})"
+            return f"REAL · {S.MODEL_PRODUCT} (Adaption {self.model_id})"
         if self.provider == "openai":
-            return f"REAL ({self.model_id})"
+            return f"REAL · {S.MODEL_PRODUCT} ({S.MODEL_ENDPOINT}, model `{self.openai_model}`)"
         return "MOCK (grounded template)"
 
     # ------------------------------------------------------------------ context
@@ -108,6 +114,19 @@ class LLMService:
             "assay_type": m.get("assay_type"),
             "source": m.get("publication") or m.get("source_database"),
         } for m in (measurements or [])][:12]  # cap: keep the prompt (and latency) bounded
+        # Hand the model a clean, interpretable prediction — only the fields it
+        # should reason over. Drops local paths (structure_path), ensemble arrays
+        # and duplicated score text that add noise and can derail a small model.
+        preds_clean = [{
+            "complex_id": p.get("complex_id"),
+            "model_checkpoint": p.get("model_checkpoint"),
+            "affinity_pred_value": p.get("affinity_pred_value"),
+            "affinity_pred_ic50_nM_equiv": p.get("affinity_pred_ic50_nM_equiv"),
+            "affinity_probability_binary": p.get("affinity_probability_binary"),
+            "confidence_score": p.get("confidence_score"),
+            "experimental_ic50_nM_equiv": p.get("experimental_ic50_nM_equiv"),
+            "is_mock": p.get("is_mock", False),
+        } for p in (boltz_predictions or [])]
         return {
             "score_definition": S.SCORE_DEFINITION,
             "mutation": {
@@ -126,7 +145,7 @@ class LLMService:
                 "covalent_status": compound.get("covalent_status"),
                 "warhead_type": compound.get("warhead_type"),
             } if compound else None,
-            "boltz_predictions": boltz_predictions or [],
+            "boltz_predictions": preds_clean,
             "experimental_measurements": meas,
             "experimental_evidence": [
                 {"claim": e["claim"], "evidence_type": e["evidence_type"],
@@ -145,6 +164,16 @@ class LLMService:
             cached = self._cache_get(ctx)
             if cached is not None:
                 return cached
+            # Fast pre-flight: if the endpoint is unreachable, fall back to the
+            # grounded template IMMEDIATELY instead of hanging on a socket timeout
+            # (a down localhost:8000 can stall for the full read timeout). Keeps a
+            # live demo responsive; the real path is untouched when the server is up.
+            if not self._endpoint_reachable():
+                rep = self._generate_template(ctx)
+                rep["is_mock"] = True
+                rep["model"] = (f"{S.MODEL_NAME} endpoint unreachable ({S.MODEL_ENDPOINT}) "
+                                "— fell back to grounded template")
+                return rep
             try:
                 if self.provider == "adaption":
                     rep = self._generate_real_adaption(ctx)
@@ -159,6 +188,23 @@ class LLMService:
                 return rep
         return self._generate_template(ctx)
 
+    def _endpoint_reachable(self, timeout: float = 1.5) -> bool:
+        """Quick TCP connect to the configured endpoint. Remote Adaption is assumed
+        reachable (DNS/HTTPS handled by the request); only the local OpenAI-compatible
+        endpoint is pre-flighted, since that is the one that can be down in a demo."""
+        if self.provider != "openai":
+            return True
+        import socket
+        from urllib.parse import urlparse
+        try:
+            u = urlparse(self.openai_base)
+            host = u.hostname or "localhost"
+            port = u.port or (443 if u.scheme == "https" else 80)
+            with socket.create_connection((host, port), timeout=timeout):
+                return True
+        except Exception:
+            return False
+
     # The persona / system instructions, shared by both real providers. It forbids
     # fabricated numbers, mechanisms and citations.
     _SYSTEM = (
@@ -170,9 +216,26 @@ class LLMService:
         "uncertainty. Not for clinical decisions."
     )
 
+    _SECTIONS = (
+        "Write a COMPLETE, thorough structured research report in markdown, with a "
+        "short title and ALL of these `##` sections, each 2–4 sentences:\n"
+        "## 1. Mutation (established mechanism)\n"
+        "## 2. Inhibitor\n"
+        "## 3. Computational prediction (Boltz-2) — state the values with the score "
+        "convention (log10 IC50 µM, lower=stronger); if no prediction exists, say so "
+        "explicitly and do not fabricate one\n"
+        "## 4. Experimental evidence (cited)\n"
+        "## 5. Potential resistance implications\n"
+        "## 6. Confidence & uncertainties\n"
+        "## 7. Suggested validation experiments\n"
+        "## 8. References (only PMIDs/DOIs present in the context)\n"
+        "Use ONLY numbers present in the context; keep measured, predicted and "
+        "clinical distinct; never invent values or citations."
+    )
+
     def _user_text(self, ctx: dict) -> str:
-        return ("CONTEXT:\n" + json.dumps(ctx, indent=2) +
-                "\n\nWrite the structured research report.")
+        return ("CONTEXT (use ONLY this):\n" + json.dumps(ctx, indent=2) +
+                "\n\n" + self._SECTIONS)
 
     def _generate_real_adaption(self, ctx: dict) -> dict:
         """PRIMARY: Adaption Responses API (POST {base}/api/v1/responses)."""

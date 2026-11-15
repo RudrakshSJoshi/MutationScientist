@@ -22,6 +22,7 @@ for _v in ("BOLTZ_PREDICTIONS_PATH", "OPENAI_BASE_URL", "OPENAI_API_KEY",
            "OPENAI_MODEL", "ADAPTION_API_KEY", "ADAPTION_STACK", "ADAPTION_MODEL_ID"):
     os.environ.pop(_v, None)
 
+import streamlit as st
 from streamlit.testing.v1 import AppTest
 
 APP = Path(__file__).resolve().parent.parent / "app.py"
@@ -95,6 +96,42 @@ def run_all_pages() -> list[str]:
             md = " ".join(m.value for m in at.markdown).lower()
             if "blu-945" not in md and "blu945" not in md and "complex_001557" not in md.lower():
                 failures.append("quick-select: report did not reference the BLU-945 complex")
+
+    # Real-Boltz mode: when the predictions file is present, the app shows a REAL
+    # Boltz badge and every page still renders (predictions file, no LLM needed).
+    boltz_file = Path.home() / "Desktop/EGFR_TRAINING/boltz_predictions.json"
+    if boltz_file.exists():
+        os.environ["BOLTZ_PREDICTIONS_PATH"] = str(boltz_file)
+        st.cache_resource.clear()  # services are @st.cache_resource — rebuild with new env
+        try:
+            at = AppTest.from_file(str(APP), default_timeout=60)
+            at.run()
+            if at.exception:
+                failures.append(f"real-boltz load: {[str(e) for e in at.exception]}")
+            else:
+                md = " ".join(m.value for m in at.markdown)
+                if "Pretrained Boltz" not in md and "REAL" not in md:
+                    failures.append("real-boltz: overview did not show a real Boltz badge")
+                # the real run must surface its complexes on Molecular Screening
+                _nav_radio(at).set_value("🔬 Molecular Screening").run()
+                md2 = " ".join(m.value for m in at.markdown)
+                if at.exception:
+                    failures.append(f"real-boltz screening render: {[str(e) for e in at.exception]}")
+                elif "Real Boltz-2 complexes" not in md2 and "real Boltz-2 complex" not in md2:
+                    failures.append("real-boltz: Molecular Screening did not surface the real complexes")
+                _nav_radio(at).set_value("🔬 Molecular Screening").run()
+                if at.exception:
+                    failures.append(f"real-boltz screening: {[str(e) for e in at.exception]}")
+        finally:
+            os.environ.pop("BOLTZ_PREDICTIONS_PATH", None)
+
+    # Light mode renders without exception.
+    at = AppTest.from_file(str(APP), default_timeout=60)
+    at.session_state["ms_light"] = True
+    at.run()
+    if at.exception:
+        failures.append(f"light-mode: {[str(e) for e in at.exception]}")
+
     return failures
 
 
@@ -111,5 +148,5 @@ if __name__ == "__main__":
             print("  -", f)
         sys.exit(1)
     print(f"PASS — all {len(PAGE_LABELS)} pages rendered with 0 exceptions; "
-          "headline report (C797S × osimertinib) generated; "
-          "quick-select BLU-945 pair + Generate flow OK.")
+          "headline report generated; quick-select BLU-945 + Generate OK; "
+          "real-Boltz mode + light mode render clean.")

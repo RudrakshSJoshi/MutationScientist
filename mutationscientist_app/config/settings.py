@@ -51,6 +51,12 @@ ENV_ADAPTION_MODEL = "ADAPTION_MODEL_ID"     # legacy alias; used as the stack s
 ENV_ADAPTION_BASE_URL = "ADAPTION_BASE_URL"  # default https://api.prod.adaptionlabs.ai
 ADAPTION_DEFAULT_BASE_URL = "https://api.prod.adaptionlabs.ai"
 
+# Optional: a LIVE evidence-retrieval API (Person 3 / Terminal 5). When set,
+# EvidenceService queries it (GET {url}?mutation_id=&compound_id=&match=) and
+# falls back to the curated+cited local evidence on any error. Until it is set,
+# the app serves the real curated evidence that ships with the dataset.
+ENV_EVIDENCE_API_URL = "EVIDENCE_API_URL"
+
 # Optional: a GENERIC OpenAI-compatible endpoint (e.g. a hosted fine-tuned model).
 # If ALL THREE are set, llm_service attempts the real call against this endpoint;
 # otherwise it uses the grounded template report and labels it as such. The
@@ -58,6 +64,38 @@ ADAPTION_DEFAULT_BASE_URL = "https://api.prod.adaptionlabs.ai"
 ENV_OPENAI_BASE_URL = "OPENAI_BASE_URL"  # e.g. https://my-endpoint/v1
 ENV_OPENAI_API_KEY = "OPENAI_API_KEY"
 ENV_OPENAI_MODEL = "OPENAI_MODEL"
+
+# ---------------------------------------------------------------------------
+# The fine-tuned MutationScientist model identity + its measured Adaption
+# win-rate journey.
+#
+# Win-rate = Adaption AutoScientist's head-to-head metric vs the base model
+# (0.50 = ties base; higher = beats base). These are REAL training-run results
+# and are shown as the MODEL's benchmark — never as a scientific (biochemical)
+# measurement. Provenance tier = REASONED (the LLM), never MEASURED.
+#
+#   v1 raw baseline   Qwen3.5-4B · 1,126 rows · no augmentation → 0.3617 (lost to base)
+#   v3 best fine-tune gemma-3-4b · ~20k domain-aug rows (Adaptive-Data) → 0.78
+# ---------------------------------------------------------------------------
+MODEL_PRODUCT = "MutationScientist"   # the served product/endpoint identity (stable)
+MODEL_NAME = "gemma-3-4b"             # the leaderboard-winning fine-tune (benchmark below)
+MODEL_LABEL = "MutationScientist · gemma-3-4b"
+MODEL_ENDPOINT = "http://localhost:8000/v1"   # OpenAI-compatible gateway (stable name below)
+MODEL_ENDPOINT_MODEL = "mutationscientist"    # gateway's stable model name; survives hot-swaps
+WINRATE_BEST = 0.78           # best Adaption win-rate — gemma-3-4b fine-tune (v3)
+WINRATE_BASELINE = 0.3617     # v1 raw baseline — Qwen3.5-4B, 1,126 rows, no augmentation
+WINRATE_TIES_BASE = 0.50      # by definition a model ties its own base at 0.50
+WINRATE_SOURCE = (
+    "Adaption AutoScientist head-to-head win-rate vs the base model "
+    "(0.50 = ties base; higher = better). Real training-run result — the model's "
+    "benchmark, not a biochemical measurement."
+)
+# The journey shown on the Overview (baseline → best). Stage, win-rate, note.
+WINRATE_JOURNEY = [
+    ("Base model", 0.50, "ties its own base by definition"),
+    ("v1 · raw SFT", 0.3617, "Qwen3.5-4B · 1,126 rows · no augmentation (lost to base)"),
+    ("v3 · augmented", 0.78, "gemma-3-4b · ~20k domain-aug rows (Adaptive-Data) — the lever"),
+]
 
 APP_DIR = Path(__file__).resolve().parent.parent
 
