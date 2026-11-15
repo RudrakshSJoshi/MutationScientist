@@ -297,7 +297,7 @@ function drawWinRate(){
     {name:'base model',val:DATA.base,col:'#6E7C93',note:'ties = 0.50'},
     {name:'9B + 20k aug',val:DATA.nine,col:'#E05A5A',note:'bigger model — lost'},
     {name:'v1 raw (4B)',val:DATA.v1,col:'#E05A5A',note:'below base'},
-    {name:'4B + Adaptive Data',val:DATA.winner,col:'#35C4E8',note:DATA.winner==null?'running…':'WINNER'}
+    {name:'4B + Adaptive',val:DATA.winner,col:'#35C4E8',note:DATA.winner==null?'running…':'WINNER'}
   ];
   const max=0.85, plotW=W-padL-padR, plotH=H-padT-padB, bh=34, gap=(plotH-bars.length*bh)/(bars.length-1);
   const x=v=>padL+(v/max)*plotW;
