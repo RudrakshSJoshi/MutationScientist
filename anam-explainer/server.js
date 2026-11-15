@@ -63,12 +63,14 @@ app.get("/api/health", async (_req, res) => {
              resolvedModel: await resolvedModel(), contexts: Object.keys(CONTEXTS) });
 });
 
-// The hero pairs for the UI: key, title, question, and the on-screen prediction card (no heavy context).
+// The hero pairs for the UI (exclude the dataset-level "general" fallback pack).
 app.get("/api/contexts", (_req, res) => {
-  const list = Object.entries(CONTEXTS).map(([key, p]) => ({
-    key, title: p.title, question: p.question, card: p.card,
-    mutation_id: p.mutation_id, compound_id: p.compound_id,
-  }));
+  const list = Object.entries(CONTEXTS)
+    .filter(([key]) => key !== "general")
+    .map(([key, p]) => ({
+      key, title: p.title, question: p.question, card: p.card,
+      mutation_id: p.mutation_id, compound_id: p.compound_id,
+    }));
   res.json({ contexts: list });
 });
 
@@ -83,16 +85,21 @@ app.post("/api/chat-stream", async (req, res) => {
     .filter((m) => m && typeof m.content === "string" && m.content.trim())
     .map((m) => ({ role: m.role === "user" ? "user" : "assistant", content: m.content }));
 
-  // Inject the grounded structured context for the selected hero pair (source of truth for numbers).
+  // GROUNDING GUARD: the raw model hallucinates specifics without context (e.g. C797S as the wrong
+  // residue), so we NEVER call it ungrounded. Use the selected hero pack; otherwise fall back to the
+  // dataset-level "general" pack; if neither exists, refuse rather than free-chat the raw model.
+  const pack = (req.body?.contextKey && CONTEXTS[req.body.contextKey]) || CONTEXTS.general || null;
+  if (!pack?.context) {
+    res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");
+    res.write(JSON.stringify({ content: "Let me ground that — please pick a mutation and inhibitor pair first." }) + "\n");
+    res.write(JSON.stringify({ error: "no structured context available (grounding guard)" }) + "\n");
+    return res.end();
+  }
   // NOTE: the model server requires a SINGLE system message at the start, so prompt + context are
   // merged into one system message (not two).
-  const pack = req.body?.contextKey ? CONTEXTS[req.body.contextKey] : null;
-  let systemContent = SYSTEM_PROMPT;
-  if (pack?.context) {
-    systemContent +=
-      "\n\n=== STRUCTURED CONTEXT (the ONLY source of truth for numbers, mechanisms and citations; " +
-      "if a value is not here, do not state it) ===\n" + JSON.stringify(pack.context);
-  }
+  const systemContent = SYSTEM_PROMPT +
+    "\n\n=== STRUCTURED CONTEXT (the ONLY source of truth for numbers, mechanisms and citations; " +
+    "if a value is not here, do not state it) ===\n" + JSON.stringify(pack.context);
   const messages = [{ role: "system", content: systemContent }, ...history];
 
   res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");

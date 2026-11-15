@@ -36,6 +36,10 @@ browser (public/)
 ```
 - **No key ever leaves the server** — not Anam, not the model/Adaption key.
 - **Grounding** is a single merged system message (the model server requires one system message first).
+- **Grounding guard (critical):** the raw model hallucinates specifics without context (it once placed
+  C797S at "position 179"). The server NEVER calls it ungrounded — a selected pair uses that pack; any
+  other question falls back to a dataset-level **"general"** context (full mutation panel with correct
+  notations + compounds + score definition); with no context it refuses. With context it says "position 797".
 - **Think-stripping:** Qwen3 thinking is disabled and any stray `<think>…</think>` is removed server-side,
   so the avatar never speaks chain-of-thought.
 
