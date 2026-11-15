@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MutationScientist — EGFR Avatar</title>
+  <style>
+    :root {
+      --bg:#070d1a; --bg2:#0d1526; --panel:#111c33; --panel2:#0e1830;
+      --ink:#eaf1fc; --muted:#90a4c6; --line:#22324f;
+      --accent:#4da3ff; --accent2:#37e0b0; --warn:#ffb454; --bad:#ff6b8a;
+    }
+    * { box-sizing:border-box; }
+    html,body { margin:0; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(1200px 700px at 78% -12%, #15264a, var(--bg)) fixed;
+      color:var(--ink); min-height:100vh; padding:20px 16px;
+    }
+    .wrap { width:100%; max-width:1180px; margin:0 auto; }
+    header { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px; }
+    h1 { font-size:1.4rem; margin:0; letter-spacing:.2px; }
+    .pill { font-size:.72rem; color:var(--accent2); border:1px solid #1f5a4a; background:#0c2420;
+            padding:3px 9px; border-radius:999px; }
+    p.sub { color:var(--muted); margin:6px 0 18px; font-size:.95rem; }
+    .grid { display:grid; grid-template-columns: 1.35fr 1fr; gap:18px; align-items:start; }
+    @media (max-width: 860px){ .grid { grid-template-columns:1fr; } }
+
+    .stage { position:relative; background:#060b16; border:1px solid var(--line); border-radius:18px;
+             overflow:hidden; aspect-ratio:16/10; box-shadow:0 24px 70px rgba(0,0,0,.5); }
+    video { width:100%; height:100%; object-fit:cover; background:#060b16; display:block; }
+    .overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+               flex-direction:column; gap:14px; text-align:center; padding:24px;
+               background:linear-gradient(180deg, rgba(6,11,22,.2), rgba(6,11,22,.75)); }
+    .speaking { position:absolute; left:12px; bottom:12px; display:none; align-items:center; gap:8px;
+                background:rgba(8,14,26,.72); border:1px solid var(--line); padding:6px 11px;
+                border-radius:999px; font-size:.78rem; color:var(--accent2); }
+    .speaking .dot { width:8px; height:8px; border-radius:50%; background:var(--accent2);
+                     animation:pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{opacity:.35; transform:scale(.8);} 50%{opacity:1; transform:scale(1.1);} }
+
+    .panel { background:linear-gradient(180deg,var(--panel),var(--panel2)); border:1px solid var(--line);
+             border-radius:18px; padding:16px; }
+    .panel h2 { font-size:.82rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted);
+                margin:2px 0 10px; }
+    .heroes { display:grid; gap:10px; }
+    .hero { text-align:left; background:#0c1730; color:var(--ink); border:1px solid var(--line);
+            border-radius:12px; padding:11px 13px; cursor:pointer; transition:.15s; }
+    .hero:hover { border-color:var(--accent); background:#0f1c38; }
+    .hero.active { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
+    .hero .t { font-weight:650; font-size:.95rem; }
+    .hero .d { color:var(--muted); font-size:.8rem; margin-top:2px; }
+
+    .card { margin-top:14px; border:1px solid var(--line); border-radius:14px; padding:14px;
+            background:#0a142a; display:none; }
+    .card .head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .card .pair { font-weight:700; font-size:1rem; }
+    .badge { font-size:.68rem; padding:2px 8px; border-radius:999px; border:1px solid var(--line); }
+    .badge.cov { color:var(--warn); border-color:#5a4322; background:#241a0c; }
+    .badge.non { color:var(--accent2); border-color:#1f5a4a; background:#0c2420; }
+    .metrics { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:12px; }
+    .metric { background:#0b1428; border:1px solid var(--line); border-radius:10px;
+              padding:9px 10px; }
+    .metric .k { font-size:.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+    .metric .v { font-size:1.12rem; font-weight:700; margin-top:2px; }
+    .metric .v small { font-size:.72rem; color:var(--muted); font-weight:500; }
+    .metric.pred .v { color:var(--accent); }
+    .metric.exp .v { color:var(--accent2); }
+    .nopred { margin-top:12px; color:var(--warn); font-size:.86rem; border:1px dashed #5a4322;
+              background:#1c1507; border-radius:10px; padding:10px; }
+    .claim { margin-top:10px; color:var(--muted); font-size:.82rem; font-style:italic; }
+    .conv { margin-top:8px; color:var(--muted); font-size:.72rem; }
+
+    .ask { display:flex; gap:8px; margin-top:14px; }
+    .ask input { flex:1; background:#0a1428; border:1px solid var(--line); color:var(--ink);
+                 border-radius:10px; padding:10px 12px; font-size:.92rem; }
+    .ask input:focus { outline:none; border-color:var(--accent); }
+    .controls { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .btn { background:var(--accent); color:#04122b; border:none; border-radius:10px; padding:10px 16px;
+           font-weight:650; font-size:.92rem; cursor:pointer; }
+    .btn:disabled { opacity:.5; cursor:not-allowed; }
+    .btn.secondary { background:transparent; color:var(--ink); border:1px solid var(--line); }
+    .btn.accent2 { background:var(--accent2); color:#042018; }
+    .status { color:var(--muted); font-size:.82rem; margin-top:12px; min-height:1.2em; }
+    .answer { margin-top:10px; background:#0a1428; border:1px solid var(--line); border-radius:10px;
+              padding:11px 12px; font-size:.9rem; color:#d7e3f8; max-height:150px; overflow:auto;
+              display:none; white-space:pre-wrap; }
+    .foot { color:var(--muted); font-size:.74rem; margin-top:16px; text-align:center; }
+    .foot b { color:var(--ink); font-weight:600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>MutationScientist</h1>
+      <span class="pill">● Live avatar · answers from our fine-tuned model</span>
+    </header>
+    <p class="sub">A real-time Anam avatar, <b>Dr. Mutasci</b>, that explains EGFR drug resistance in NSCLC —
+      grounded in real measurements, cited evidence, and real Boltz-2 predictions. No invented numbers.</p>
+
+    <div class="grid">
+      <div>
+        <div class="stage">
+          <video id="persona-video" autoplay playsinline></video>
+          <div class="overlay" id="overlay">
+            <div style="font-size:.85rem;color:var(--muted)">Microphone is used for live conversation.</div>
+            <button class="btn" id="startBtn">▶ Start the explainer</button>
+          </div>
+          <div class="speaking" id="speaking"><span class="dot"></span> Dr. Mutasci is speaking…</div>
+        </div>
+        <div class="answer" id="answer"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Explore a mutation × inhibitor</h2>
+        <div class="heroes" id="heroes"><div style="color:var(--muted);font-size:.85rem">Loading…</div></div>
+
+        <div class="card" id="card"></div>
+
+        <div class="ask">
+          <input id="askInput" placeholder="Ask Dr. Mutasci a question…" autocomplete="off" />
+          <button class="btn" id="askBtn" disabled>Ask</button>
+        </div>
+        <div class="controls">
+          <button class="btn accent2" id="pitchBtn" disabled>▶ Play 90-sec pitch</button>
+          <button class="btn secondary" id="stopBtn" disabled>■ Stop</button>
+        </div>
+        <div class="status" id="status"></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Grounded in <b>EGFR_RESEARCH_DATASET</b> (Melis et al. 2026) · Boltz-2 affinity on the log10(IC50 µM)
+      scale, lower = stronger · <span id="modelFoot">model: …</span> · not for clinical decisions.
+    </div>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

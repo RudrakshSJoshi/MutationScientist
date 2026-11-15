@@ -1,0 +1,16 @@
+{
+  "name": "egfr-anam-explainer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Real-time Anam AI avatar that explains the EGFR inhibitor-resistance project (NSCLC) for the hackathon.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
