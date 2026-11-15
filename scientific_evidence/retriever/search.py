@@ -40,6 +40,17 @@ def select(db, where, params, match, limit, offset=0, *, count=False):
     return [json.loads(row[0]) for row in payloads], total
 
 
+def experimental_filters(cell_line, atp_condition):
+    return [
+        (condition, value)
+        for condition, value in (
+            ("json_extract(e.payload, '$.details.cell_line') = ? COLLATE NOCASE", cell_line),
+            ("instr(lower(json_extract(e.payload, '$.details.assay_description')), lower(?)) > 0", atp_condition),
+        )
+        if value is not None
+    ]
+
+
 def retrieve(
     mutation_id=None, compound_id=None, *, query=None, mutation_profile=None,
     compound_name=None, resistance_mechanism=None, cancer_context=None,
@@ -104,12 +115,9 @@ def retrieve(
         if measurement_type is not None:
             filters.append("json_extract(e.payload, '$.details.measurement_type') = ? COLLATE NOCASE")
             values.append(measurement_type.strip())
-        if cell_line is not None:
-            filters.append("json_extract(e.payload, '$.details.cell_line') = ? COLLATE NOCASE")
-            values.append(cell_line)
-        if atp_condition is not None:
-            filters.append("instr(lower(json_extract(e.payload, '$.details.assay_description')), lower(?)) > 0")
-            values.append(atp_condition)
+        for condition, value in experimental_filters(cell_line, atp_condition):
+            filters.append(condition)
+            values.append(value)
         if measurement_values:
             predicates = []
             for relation, value, unit in measurement_values:
