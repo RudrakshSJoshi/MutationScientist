@@ -22,11 +22,12 @@ from services.dataset_service import DatasetService
 from services.boltz_service import BoltzService
 from services.evidence_service import EvidenceService
 from services.llm_service import LLMService
-from components import ui
+from components import ui, theme
 from pages import (mutation_explorer, inhibitor_explorer, molecular_screening,
                    structure_viewer, evidence_explorer, mutation_scientist)
 
 st.set_page_config(page_title=S.APP_TITLE, page_icon=S.APP_ICON, layout="wide")
+theme.inject()
 
 
 @st.cache_resource(show_spinner="Loading EGFR_RESEARCH_DATASET…")
@@ -74,7 +75,7 @@ def overview(ctx):
                 "**osimertinib**, and what evidence supports the proposed resistance mechanism?*  \n"
                 "→ open **MutationScientist Report** (defaults to this pair).")
 
-    st.caption(ctx.score_definition)
+    ui.score_callout(ctx.score_definition)
     st.caption("Not for clinical decisions. Predicted affinity ≠ inhibition ≠ clinical efficacy.")
 
 
@@ -97,8 +98,11 @@ def main():
         st.stop()
 
     with st.sidebar:
-        st.title(f"{S.APP_ICON} MutationScientist")
-        st.caption("EGFR Molecular Discovery")
+        st.markdown(
+            "<div class='brandmark'><div class='logo'>◈</div>"
+            "<div class='wm'>MutationScientist<small>EGFR Molecular Discovery</small></div></div>",
+            unsafe_allow_html=True)
+        st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
         choice = st.radio("Navigate", list(PAGES), label_visibility="collapsed")
         st.markdown("---")
         s = ctx.data.status()

@@ -65,3 +65,14 @@ APP_DIR = Path(__file__).resolve().parent.parent
 def env(name: str, default: str | None = None) -> str | None:
     v = os.environ.get(name)
     return v if v else default
+
+
+def is_covalent(status: str | None) -> bool:
+    """True only for covalent inhibitors.
+
+    The naive test ``"coval" in status.lower()`` is WRONG: it matches
+    'non-covalent' too (the substring 'coval' is inside it), which would flag
+    every reversible inhibitor as covalent. This guards against that.
+    """
+    s = (status or "").strip().lower()
+    return "coval" in s and not s.startswith("non")

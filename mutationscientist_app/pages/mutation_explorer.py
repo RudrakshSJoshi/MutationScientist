@@ -14,8 +14,10 @@ def render(ctx):
               for m in muts}
     has_cx = set(data.mutations_with_complexes())
 
-    choice = st.selectbox("Select a mutation / variant", list(labels),
-                          format_func=lambda k: labels[k] + ("  •" if k in has_cx else ""))
+    ids = list(labels)
+    default_idx = ids.index("EGFR_C797S") if "EGFR_C797S" in ids else 0
+    choice = st.selectbox("Select a mutation / variant", ids, index=default_idx,
+                          format_func=lambda k: labels[k] + ("  •  has Boltz complex" if k in has_cx else ""))
     m = data.get_mutation(choice)
     if not m:
         st.info("No record.")

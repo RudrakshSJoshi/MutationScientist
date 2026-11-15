@@ -22,7 +22,7 @@ the score definition at inference time, because the training data does not yet
 teach prediction interpretation. `build_context()` is that structured payload.
 """
 from __future__ import annotations
-import json
+import json, hashlib
 
 import config.settings as S
 
@@ -56,6 +56,37 @@ class LLMService:
             self.model_id = None
 
         self.real_mode = self._adaption_ready or self._openai_ready
+
+        # Context-keyed disk cache of REAL model outputs. A local fine-tuned model
+        # can be slow (tens of seconds); caching makes a re-run of the same pair
+        # instant for the demo. The cache stores the model's OWN output verbatim —
+        # it is never fabricated, and the key includes the full context, so if any
+        # input changes (e.g. Boltz goes mock->real) it regenerates.
+        self._cache_dir = S.APP_DIR / ".llm_cache"
+
+    # ------------------------------------------------------------------ cache
+    def _cache_key(self, ctx: dict) -> str:
+        blob = json.dumps({"p": self.provider, "m": self.model_id, "ctx": ctx},
+                          sort_keys=True, default=str)
+        return hashlib.sha256(blob.encode()).hexdigest()[:24]
+
+    def _cache_get(self, ctx: dict):
+        try:
+            f = self._cache_dir / f"{self._cache_key(ctx)}.json"
+            if f.exists():
+                rep = json.loads(f.read_text())
+                rep["_cached"] = True
+                return rep
+        except Exception:
+            pass
+        return None
+
+    def _cache_put(self, ctx: dict, rep: dict):
+        try:
+            self._cache_dir.mkdir(exist_ok=True)
+            (self._cache_dir / f"{self._cache_key(ctx)}.json").write_text(json.dumps(rep))
+        except Exception:
+            pass
 
     def mode_label(self) -> str:
         if self.provider == "adaption":
@@ -111,10 +142,16 @@ class LLMService:
         ctx = self.build_context(mutation, compound, boltz_predictions,
                                  experimental_evidence, measurements, data_service)
         if self.real_mode:
+            cached = self._cache_get(ctx)
+            if cached is not None:
+                return cached
             try:
                 if self.provider == "adaption":
-                    return self._generate_real_adaption(ctx)
-                return self._generate_real_openai(ctx)
+                    rep = self._generate_real_adaption(ctx)
+                else:
+                    rep = self._generate_real_openai(ctx)
+                self._cache_put(ctx, rep)
+                return rep
             except Exception as e:  # never break the demo; fall back and say so
                 rep = self._generate_template(ctx)
                 rep["is_mock"] = True
@@ -146,10 +183,11 @@ class LLMService:
             "input": self._user_text(ctx),
             "instructions": self._SYSTEM,
             "temperature": 0.2,
+            "max_output_tokens": 800,
         }).encode()
         req = urllib.request.Request(url, data=body, headers={
             "Authorization": f"Bearer {self.adaption_key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=180) as resp:
             out = json.loads(resp.read())
         text = out.get("output_text") or self._extract_output_text(out)
         if not text:
@@ -179,10 +217,11 @@ class LLMService:
                 {"role": "user", "content": self._user_text(ctx)},
             ],
             "temperature": 0.2,
+            "max_tokens": 800,
         }).encode()
         req = urllib.request.Request(url, data=body, headers={
             "Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=180) as resp:
             out = json.loads(resp.read())
         text = out["choices"][0]["message"]["content"]
         return {"is_mock": False, "model": self.model_id, "context": ctx,
@@ -198,7 +237,7 @@ class LLMService:
         any_mock_pred = any(p.get("is_mock") for p in preds)
 
         def mech(v):
-            return v if v and v.strip() else "not annotated in the dataset for this variant"
+            return v.strip().rstrip(".") if v and v.strip() else "not annotated in the dataset for this variant"
 
         sections = {}
 
@@ -213,13 +252,18 @@ class LLMService:
 
         # 2. Compound
         cov = cmp_.get("covalent_status") or "unknown"
-        sections["Inhibitor"] = (
+        is_cov = S.is_covalent(cov)
+        inhibitor_line = (
             f"**{cmp_.get('name') or cmp_.get('compound_id','?')}** — class "
             f"{cmp_.get('drug_class') or 'n/a'}; covalent status: **{cov}**"
-            + (f" (warhead: {cmp_.get('warhead_type')})" if cmp_.get("warhead_type") else "")
-            + ". Covalent inhibitors have time-dependent inhibition that conventional "
-              "affinity values do not fully capture." if cov and cov.lower().startswith("coval") else "."
         )
+        if cmp_.get("warhead_type"):
+            inhibitor_line += f" (warhead: {cmp_.get('warhead_type')})"
+        inhibitor_line += "."
+        if is_cov:
+            inhibitor_line += (" Covalent inhibitors have time-dependent inhibition that "
+                               "conventional equilibrium affinity does not fully capture.")
+        sections["Inhibitor"] = inhibitor_line
 
         # 3. Computational prediction (clearly separated, flagged if mock)
         if preds:
@@ -271,7 +315,7 @@ class LLMService:
             "Predicted binding affinity ≠ enzyme inhibition, cell killing, or clinical efficacy.",
             "KD, Ki and IC50 are distinct; biochemical and cellular measurements are not interchangeable.",
         ]
-        if cov and cov.lower().startswith("coval"):
+        if is_cov:
             caveats.append("Covalent kinetics are not fully represented by equilibrium affinity.")
         if any_mock_pred:
             caveats.append("Boltz values above are MOCK placeholders, not model outputs.")
