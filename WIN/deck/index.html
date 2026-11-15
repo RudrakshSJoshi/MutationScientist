@@ -152,7 +152,7 @@ ul.ticks li b{color:var(--text-1);font-weight:600}
           <rect x="340" y="40" width="300" height="90" rx="12" fill="rgba(57,135,229,.10)" stroke="#3987E5"/>
           <text x="490" y="72" fill="#EAEEF6" font-size="17" font-weight="600">Boltz-2 affinity model</text>
           <text x="490" y="95" fill="#7fb0f3" font-size="12.5" font-family="JetBrains Mono">◈ PREDICTED · log10(IC50 µM), lower=stronger</text>
-          <text x="490" y="114" fill="#A6B2C6" font-size="12">structure + binding affinity</text>
+          <text x="490" y="114" fill="#A6B2C6" font-size="12">structure + affinity · 44 EGFR complexes predicted</text>
         </g>
         <!-- llm -->
         <g font-family="Inter" text-anchor="middle">
@@ -182,7 +182,7 @@ ul.ticks li b{color:var(--text-1);font-weight:600}
       <div class="col" style="flex:1.3 1 340px">
         <div class="card" style="height:100%">
           <p class="sub" style="margin-bottom:10px">Head-to-head win-rate vs base model <span class="mono" style="color:var(--text-3)">(Adaption, higher=better; 0.5=ties base)</span></p>
-          <svg id="wrchart" viewBox="0 0 520 240" width="100%" role="img" aria-label="Win-rate bar chart: base 0.50, v1 raw baseline 0.36, winning fine-tune pending."></svg>
+          <svg id="wrchart" viewBox="0 0 520 240" width="100%" role="img" aria-label="Win-rate bar chart: base 0.50; 9B plus augmentation 0.31 (lost); v1 raw 0.36; 4B-class plus Adaptive Data 0.78 (winner)."></svg>
         </div>
       </div>
       <div class="col" style="flex:1 1 260px">
@@ -192,6 +192,7 @@ ul.ticks li b{color:var(--text-1);font-weight:600}
           <div class="tile"><div class="num mono" id="t-rows">~20k</div><div class="lab">augmented training rows</div><div class="delta">Adaptive-Data · the win-rate lever</div></div>
           <div class="tile"><div class="num mono" id="t-credits">—</div><div class="lab">augmentation credits (metered)</div><div class="delta">of 1,238 · 300 reserve kept</div></div>
         </div>
+        <p class="callout" style="margin-top:12px;border-left:3px solid var(--accent)"><b style="color:var(--accent)">A 4B-class base + Adaptive Data beats a 9B.</b> The 9B instruct model <i>lost</i> to its own base (0.31); a 4B pretrained base on domain-heavy augmentation won at <b class="mono">0.78</b>. Capacity isn't the lever — the right base and the right data are.</p>
         <p class="callout" style="margin-top:12px">Integrity eval (<b id="t-fab">pending</b>): number-fabrication is graded on held-out items via the served stack — we report the real count, never assume zero.</p>
       </div>
     </div>
@@ -226,8 +227,9 @@ ul.ticks li b{color:var(--text-1);font-weight:600}
       <div class="card" style="border-left:3px solid var(--predicted)">
         <span class="pill predicted"><span class="dot"></span>◈ Non-covalent · prediction × experiment</span>
         <h3 style="margin:12px 0 6px;font-size:17px">L858R/C797S × BLU-945</h3>
-        <p style="color:var(--text-2);font-size:14px">Real Boltz complex <span class="mono">COMPLEX_001557</span>. Model and lab agree:</p>
-        <p class="mono" style="margin-top:10px;font-size:15px"><span style="color:var(--predicted-ft)">−1.36</span> <span style="color:var(--text-3)">pred log10 µM</span> · <span style="color:var(--measured)">6.32 nM</span> <span style="color:var(--text-3)">measured</span></p>
+        <p style="color:var(--text-2);font-size:14px">Real Boltz-2 complex <span class="mono">COMPLEX_001557</span> (boltz-2.2.1). Model and lab agree:</p>
+        <p class="mono" style="margin-top:10px;font-size:15px"><span style="color:var(--predicted)">−1.46</span> <span style="color:var(--text-3)">predicted</span> · <span style="color:var(--measured)">−1.36</span> <span style="color:var(--text-3)">measured</span> <span style="color:var(--text-3)">(log10 IC50 µM)</span></p>
+        <p style="color:var(--text-3);font-size:12.5px;margin-top:6px">≈ 35 nM predicted vs ≈ 44 nM measured · 1 of <b style="color:var(--text-2)">44</b> Boltz-2 affinity predictions</p>
       </div>
     </div>
     <div class="row" style="margin-top:24px;align-items:center;justify-content:space-between">
@@ -249,12 +251,14 @@ ul.ticks li b{color:var(--text-1);font-weight:600}
 // Filled once the winning run completes; until then the winner tiles read "pending".
 const DATA = {
   base: 0.50,
-  v1: 0.3617,
-  winner: 0.7378,      // REAL best_win_rate, run 4c86594f, GET /api/v1/autoscientist
-  winnerModel: "Qwen3-4B-Base · 20k domain-aug",
+  v1: 0.3617,          // Qwen3.5-4B, raw 1,126 rows (run 1cc9e20f)
+  nine: 0.3103,        // Qwen3.5-9B + 20k aug (run 387caed3) — bigger model LOST
+  winner: 0.7819,      // REAL best_win_rate, run 3412f28a, GET /api/v1/autoscientist
+  winnerModel: "gemma-3-4b-pt · 20k domain-aug",
   rows: "19,983",
   credits: 569,        // METERED augmentation credits (training compute isn't API-billed)
-  fabrications: "eval pending"  // runs vs the Inference Stack (UI-created) — not yet claimed
+  boltzN: 44,          // real Boltz-2 affinity predictions (boltz_predictions.meta.json)
+  fabrications: "eval pending"  // runs vs the Inference Stack — not yet claimed
 };
 
 const slides=[...document.querySelectorAll('.slide')];
@@ -291,8 +295,9 @@ function drawWinRate(){
   const W=520,H=240,padL=120,padR=50,padT=16,padB=36;
   const bars=[
     {name:'base model',val:DATA.base,col:'#6E7C93',note:'ties = 0.50'},
+    {name:'9B + 20k aug',val:DATA.nine,col:'#E05A5A',note:'bigger model — lost'},
     {name:'v1 raw (4B)',val:DATA.v1,col:'#E05A5A',note:'below base'},
-    {name:DATA.winnerModel||'winning fine-tune',val:DATA.winner,col:'#35C4E8',note:DATA.winner==null?'running…':'ours'}
+    {name:'4B + Adaptive Data',val:DATA.winner,col:'#35C4E8',note:DATA.winner==null?'running…':'WINNER'}
   ];
   const max=0.85, plotW=W-padL-padR, plotH=H-padT-padB, bh=34, gap=(plotH-bars.length*bh)/(bars.length-1);
   const x=v=>padL+(v/max)*plotW;

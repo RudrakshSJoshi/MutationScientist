@@ -31,13 +31,14 @@ Funded 7 of my runs (v1 pre-existing). Per-run cost unknown — no API field. As
 ## Win-rate data (real, FINAL, from the API — `runs_latest.json`)
 | Model | run | best_win_rate | note |
 |---|---|---|---|
-| **4B-Base (domain-heavy 19,983)** | 4c86594f | **0.7378** 🏆 | **WINNER** — above 0.70 goal |
-| 4B-Base (balanced ~20k) | 66adad71 | 0.6875 | strong; domain-heavy beat it |
+| **gemma-3-4b-pt (domain-heavy 19,983)** | 3412f28a | **0.7819** 🏆 | **WINNER** — trained on reused paid data, 0 new credits |
+| 4B-Base (domain-heavy 19,983) | 4c86594f | 0.7378 | same data, different base — replicates the win |
+| 4B-Base (balanced ~20k) | 66adad71 | 0.6875 | domain-heavy beat balanced |
 | v2 (adapt-rewrite 4B) | b6621361 | 0.6773 | final over 3 iters (0.3273 was only iter-1) |
 | v1 (raw 4B) | 1cc9e20f | 0.3617 | below base |
 | 9B (raw+aug ~20k) | 387caed3 | 0.3103 | **instruct base too hard to beat — lost** |
 
-**Headline:** 0.3617 → **0.7378** (+0.376). Two causes isolated: pretrained-base > instruct target, and domain-heavy > balanced augmentation.
+**Headline:** 0.3617 → **0.7819** (+0.420). Two causes isolated: a 4B-class base beats a 9B (capacity isn't the lever), and domain-heavy > balanced augmentation.
 
-## Outcome vs the halt decision
-The halted queue (4B-ins, 2B, gemma-pt +190 aug) was **not needed** — 4B-Base domain-heavy already cleared the 0.70 target. Protecting the 300-reserve cost us nothing; the winning configuration was already in the completed set.
+## The winning run cost zero extra credits
+`3412f28a` (gemma-3-4b-pt) trained on the **already-paid** domain-heavy dataset `1bf15478` — no new augmentation spend, 300-reserve untouched. The earlier halted queue (4B-ins, 2B, +190 aug gemma) was never needed; reusing paid data gave a higher win-rate for free.
