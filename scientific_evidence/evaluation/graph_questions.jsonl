@@ -1,0 +1,16 @@
+{"id":"GRAPH-01","keywords":"ERBB1","anchor":"protein:P00533","min_matches":1}
+{"id":"GRAPH-02","keywords":"HER-1","anchor":"protein:P00533","min_matches":1}
+{"id":"GRAPH-03","keywords":"Epidermal growth factor receptor","anchor":"protein:P00533","min_matches":1}
+{"id":"GRAPH-04","keywords":"UniProt P00533-1","anchor":"protein:P00533","min_matches":1}
+{"id":"GRAPH-05","keywords":"EGFR T790M Iressa KD","direct":["MEAS_001135"],"related":["MEAS_001139"]}
+{"id":"GRAPH-06","keywords":"HER1 T790M gefitinib","filters":{"exact_only":true,"assay_type":"biochemical_binding"},"direct":["MEAS_001135"],"related":[]}
+{"id":"GRAPH-07","keywords":"P00533 L858R/T790M gefitinib KD","filters":{"exact_only":true},"direct":["MEAS_001139"],"related":[]}
+{"id":"GRAPH-08","keywords":"C797S AZD9291","filters":{"assay_type":"cellular_viability","cell_line":"NCI-H1975 clone 2"},"direct":[],"related":["SOURCE_MELIS:Table 4 NCI-H1975 clone 2 osimertinib"]}
+{"id":"GRAPH-09","keywords":"C797S AZD9291","filters":{"exact_only":true,"assay_type":"cellular_viability"},"direct":[],"related":[]}
+{"id":"GRAPH-10","keywords":"L858R/T790M/C797S osimertinib","filters":{"assay_type":"cellular_viability","cell_line":"NCI-H1975 clone 4"},"direct":[],"related":[]}
+{"id":"GRAPH-11","keywords":"EGFR L858R/C797S osimertinib","filters":{"assay_type":"enzyme_inhibition","atp_condition":"1 mmol/L ATP"},"direct":["MEAS_000042"],"related":[]}
+{"id":"GRAPH-12","keywords":"EGFR L858R/C797S osimertinib","filters":{"assay_type":"enzyme_inhibition","atp_condition":"Km,ATP"},"direct":["MEAS_000006"],"related":[]}
+{"id":"GRAPH-13","keywords":"P00533 PDB 6LUD","anchor":"structure:6LUD","direct":["6LUD:experimental data"],"related":[]}
+{"id":"GRAPH-14","keywords":"PMID:18227510 T790M Iressa KD","anchor":"pmid:18227510","direct":["MEAS_001135"],"related":["MEAS_001139"]}
+{"id":"GRAPH-15","keywords":"L861Q gefitinib","filters":{"exact_only":true,"assay_type":"biochemical_binding"},"direct":[],"related":[]}
+{"id":"GRAPH-16","keywords":"HER2 P04626","direct":[],"related":[]}
