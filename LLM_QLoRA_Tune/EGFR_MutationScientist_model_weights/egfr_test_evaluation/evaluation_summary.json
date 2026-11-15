@@ -1,0 +1,12 @@
+{
+  "model": "Qwen/Qwen3.5-4B",
+  "adapter": "/kaggle/working/egfr_qwen35_optuna_ddp/final_model/best_adapter",
+  "test_examples": 215,
+  "teacher_forced_token_weighted_loss": 0.19398960740609128,
+  "mean_per_example_loss": 0.2259015424179758,
+  "loss_evaluated_examples": 215,
+  "loss_failed_examples": 0,
+  "generation_failed_examples": 0,
+  "max_new_tokens": 256,
+  "decoding": "greedy"
+}

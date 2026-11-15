@@ -1,0 +1,10 @@
+{
+  "best_validation_loss": 0.9013909259584273,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.2582576543735902,
+      "validation_loss": 0.9013909259584273
+    }
+  ]
+}

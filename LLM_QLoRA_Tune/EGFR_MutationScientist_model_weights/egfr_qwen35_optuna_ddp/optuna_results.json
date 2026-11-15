@@ -1,0 +1,38 @@
+{
+  "best_cv_loss": 0.6920922451148952,
+  "best_parameters": {
+    "learning_rate": 0.00012492574844542607,
+    "lora_dropout": 0.08663112745550294,
+    "weight_decay": 0.04171375460156042
+  },
+  "all_trials": [
+    {
+      "number": 0,
+      "value": 0.941054098451072,
+      "params": {
+        "learning_rate": 5.818492004022956e-05,
+        "lora_dropout": 0.042373912691531956,
+        "weight_decay": 0.03444202619576727
+      },
+      "fold_scores": {
+        "fold_1_loss": 1.0141319784689096,
+        "fold_2_loss": 0.9013909259584273,
+        "fold_3_loss": 0.9076393909258793
+      }
+    },
+    {
+      "number": 1,
+      "value": 0.6920922451148952,
+      "params": {
+        "learning_rate": 0.00012492574844542607,
+        "lora_dropout": 0.08663112745550294,
+        "weight_decay": 0.04171375460156042
+      },
+      "fold_scores": {
+        "fold_1_loss": 0.8023831115878356,
+        "fold_2_loss": 0.6577630921808094,
+        "fold_3_loss": 0.6161305315760407
+      }
+    }
+  ]
+}
