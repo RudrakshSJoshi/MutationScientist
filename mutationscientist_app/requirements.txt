@@ -1,0 +1,11 @@
+# MutationScientist application — Person 4
+# Only hard dependency. Streamlit pulls in pandas (used by the tables/charts).
+streamlit>=1.40
+
+# The dataset loader (egfr_dataset_loader.py) and data reading are pure stdlib.
+# The 3D structure viewer uses 3Dmol.js from a CDN — no Python package needed.
+
+# ---- OPTIONAL (nicer visuals; app degrades gracefully without them) ----
+# rdkit>=2024.9        # 2D ligand depiction from SMILES
+# py3Dmol>=2.1         # alternative in-process 3D viewer
+# stmol>=0.0.9         # Streamlit wrapper for py3Dmol
