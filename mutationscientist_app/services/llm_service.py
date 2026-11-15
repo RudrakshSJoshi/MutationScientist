@@ -107,7 +107,7 @@ class LLMService:
             "relation": m.get("measurement_relation"),
             "assay_type": m.get("assay_type"),
             "source": m.get("publication") or m.get("source_database"),
-        } for m in (measurements or [])]
+        } for m in (measurements or [])][:12]  # cap: keep the prompt (and latency) bounded
         return {
             "score_definition": S.SCORE_DEFINITION,
             "mutation": {
@@ -132,7 +132,7 @@ class LLMService:
                 {"claim": e["claim"], "evidence_type": e["evidence_type"],
                  "assay_type": e.get("assay_type"), "pmid": e.get("pmid"),
                  "doi": e.get("doi"), "source_title": e.get("source_title")}
-                for e in (experimental_evidence or [])
+                for e in (experimental_evidence or [])[:10]
             ],
         }
 
@@ -187,7 +187,7 @@ class LLMService:
         }).encode()
         req = urllib.request.Request(url, data=body, headers={
             "Authorization": f"Bearer {self.adaption_key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=180) as resp:
+        with urllib.request.urlopen(req, timeout=360) as resp:
             out = json.loads(resp.read())
         text = out.get("output_text") or self._extract_output_text(out)
         if not text:
@@ -221,7 +221,7 @@ class LLMService:
         }).encode()
         req = urllib.request.Request(url, data=body, headers={
             "Authorization": f"Bearer {self.openai_key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=180) as resp:
+        with urllib.request.urlopen(req, timeout=360) as resp:
             out = json.loads(resp.read())
         text = out["choices"][0]["message"]["content"]
         return {"is_mock": False, "model": self.model_id, "context": ctx,
