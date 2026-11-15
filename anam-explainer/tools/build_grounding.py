@@ -164,6 +164,40 @@ def main():
         }
         print(f"[pack] {hero['key']}: preds={len(preds)} meas={len(meas)} ev={len(ev)} real_pred={bool(realpred)}")
 
+    # ---- 3) a dataset-level GENERAL context (anti-hallucination fallback) ---
+    # Every model call must carry structured context. For questions with no specific pair selected,
+    # this project-level record anchors facts (correct mutation notations/positions, compounds, score
+    # convention) so the raw model can't invent specifics (e.g. C797S as "position 179").
+    def mut_rec(m):
+        return {"mutation_id": m.get("mutation_id"), "notation": m.get("mutation_notation"),
+                "type": m.get("mutation_type"), "domain": m.get("protein_domain"),
+                "known_mechanism": m.get("known_mechanism"),
+                "resistance_association": m.get("resistance_association"),
+                "classification": m.get("mutation_classification")}
+    def cmp_rec(c):
+        return {"compound_id": c.get("compound_id"), "name": c.get("compound_name"),
+                "drug_class": c.get("drug_class"), "covalent_status": c.get("covalent_status"),
+                "warhead_type": c.get("warhead_type")}
+    general_ctx = {
+        "scope": "PROJECT-LEVEL overview — use this to ground general questions. For a specific "
+                 "mutation x inhibitor, a richer per-pair context is supplied instead.",
+        "target": "EGFR (UniProt P00533), NSCLC",
+        "score_definition": S.SCORE_DEFINITION,
+        "mutation_panel": [mut_rec(data.get_mutation(m["mutation_id"])) for m in data.list_mutations()],
+        "compound_panel": [cmp_rec(c) for c in data.list_compounds()],
+        # the hero cards' real numbers (packs currently holds only the hero pairs)
+        "headline_facts": [
+            {k: p["card"].get(k) for k in ("mutation", "compound", "covalent", "measurements",
+             "affinity_pred_value", "experimental_affinity_label")}
+            for p in packs.values()
+        ],
+    }
+    packs["general"] = {"title": "Project overview", "question": None,
+                        "mutation_id": None, "compound_id": None,
+                        "card": None, "context": general_ctx}
+    print(f"[pack] general: {len(general_ctx['mutation_panel'])} mutations, "
+          f"{len(general_ctx['compound_panel'])} compounds")
+
     DATA_OUT.parent.mkdir(parents=True, exist_ok=True)
     DATA_OUT.write_text(json.dumps(packs, indent=2))
     print(f"[write] {DATA_OUT}")

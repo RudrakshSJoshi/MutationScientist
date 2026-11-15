@@ -318,5 +318,331 @@
         }
       ]
     }
+  },
+  "general": {
+    "title": "Project overview",
+    "question": null,
+    "mutation_id": null,
+    "compound_id": null,
+    "card": null,
+    "context": {
+      "scope": "PROJECT-LEVEL overview \u2014 use this to ground general questions. For a specific mutation x inhibitor, a richer per-pair context is supplied instead.",
+      "target": "EGFR (UniProt P00533), NSCLC",
+      "score_definition": "affinity_pred_value is log10(IC50 in micromolar): log10(IC50_nM) - 3. LOWER = STRONGER binding. This is NOT pIC50. Anchors: 1 nM -> -3, 1 uM -> 0, 100 uM -> +2. affinity_probability_binary is a SEPARATE binder-likelihood probability and must not be conflated with affinity_pred_value.",
+      "mutation_panel": [
+        {
+          "mutation_id": "EGFR_WT",
+          "notation": "WT",
+          "type": "reference",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Wild-type reference kinase.",
+          "resistance_association": "none",
+          "classification": "reference"
+        },
+        {
+          "mutation_id": "EGFR_L858R",
+          "notation": "L858R",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Activation-loop activating mutation; TKI-sensitising.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_ex19del",
+          "notation": "ex19del",
+          "type": "inframe_deletion",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-19 in-frame deletion (representative delE746_A750/ELREA); activating, TKI-sensitising.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_G719A",
+          "notation": "G719A",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-18 G719X P-loop activating mutation.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_G719S",
+          "notation": "G719S",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-18 G719X P-loop activating mutation.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_G719C",
+          "notation": "G719C",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-18 G719X P-loop activating mutation.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_L861Q",
+          "notation": "L861Q",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-21 atypical activating mutation.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_S768I",
+          "notation": "S768I",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Exon-20 atypical activating mutation.",
+          "resistance_association": "none",
+          "classification": "activating"
+        },
+        {
+          "mutation_id": "EGFR_T790M",
+          "notation": "T790M",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Gatekeeper; steric+raised ATP affinity; 1st/2nd-gen resistance.",
+          "resistance_association": "1st/2nd-gen TKI",
+          "classification": "resistance"
+        },
+        {
+          "mutation_id": "EGFR_C797S",
+          "notation": "C797S",
+          "type": "missense",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Loss of Cys797 covalent anchor; 3rd-gen covalent-TKI resistance.",
+          "resistance_association": "osimertinib",
+          "classification": "resistance"
+        },
+        {
+          "mutation_id": "EGFR_L858R_T790M",
+          "notation": "L858R/T790M",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Activating + gatekeeper.",
+          "resistance_association": "1st/2nd-gen TKI",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_ex19del_T790M",
+          "notation": "ex19del/T790M",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "ex19del + gatekeeper T790M.",
+          "resistance_association": "1st/2nd-gen TKI",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_L858R_C797S",
+          "notation": "L858R/C797S",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Activating + covalent-anchor loss.",
+          "resistance_association": "osimertinib",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_ex19del_C797S",
+          "notation": "ex19del/C797S",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "ex19del + C797S.",
+          "resistance_association": "osimertinib",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_T790M_C797S",
+          "notation": "T790M/C797S",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Gatekeeper + covalent-anchor loss (cis critical).",
+          "resistance_association": "osimertinib",
+          "classification": "resistance"
+        },
+        {
+          "mutation_id": "EGFR_L858R_T790M_C797S",
+          "notation": "L858R/T790M/C797S",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "Triple mutant; broad TKI resistance.",
+          "resistance_association": "osimertinib",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_ex19del_T790M_C797S",
+          "notation": "ex19del/T790M/C797S",
+          "type": "compound",
+          "domain": "Protein kinase domain",
+          "known_mechanism": "ex19del triple; broad TKI resistance.",
+          "resistance_association": "osimertinib",
+          "classification": "activating+resistance"
+        },
+        {
+          "mutation_id": "EGFR_UNSPECIFIED",
+          "notation": "unspecified",
+          "type": "placeholder",
+          "domain": "missing",
+          "known_mechanism": "BindingDB REST measurements with no mutation construct; not a specific variant",
+          "resistance_association": "none",
+          "classification": "variants-unspecified"
+        },
+        {
+          "mutation_id": "EGFR_OTHER",
+          "notation": "other",
+          "type": "other",
+          "domain": "",
+          "known_mechanism": "out-of-panel EGFR variant(s) from BindingDB target name; not sequenced here",
+          "resistance_association": "unspecified",
+          "classification": "other"
+        }
+      ],
+      "compound_panel": [
+        {
+          "compound_id": "CMP_GEFITINIB",
+          "name": "gefitinib",
+          "drug_class": "quinazoline EGFR-TKI",
+          "covalent_status": "non-covalent",
+          "warhead_type": "none"
+        },
+        {
+          "compound_id": "CMP_ERLOTINIB",
+          "name": "erlotinib",
+          "drug_class": "quinazoline EGFR-TKI",
+          "covalent_status": "non-covalent",
+          "warhead_type": "none"
+        },
+        {
+          "compound_id": "CMP_AFATINIB",
+          "name": "afatinib",
+          "drug_class": "quinazoline pan-HER-TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_DACOMITINIB",
+          "name": "dacomitinib",
+          "drug_class": "quinazoline pan-HER-TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_OSIMERTINIB",
+          "name": "osimertinib",
+          "drug_class": "pyrimidine mutant-selective TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_LAZERTINIB",
+          "name": "lazertinib",
+          "drug_class": "mutant-selective TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_ROCILETINIB",
+          "name": "rociletinib",
+          "drug_class": "mutant-selective TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_NAZARTINIB",
+          "name": "nazartinib",
+          "drug_class": "mutant-selective TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_MOBOCERTINIB",
+          "name": "mobocertinib",
+          "drug_class": "exon20-insertion TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_BLU945",
+          "name": "BLU-945",
+          "drug_class": "reversible mutant-selective TKI",
+          "covalent_status": "non-covalent",
+          "warhead_type": "none"
+        },
+        {
+          "compound_id": "CMP_JBJ09063",
+          "name": "JBJ-09-063",
+          "drug_class": "allosteric EGFR inhibitor",
+          "covalent_status": "non-covalent",
+          "warhead_type": "none"
+        },
+        {
+          "compound_id": "CMP_SILEVERTINIB",
+          "name": "silevertinib",
+          "drug_class": "mutant-selective TKI",
+          "covalent_status": "covalent",
+          "warhead_type": "acrylamide (Cys797)"
+        },
+        {
+          "compound_id": "CMP_BRIGATINIB",
+          "name": "brigatinib",
+          "drug_class": "dimethylphosphine-oxide TKI",
+          "covalent_status": "non-covalent",
+          "warhead_type": "none"
+        }
+      ],
+      "headline_facts": [
+        {
+          "mutation": "L858R/C797S",
+          "compound": "osimertinib",
+          "covalent": "covalent",
+          "measurements": [
+            {
+              "type": "IC50",
+              "value": "574",
+              "unit": "nM",
+              "relation": "=",
+              "source": "Melis et al. 2026"
+            },
+            {
+              "type": "IC50",
+              "value": "10000",
+              "unit": "nM",
+              "relation": ">",
+              "source": "Melis et al. 2026"
+            }
+          ],
+          "affinity_pred_value": null,
+          "experimental_affinity_label": null
+        },
+        {
+          "mutation": "L858R/C797S",
+          "compound": "BLU-945",
+          "covalent": "non-covalent",
+          "measurements": [
+            {
+              "type": "IC50",
+              "value": "6.32",
+              "unit": "nM",
+              "relation": "=",
+              "source": "Melis et al. 2026"
+            },
+            {
+              "type": "IC50",
+              "value": "306",
+              "unit": "nM",
+              "relation": "=",
+              "source": "Melis et al. 2026"
+            }
+          ],
+          "affinity_pred_value": -2.0097243785858154,
+          "experimental_affinity_label": -1.3568
+        }
+      ]
+    }
   }
 }
