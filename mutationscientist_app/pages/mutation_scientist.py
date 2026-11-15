@@ -7,7 +7,9 @@ This is the end-to-end integrated workflow (the demo question):
 from __future__ import annotations
 import json
 import streamlit as st
+import config.settings as S
 from components import ui
+from visualisations import charts
 
 
 def render(ctx):
@@ -99,11 +101,16 @@ def render(ctx):
     else:
         ui.badges("llm")
         cached = " _(served from cache)_" if report.get("_cached") else ""
-        st.success(f"✦ Reasoned by the fine-tuned **MutationScientist** model "
+        st.success(f"✦ Reasoned by the fine-tuned **{S.MODEL_PRODUCT}** model "
                    f"(`{report.get('model')}`){cached}. Interprets only the supplied context.")
     if any(p.get("is_mock") for p in preds):
         st.info("ℹ️ The Boltz values interpreted in this report are **MOCK placeholders** "
                 "(predicted≠experimental); they go live when real predictions are supplied.")
+
+    # Prediction snapshot — the structured comparison the narrative reasons over.
+    if preds:
+        st.markdown("##### Prediction snapshot")
+        charts.pred_vs_exp(preds[0])
 
     st.markdown("---")
     st.markdown(report["report_markdown"])

@@ -101,5 +101,47 @@ class BoltzService:
         preds = self.predictions_for(mutation_id=mutation_id)
         return sorted(preds, key=lambda p: (p["affinity_pred_value"] is None, p["affinity_pred_value"]))
 
+    # ---------------------------------------------------------- real run view
+    @property
+    def n_real(self) -> int:
+        return len(self._real)
+
+    @staticmethod
+    def _log10uM_to_nM(v):
+        """affinity label is log10(IC50 µM) = log10(IC50 nM) − 3  →  IC50 nM = 10^(v+3)."""
+        if v is None:
+            return None
+        try:
+            return 10.0 ** (float(v) + 3.0)
+        except (TypeError, ValueError):
+            return None
+
+    def real_predictions(self) -> list[dict]:
+        """Every REAL Boltz-2 prediction in the loaded file, enriched for display.
+
+        Self-contained (does not require the complex to be in the dataset loader):
+        the records already carry mutation_id / compound_id / experimental label.
+        Adds IC50-nM equivalents and a human compound name. Sorted strongest first
+        (lowest predicted affinity value). Returns [] in mock mode — nothing faked.
+        """
+        out = []
+        for r in self._real.values():
+            pv = r.get("affinity_pred_value")
+            ev = r.get("experimental_affinity_label")
+            name = None
+            try:
+                name = self.data.compound_display_name(r.get("compound_id"))
+            except Exception:
+                name = r.get("compound_id")
+            out.append({
+                **r,
+                "compound_name": name,
+                "mutation_label": (r.get("mutation_id") or "").replace("EGFR_", ""),
+                "affinity_pred_ic50_nM_equiv": self._log10uM_to_nM(pv),
+                "experimental_ic50_nM_equiv": self._log10uM_to_nM(ev),
+            })
+        out.sort(key=lambda p: (p.get("affinity_pred_value") is None, p.get("affinity_pred_value")))
+        return out
+
     def mode_label(self) -> str:
         return "REAL (file)" if self.real_mode else "MOCK (placeholder)"

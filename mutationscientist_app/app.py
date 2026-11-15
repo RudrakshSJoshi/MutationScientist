@@ -23,11 +23,11 @@ from services.boltz_service import BoltzService
 from services.evidence_service import EvidenceService
 from services.llm_service import LLMService
 from components import ui, theme
+from visualisations import charts
 from pages import (mutation_explorer, inhibitor_explorer, molecular_screening,
                    structure_viewer, evidence_explorer, mutation_scientist)
 
 st.set_page_config(page_title=S.APP_TITLE, page_icon=S.APP_ICON, layout="wide")
-theme.inject()
 
 
 @st.cache_resource(show_spinner="Loading EGFR_RESEARCH_DATASET…")
@@ -59,16 +59,27 @@ def overview(ctx):
              f"+{s['n_bindingdb_ligands']:,} BDB ligands")
 
     st.markdown("#### Service status")
+    boltz_note = (f"REAL · {ctx.boltz.n_real} complexes" if ctx.boltz.real_mode
+                  else ctx.boltz.mode_label())
     st.markdown(
-        f"- **Boltz predictions** — {ctx.boltz.mode_label()}  {ui.badge('mock') if not ctx.boltz.real_mode else ui.badge('pretrained')}\n"
+        f"- **Boltz-2 predictions** — {boltz_note}  {ui.badge('mock') if not ctx.boltz.real_mode else ui.badge('pretrained')}\n"
         f"- **Evidence retrieval** — {ctx.evidence.mode_label()}  {ui.badge('real')}\n"
-        f"- **MutationScientist LLM** — {ctx.llm.mode_label()}  {ui.badge('llm') if ctx.llm.real_mode else ui.badge('template')}",
+        f"- **MutationScientist LLM** — {ctx.llm.display_name()} · {ctx.llm.mode_label()}  {ui.badge('llm') if ctx.llm.real_mode else ui.badge('template')}",
         unsafe_allow_html=True,
     )
     if not ctx.boltz.real_mode or not ctx.llm.real_mode:
         st.info("Running with mock placeholders for the parts not yet delivered. Set "
                 f"`{S.ENV_BOLTZ_PREDICTIONS}` (Person 2) and `{S.ENV_ADAPTION_API_KEY}`+"
                 f"`{S.ENV_ADAPTION_STACK}` (Person 1) to go live — no UI change needed.")
+
+    st.markdown(f"#### Model — {S.MODEL_PRODUCT}")
+    st.markdown(
+        "The report engine is a fine-tuned reasoning model, served OpenAI-compatibly at "
+        f"`{S.MODEL_ENDPOINT}`. The leaderboard-winning fine-tune is **{S.MODEL_NAME}** — "
+        "we **climbed the Adaption win-rate on purpose**, augmenting the grounded EGFR SFT "
+        "set as the lever.")
+    charts.winrate_journey(S.WINRATE_JOURNEY, S.WINRATE_BASELINE, S.WINRATE_BEST,
+                           S.WINRATE_TIES_BASE, S.WINRATE_SOURCE)
 
     st.markdown("#### The demo question")
     st.markdown("> *How does EGFR **C797S** affect the predicted interaction with "
@@ -91,6 +102,7 @@ PAGES = {
 
 
 def main():
+    theme.inject(light=bool(st.session_state.get("ms_light", False)))
     try:
         ctx = build_services()
     except Exception as e:
@@ -115,8 +127,13 @@ def main():
             st.success("✅ integrity OK")
         st.markdown(
             f"Boltz: {ui.badge('mock') if not ctx.boltz.real_mode else ui.badge('pretrained')}<br>"
-            f"LLM: {ui.badge('template') if not ctx.llm.real_mode else ui.badge('llm')}",
+            f"LLM: {ui.badge('template') if not ctx.llm.real_mode else ui.badge('llm')}<br>"
+            f"Evidence: {ui.badge('real')}",
             unsafe_allow_html=True)
+        ui.provenance_legend()
+        st.markdown("---")
+        st.toggle("☀️ Light mode", key="ms_light",
+                  help="Switch between the dark (default) and light validated palettes.")
 
     PAGES[choice](ctx)
 

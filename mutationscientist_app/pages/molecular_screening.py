@@ -15,10 +15,24 @@ def render(ctx):
         ui.mock_banner("Boltz predictions")
     ui.score_callout(ctx.score_definition)
 
-    tab_rank, tab_cmp, tab_pair = st.tabs(
-        ["Inhibitor ranking (per mutation)", "WT vs mutant (per inhibitor)", "Single pair"])
+    n_real = boltz.n_real
+    run_tab_label = f"Boltz run · {n_real} complexes" if n_real else "Boltz run"
+    tab_run, tab_rank, tab_cmp, tab_pair = st.tabs(
+        [run_tab_label, "Inhibitor ranking (per mutation)",
+         "WT vs mutant (per inhibitor)", "Single pair"])
 
     muts_with_cx = data.mutations_with_complexes()
+
+    with tab_run:
+        if n_real:
+            st.markdown(
+                f"Every **real Boltz-2 complex** in this run — {n_real} predicted "
+                "mutation×inhibitor pairs, each with its curated experimental IC50 "
+                "for reference.", )
+            charts.boltz_run_overview(boltz.real_predictions())
+        else:
+            ui.honest_empty("Running in MOCK mode — no real Boltz-2 run loaded. "
+                            "Set BOLTZ_PREDICTIONS_PATH to surface the real complexes.")
 
     with tab_rank:
         if not muts_with_cx:
@@ -54,9 +68,12 @@ def render(ctx):
             st.subheader("Model prediction(s)")
             if preds:
                 for p in preds:
-                    ui.badges(ui.pred_source(p))
-                    ui.kv(p, ["complex_id", "model_checkpoint", "affinity_pred_value",
-                              "affinity_probability_binary", "structure_path"])
+                    charts.pred_vs_exp(p)
+                    with st.expander("Prediction record (raw fields)"):
+                        ui.kv(p, ["complex_id", "model_checkpoint", "affinity_pred_value",
+                                  "affinity_pred_ic50_nM_equiv", "affinity_probability_binary",
+                                  "confidence_score", "experimental_ic50_nM_equiv",
+                                  "structure_path"])
             else:
                 ui.honest_empty("No Boltz complex for this mutation–inhibitor pair "
                                 "— no prediction shown (nothing fabricated).")
